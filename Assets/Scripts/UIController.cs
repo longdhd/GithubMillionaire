@@ -10,22 +10,17 @@ public class UIController : MonoBehaviour
     void Awake()
     {
         questCollection = FindObjectOfType<QuestCollection>();
+        questionController = FindObjectOfType<QuestionController>();
 
-        //Add listener
         for (int i = 0; i < answersButton.Length; i++)
         {
             var index = i;
-            answersButton[i].onClick.AddListener(() =>
+            answersButton[index].onClick.AddListener(() =>
             {
-                HandleFinalAnswer(answersButton[index]);
+                SetFinalAnswer(answersButton[index]);
             });
         }
-    }
 
-    void Start()
-    {
-        SetUpUI(questCollection.GetUnaskedQuestion(QuestionModel.QuestionType.Unlock));
-        StartCoroutine(DisplayQuestionAndAnswer());
     }
 
     public void SetUpUI(QuestionModel question)
@@ -40,14 +35,14 @@ public class UIController : MonoBehaviour
         }
     }
 
-    IEnumerator DisplayMoneyTree()
+    public IEnumerator DisplayMoneyTree()
     {
         LeanTween.moveLocalX(moneyTree, 680f, 1f);
         yield return new WaitForSeconds(3f);
         LeanTween.moveLocalX(moneyTree, 1360f, 1f);
     }
 
-    IEnumerator DisplayQuestionAndAnswer()
+    public IEnumerator DisplayQuestionAndAnswer()
     {
         LeanTween.moveLocalY(questionContainer, -320f, 0.5f);
         yield return new WaitForSeconds(3f);
@@ -59,24 +54,37 @@ public class UIController : MonoBehaviour
                  });
     }
 
-    void HandleFinalAnswer(Button button)
+    void SetFinalAnswer(Button button)
     {
-        if(button.transform.GetSiblingIndex() == 0)
+        if (button.transform.GetSiblingIndex() == 0)
             button.transform.GetComponent<Image>().sprite = slicedSprite[2];
-        else if(button.transform.GetSiblingIndex() == 1)
+        else if (button.transform.GetSiblingIndex() == 1)
             button.transform.GetComponent<Image>().sprite = slicedSprite[10];
+    }
 
+    public void HandleFinalAnswer(bool isCorrect)
+    {
         EnableButtons(false);
-    }
 
-    public string GetFinalAnswerText(Button button)
-    {
-        return button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text;
-    }
-
-    public void RevealCorrectAnswer(bool isCorrect)
-    {
-
+        foreach (Button button in answersButton)
+        {
+            if (button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text
+                                .Equals(questionController.currentQuestion.answers[0]))
+            {
+                if (isCorrect)
+                {
+                    //Flashing text here
+                    Color color = Color.green;
+                    button.transform.GetComponent<Image>().color = color;
+                }
+                else
+                {
+                    //Flashing text here
+                    Color color = Color.red;
+                    button.transform.GetComponent<Image>().color = color;
+                }
+            }
+        }
     }
 
     public void EnableButtons(bool value)
@@ -87,13 +95,11 @@ public class UIController : MonoBehaviour
         }
     }
 
-
-
     [SerializeField]
     TextMeshProUGUI questionTMPUGUI;
 
     [SerializeField]
-    Button[] answersButton;
+    public Button[] answersButton;
 
     [SerializeField]
     GameObject answersContainer;
@@ -107,6 +113,7 @@ public class UIController : MonoBehaviour
     [SerializeField]
     List<Sprite> slicedSprite;
 
-    private QuestCollection questCollection;
+    QuestCollection questCollection;
+    QuestionController questionController;
 }
 

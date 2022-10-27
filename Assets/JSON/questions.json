@@ -1,272 +1,461 @@
-[
+﻿[
   {
-    "question": "Mot cong mot bang may",
+    "question": "Một cộng một bằng",
     "answers": [
-      "mot",
-      "hai",
-      "ba",
-      "bon"
+      "Hai",
+      "Một",
+      "Ba",
+      "Bốn"
     ]
   },
   {
-    "question": "Mot cong mot bang may",
+    "question": "Hai nhân hai bằng",
     "answers": [
-      "mot",
-      "hai",
-      "ba",
-      "bon"
+      "Bốn",
+      "Không",
+      "Sáu",
+      "Tám"
     ]
   },
   {
-    "question": "Mot cong mot bang may",
+    "question": "Sunshine Heritage thuộc quận",
     "answers": [
-      "mot",
-      "hai",
-      "ba",
-      "bon"
+      "Nam Từ Liêm",
+      "Bắc Từ Liêm",
+      "Long Biên",
+      "Tây Hồ"
     ]
   },
   {
-    "question": "Mot cong mot bang may",
+    "question": "Điền từ còn thiếu vào chỗ trống trong câu: 'Đục nước béo …'",
     "answers": [
-      "mot",
-      "hai",
-      "ba",
-      "bon"
+      "Cò  ",
+      "Cá",
+      "Mèo",
+      "Vạc"
     ]
   },
   {
-    "question": "Mot cong mot bang may",
+    "question": "Việt Nam có chung biên giới với quốc gia",
     "answers": [
-      "mot",
-      "hai",
-      "ba",
-      "bon"
+      "Trung Quốc",
+      "Thái Lan",
+      "Brunei",
+      "Myanmar"
     ]
   },
   {
-    "question": "Mot cong mot bang may",
+    "question": "Đâu là tên một ngôi chùa nổi tiếng ở Hà Nam?",
     "answers": [
-      "mot",
-      "hai",
-      "ba",
-      "bon"
+      "Tam Chúc",
+      "Bổ Đà",
+      "Trấn Quốc",
+      "Bái Đính"
     ]
   },
   {
-    "question": "Mot cong mot bang may",
+    "question": "Sóng biển thường được tạo ra do",
     "answers": [
-      "mot",
-      "hai",
-      "ba",
-      "bon"
+      "Gió",
+      "Nắng",
+      "Mưa",
+      "Sương mù"
     ]
   },
   {
-    "question": "Mot cong mot bang may",
+    "question": "Âm thanh có tần số lớn hơn 20KHz",
     "answers": [
-      "mot",
-      "hai",
-      "ba",
-      "bon"
+      "Siêu âm",
+      "Hạ âm",
+      "Cận âm",
+      "Quá âm"
     ]
   },
   {
-    "question": "Mot cong mot bang may",
+    "question": "Điền từ còn thiếu vào chỗ trống: \n'Bao giờ trời kéo vảy ... / Sắp gồng sắp gánh ta về kẻo mưa'?",
     "answers": [
-      "mot",
-      "hai",
-      "ba",
-      "bon"
+      "Tê",
+      "Đê",
+      "Dê",
+      "Mê"
     ]
   },
   {
-    "question": "Mot cong mot bang may",
+    "question": "Năm nhuận có bao nhiêu ngày?",
     "answers": [
-      "mot",
-      "hai",
-      "ba",
-      "bon"
+      "366",
+      "365",
+      "364",
+      "363"
     ]
   },
   {
-    "question": "Mot cong mot bang may",
+    "question": "Kích thước tiêu chuẩn của khổ giấy A4",
     "answers": [
-      "mot",
-      "hai",
-      "ba",
-      "bon"
+      "210 x 297mm",
+      "297 x 420mm",
+      "105 x 148mm",
+      "594 x 841mm"
     ]
   },
   {
-    "question": "Mot cong mot bang may",
+    "question": "Đâu không phải là tên một nhà cung cấp dịch vụ Internet ở Việt Nam",
     "answers": [
-      "mot",
-      "hai",
-      "ba",
-      "bon"
+      "Kaspersky",
+      "FPT Telecom",
+      "Viettel Telecom",
+      "VNPT"
     ]
   },
   {
-    "question": "Mot cong mot bang may",
+    "question": "Bài hát “Happy New Year” do ban nhạc nào thể hiện",
     "answers": [
-      "mot",
-      "hai",
-      "ba",
-      "bon"
+      "ABBA",
+      "The Carpenter",
+      "Spice Girls",
+      "MLTR"
     ]
   },
   {
-    "question": "Mot cong mot bang may",
+    "question": "Động vật nào sau đây có bướu",
     "answers": [
-      "mot",
-      "hai",
-      "ba",
-      "bon"
+      "Lạc đà",
+      "Ngựa",
+      "Chó",
+      "Voi"
     ]
   },
   {
-    "question": "Mot cong mot bang may",
+    "question": "Phép tính gì phải tách một số thành các phần bằng nhau",
     "answers": [
-      "mot",
-      "hai",
-      "ba",
-      "bon"
+      "Chia",
+      "Nhân",
+      "Trừ",
+      "Cộng"
     ]
   },
   {
-    "question": "Mot cong mot bang may",
+    "question": "Thuyền nào sau đây chạy bằng sức gió",
     "answers": [
-      "mot",
-      "hai",
-      "ba",
-      "bon"
+      "Thuyền buồm",
+      "Thuyền thúng",
+      "Thuyền độc mộc",
+      "Thuyền nan"
     ]
   },
   {
-    "question": "Mot cong mot bang may",
+    "question": "Loài động vật nào cao nhất trong số các loài sau",
     "answers": [
-      "mot",
-      "hai",
-      "ba",
-      "bon"
+      "Hươu cao cổ",
+      "Voi",
+      "Gấu",
+      "Hổ"
     ]
   },
   {
-    "question": "Mot cong mot bang may",
+    "question": "Điền từ còn thiếu vào chỗ trống: 'Vặt đầu cá, vá ...'",
     "answers": [
-      "mot",
-      "hai",
-      "ba",
-      "bon"
+      "Đầu tôm",
+      "Đầu gối",
+      "Đầu đường",
+      "Đầu lâu"
     ]
   },
   {
-    "question": "Mot cong mot bang may",
+    "question": "Màu sắc nào thuộc gam màu lạnh",
     "answers": [
-      "mot",
-      "hai",
-      "ba",
-      "bon"
+      "Tím",
+      "Đỏ",
+      "Vàng",
+      "Hồng"
     ]
   },
   {
-    "question": "Mot cong mot bang may",
+    "question": "Đâu là tên một thể loại tranh đặc trưng của Trung Quốc?",
     "answers": [
-      "mot",
-      "hai",
-      "ba",
-      "bon"
+      "Thủy mặc",
+      "Thủy tức",
+      "Thủy sinh",
+      "Thủy tinh"
     ]
   },
   {
-    "question": "Mot cong mot bang may",
+    "question": "Loại rau nào dưới đây có vị đắng và nhiều tác dụng trong Đông y?",
     "answers": [
-      "mot",
-      "hai",
-      "ba",
-      "bon"
+      "Ngải cứu",
+      "Mồng tơi",
+      "Rau ngót",
+      "Rau muống"
     ]
   },
   {
-    "question": "Mot cong mot bang may",
+    "question": "Đâu là tên 1 bộ phận trong máy tính để bàn?",
     "answers": [
-      "mot",
-      "hai",
-      "ba",
-      "bon"
+      "Ổ cứng",
+      "Ổ điện",
+      "Ổ gà",
+      "Ổ voi"
     ]
   },
   {
-    "question": "Mot cong mot bang may",
+    "question": "Loại khí nào còn được gọi là khí cười?",
     "answers": [
-      "mot",
-      "hai",
-      "ba",
-      "bon"
+      "N<sub>2</sub>O",
+      "CO<sub>2</sub>",
+      "H<sub>2</sub>S",
+      "O<sub>2</sub>"
     ]
   },
   {
-    "question": "Mot cong mot bang may",
+    "question": "Từ nào sau đây viết đúng chính tả?",
     "answers": [
-      "mot",
-      "hai",
-      "ba",
-      "bon"
+      "Liều lĩnh",
+      "Liều nĩnh",
+      "Niều lĩnh",
+      "Niều nĩnh"
     ]
   },
   {
-    "question": "Mot cong mot bang may",
+    "question": "Màu sắc nào sau đây không tồn tại",
     "answers": [
-      "mot",
-      "hai",
-      "ba",
-      "bon"
+      "Tím khế",
+      "Vàng chanh",
+      "Xanh trứng xáo",
+      "Đỏ đun"
     ]
   },
   {
-    "question": "Mot cong mot bang may",
+    "question": "Đâu là một vật liệu xây dựng?",
     "answers": [
-      "mot",
-      "hai",
-      "ba",
-      "bon"
+      "Ngói",
+      "Ngoi",
+      "Ngòi",
+      "Ngỏi"
     ]
   },
   {
-    "question": "Mot cong mot bang may",
+    "question": "Quả nào sau đây có gai",
     "answers": [
-      "mot",
-      "hai",
-      "ba",
-      "bon"
+      "Mít",
+      "Mận",
+      "Cóc",
+      "Ổi"
     ]
   },
   {
-    "question": "Mot cong mot bang may",
+    "question": "Cồng chiêng của người Tây Nguyên được làm từ chất liệu",
     "answers": [
-      "mot",
-      "hai",
-      "ba",
-      "bon"
+      "Đồng",
+      "Vàng",
+      "Bạc",
+      "Nhôm"
     ]
   },
   {
-    "question": "Mot cong mot bang may",
+    "question": "Tác phẩm nào được coi là tác phẩm nổi tiếng nhất của Hector Malot",
     "answers": [
-      "mot",
-      "hai",
-      "ba",
-      "bon"
+      "Không gia đình",
+      "Đồi gió hú",
+      "Giã từ vũ khí",
+      "Miếng da lừa"
     ]
   },
   {
-    "question": "Mot cong mot bang may",
+    "question": "Ca sĩ nào không thuộc nhóm nhạc Big Bang",
     "answers": [
-      "mot",
-      "hai",
-      "ba",
-      "bon"
+      "Yoochun",
+      "T.O.P",
+      "G-Dragon",
+      "Daesung"
+    ]
+  },
+  {
+    "question": "Đâu là một hợp kim của Nhôm",
+    "answers": [
+      "Đuyra",
+      "Ferit",
+      "Alkanoid",
+      "Alumin"
+    ]
+  },
+  {
+    "question": "Cầu thủ nào là Vua phá lưới giải Ngoại hạng Anh mùa giải 2019-2020",
+    "answers": [
+      "Jamie Vardy",
+      "Mohamed Salah",
+      "Aubameyang",
+      "Raheem Sterling"
+    ]
+  },
+  {
+    "question": "Thiên tài Albert Einstein đã từng được mời làm tổng thống nước",
+    "answers": [
+      "Israel",
+      "Latvia",
+      "Jordan",
+      "Bulgari"
+    ]
+  },
+  {
+    "question": "Kimi Raikkonen là VĐV từng giành chức vô địch thế giới ở môn thể thao",
+    "answers": [
+      "Đua xe F1",
+      "Trượt tuyết",
+      "Bơi lội",
+      "Thể dục dụng cụ"
+    ]
+  },
+  {
+    "question": "Quốc gia duy nhất trên thế giới có tới 3 thủ đô",
+    "answers": [
+      "Nam Phi",
+      "Bolivia",
+      "Montenegro",
+      "Sri Lanka"
+    ]
+  },
+  {
+    "question": "Trạng thái nào được coi là trạng thái thứ tư của vật chất (ngoài trừ rắn, lỏng, khí)",
+    "answers": [
+      "Plasma",
+      "Laser",
+      "Ketogenic",
+      "Obitan"
+    ]
+  },
+  {
+    "question": "Cây cầu vượt biển dài nhất nước ta hiện nay nằm ở tỉnh",
+    "answers": [
+      "Hải Phòng",
+      "Bà Rịa - Vũng Tàu",
+      "Bình Thuận",
+      "Khánh Hòa"
+    ]
+  },
+  {
+    "question": "Tháng 8 dương lịch có",
+    "answers": [
+      "31 ngày",
+      "28 ngày",
+      "29 ngày",
+      "30 ngày"
+    ]
+  },
+  {
+    "question": "Bún tàu là tên gọi khác của",
+    "answers": [
+      "Miến",
+      "Phở",
+      "Bánh đa",
+      "Mì"
+    ]
+  },
+  {
+    "question": "Món ăn nào là đặc sản nổi tiếng Hồ Tây",
+    "answers": [
+      "Bánh tôm",
+      "Bánh cốm",
+      "Bánh bèo",
+      "Bánh tằm"
+    ]
+  },
+  {
+    "question": "Sông Mê Kông không chảy qua địa phận nước",
+    "answers": [
+      "Malaysia",
+      "Thái Lan",
+      "Lào",
+      "Campuchia"
+    ]
+  },
+  {
+    "question": "Thiên thể nào thường được gọi theo tên của các nhà thiên văn học?",
+    "answers": [
+      "Sao chổi",
+      "Sao Hỏa",
+      "Sao Kim",
+      "Sao Thổ"
+    ]
+  },
+  {
+    "question": "Tiểu thuyết Robinson Crusoe viết bởi nhà văn",
+    "answers": [
+      "Daniel Defoe",
+      "Mark Twain",
+      "Charles Dicken",
+      "Robert Stevenson"
+    ]
+  },
+  {
+    "question": "Barista là tên khác của người",
+    "answers": [
+      "Pha chế",
+      "Đầu bếp",
+      "Bảo vệ",
+      "Nhạc sĩ"
+    ]
+  },
+  {
+    "question": "Toà nhà nào cao nhất Đông Nam Á hiện nay",
+    "answers": [
+      "Exchang 106",
+      "Landmark 81",
+      "Unicloud Smart Factory",
+      "Petronas"
+    ]
+  },
+  {
+    "question": "Trong vở chèo “Quan âm thị kính”, Thị Kính giả trai dưới cái tên",
+    "answers": [
+      "Kính Tâm",
+      "Kính An",
+      "Kính Thi",
+      "Kính Cường Lực"
+    ]
+  },
+  {
+    "question": "Tượng chúa cứu thế ở thành phố Rio de Janeiro nằm trên ngọn núi nào? ",
+    "answers": [
+      "Corcovado",
+      "Sugarloaf",
+      "Roraima",
+      "Pico de Neblina"
+    ]
+  },
+  {
+    "question": "'Lưỡi không xương nhiều đường lắt léo' là câu dùng để chỉ loại người",
+    "answers": [
+      "Xảo trá",
+      "Ngốc nghếch",
+      "Khù khờ",
+      "Xởi lởi"
+    ]
+  },
+  {
+    "question": "Trong phần mềm soạn thảo văn bản của Microsoft, tổ hợp phím nào được dùng để đóng văn bản",
+    "answers": [
+      "Ctrl + W",
+      "Ctrl + Z",
+      "Ctrl + C",
+      "Ctrl + V"
+    ]
+  },
+  {
+    "question": "Loài hoa nào được nhắc đến trong bài hát Biết ơn chị Võ Thị Sáu",
+    "answers": [
+      "Hoa lê-ki-ma",
+      "Hoa lay-ơn",
+      "Hoa ly",
+      "Hoa mai"
+    ]
+  },
+  {
+    "question": "'Bát trân' là tên gọi của",
+    "answers": [
+      "Tám món ăn quý",
+      "Tám loại thuốc quý",
+      "Tám bức tranh quý",
+      "Tám loài hoa quý"
     ]
   }
 ]

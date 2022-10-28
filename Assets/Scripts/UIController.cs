@@ -43,13 +43,13 @@ public class UIController : MonoBehaviour
 
     public IEnumerator DisplayQuestionAndAnswer()
     {
-        LeanTween.moveLocalY(questionContainer, -320f, 0.5f);
+        LeanTween.moveLocalY(questionContainer, -240f, 0.5f);
         yield return new WaitForSeconds(3f);
         LeanTween.moveLocalY(questionContainer, 0f, 0.5f)
                  .setEase(LeanTweenType.easeOutBounce)
                  .setOnComplete(() =>
                  {
-                     LeanTween.moveLocalY(answersContainer, -180f, 0.5f);
+                     LeanTween.moveLocalY(answersContainer, -160f, 0.5f);
                  });
     }
 
@@ -107,13 +107,13 @@ public class UIController : MonoBehaviour
 
     public void Use50Lifeline()
     {
-        int randomInt = UnityEngine.Random.Range(0, 4);
+        int randomInt = UnityEngine.Random.Range(0, answersButton.Length);
         for (int i = 0; i < answersButton.Length; i++)
         {
             if (answersButton[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text
                                 .Equals(questionController.currentQuestion.answers[0]))
             {
-                if (randomInt == i) randomInt += 1;
+                if (randomInt == i && randomInt != answersButton.Length - 1) randomInt += 1;
                 Debug.Log(randomInt);
             }
 
@@ -122,6 +122,7 @@ public class UIController : MonoBehaviour
                 .Equals(questionController.currentQuestion.answers[0]))
             {
                 answersButton[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "";
+                answersButton[i].enabled = false;
             }
         }
     }

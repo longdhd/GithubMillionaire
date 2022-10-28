@@ -398,7 +398,7 @@
   {
     "question": "Toà nhà nào cao nhất Đông Nam Á hiện nay",
     "answers": [
-      "Exchang 106",
+      "Exchange 106",
       "Landmark 81",
       "Unicloud Smart Factory",
       "Petronas"
@@ -456,6 +456,15 @@
       "Tám loại thuốc quý",
       "Tám bức tranh quý",
       "Tám loài hoa quý"
+    ]
+  },
+  {
+    "question": "",
+    "answers": [
+      "",
+      "",
+      "",
+      ""
     ]
   }
 ]

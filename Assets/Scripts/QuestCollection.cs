@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
 using UnityEngine;
+using System;
 
 public class QuestCollection : MonoBehaviour
 {
@@ -22,12 +23,12 @@ public class QuestCollection : MonoBehaviour
     void LoadAllQuestions()
     {
         ResetAllQuestions();
-
         var jsonPath = Application.dataPath + "/JSON/questions.json";
         var jsonFile = File.ReadAllText(jsonPath);
         allQuestion = JsonConvert.DeserializeObject<QuestionModel[]>(jsonFile);
 
-        SortQuestionType();
+        SetQuestionType();
+        SetCorrectAnswer();
     }
 
     public QuestionModel GetUnaskedQuestion(QuestionModel.QuestionType questionType)
@@ -36,55 +37,58 @@ public class QuestCollection : MonoBehaviour
         switch (questionType)
         {
             case QuestionModel.QuestionType.Unlock:
-                unasked = allQuestion.Where(t => t.asked == false && t.questionType == QuestionModel.QuestionType.Unlock)
-                                                    .OrderBy(t => Random.Range(0, allQuestion.Length - 1))
+                unasked = allQuestion.Where(t => t.asked == false && t.Type == QuestionModel.QuestionType.Unlock)
+                                                    .OrderBy(t => UnityEngine.Random.Range(0, allQuestion.Length - 1))
                                                     .FirstOrDefault();
                 unasked.asked = true;
                 return unasked;
 
             case QuestionModel.QuestionType.Easy:
-                unasked = allQuestion.Where(t => t.asked == false && t.questionType == QuestionModel.QuestionType.Easy)
-                                                    .OrderBy(t => Random.Range(0, allQuestion.Length - 1))
+                unasked = allQuestion.Where(t => t.asked == false && t.Type == QuestionModel.QuestionType.Easy)
+                                                    .OrderBy(t => UnityEngine.Random.Range(0, allQuestion.Length - 1))
                                                     .FirstOrDefault();
                 unasked.asked = true;
                 return unasked;
 
             case QuestionModel.QuestionType.Medium:
-                unasked = allQuestion.Where(t => t.asked == false && t.questionType == QuestionModel.QuestionType.Medium)
-                                                    .OrderBy(t => Random.Range(0, allQuestion.Length - 1))
+                unasked = allQuestion.Where(t => t.asked == false && t.Type == QuestionModel.QuestionType.Medium)
+                                                    .OrderBy(t => UnityEngine.Random.Range(0, allQuestion.Length - 1))
                                                     .FirstOrDefault(); ;
                 unasked.asked = true;
                 return unasked;
 
             case QuestionModel.QuestionType.Hard:
-                unasked = allQuestion.Where(t => t.asked == false && t.questionType == QuestionModel.QuestionType.Hard)
-                                                    .OrderBy(t => Random.Range(0, allQuestion.Length - 1))
+                unasked = allQuestion.Where(t => t.asked == false && t.Type == QuestionModel.QuestionType.Hard)
+                                                    .OrderBy(t => UnityEngine.Random.Range(0, allQuestion.Length - 1))
                                                     .FirstOrDefault(); ;
                 unasked.asked = true;
                 return unasked;
 
             default:
-                unasked = allQuestion.Where(t => t.asked == false && t.questionType == QuestionModel.QuestionType.Unlock)
-                                                     .OrderBy(t => Random.Range(0, allQuestion.Length - 1))
+                unasked = allQuestion.Where(t => t.asked == false && t.Type == QuestionModel.QuestionType.Unlock)
+                                                     .OrderBy(t => UnityEngine.Random.Range(0, allQuestion.Length - 1))
                                                     .FirstOrDefault();
                 unasked.asked = true;
                 return unasked;
         }
     }
 
-    void SortQuestionType()
+    void SetQuestionType()
     {
-        for (int i = 0; i < allQuestion.Length; i++)
+        foreach (QuestionModel question in allQuestion)
         {
-            if (i <= unlockQuestionIndex)
-                allQuestion[i].questionType = QuestionModel.QuestionType.Unlock;
-            else if (i <= easyQuestionIndex && i > unlockQuestionIndex)
-                allQuestion[i].questionType = QuestionModel.QuestionType.Easy;
-            else if (i <= mediumQuestionIndex && i > easyQuestionIndex)
-                allQuestion[i].questionType = QuestionModel.QuestionType.Medium;
-            else if(i <= mediumQuestionIndex - 1 && i > mediumQuestionIndex)
-                allQuestion[i].questionType = QuestionModel.QuestionType.Hard;
+            question.Type = (QuestionModel.QuestionType)question.questionType;
         }
+    }
+
+    void SetCorrectAnswer()
+    {
+        if (allQuestion.Any(t => String.IsNullOrEmpty(t.correctAns)))
+        {
+            foreach (var question in allQuestion)
+                question.correctAns = question.answers[0];
+        }
+
     }
 
     void ResetAllQuestions()

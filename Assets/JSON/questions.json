@@ -1,6 +1,7 @@
 ﻿[
   {
     "question": "Một cộng một bằng",
+    "questionType": 0,
     "answers": [
       "Hai",
       "Một",
@@ -10,6 +11,7 @@
   },
   {
     "question": "Hai nhân hai bằng",
+    "questionType": 0,
     "answers": [
       "Bốn",
       "Không",
@@ -19,6 +21,7 @@
   },
   {
     "question": "Sunshine Heritage thuộc quận",
+    "questionType": 0,
     "answers": [
       "Nam Từ Liêm",
       "Bắc Từ Liêm",
@@ -28,6 +31,7 @@
   },
   {
     "question": "Điền từ còn thiếu vào chỗ trống trong câu: 'Đục nước béo …'",
+    "questionType": 1,
     "answers": [
       "Cò  ",
       "Cá",
@@ -37,6 +41,7 @@
   },
   {
     "question": "Việt Nam có chung biên giới với quốc gia",
+    "questionType": 1,
     "answers": [
       "Trung Quốc",
       "Thái Lan",
@@ -46,6 +51,7 @@
   },
   {
     "question": "Đâu là tên một ngôi chùa nổi tiếng ở Hà Nam?",
+    "questionType": 1,
     "answers": [
       "Tam Chúc",
       "Bổ Đà",
@@ -55,6 +61,7 @@
   },
   {
     "question": "Sóng biển thường được tạo ra do",
+    "questionType": 1,
     "answers": [
       "Gió",
       "Nắng",
@@ -64,6 +71,7 @@
   },
   {
     "question": "Âm thanh có tần số lớn hơn 20KHz",
+    "questionType": 1,
     "answers": [
       "Siêu âm",
       "Hạ âm",
@@ -73,6 +81,7 @@
   },
   {
     "question": "Điền từ còn thiếu vào chỗ trống: \n'Bao giờ trời kéo vảy ... / Sắp gồng sắp gánh ta về kẻo mưa'?",
+    "questionType": 1,
     "answers": [
       "Tê",
       "Đê",
@@ -82,6 +91,7 @@
   },
   {
     "question": "Năm nhuận có bao nhiêu ngày?",
+    "questionType": 1,
     "answers": [
       "366",
       "365",
@@ -91,6 +101,7 @@
   },
   {
     "question": "Kích thước tiêu chuẩn của khổ giấy A4",
+    "questionType": 1,
     "answers": [
       "210 x 297mm",
       "297 x 420mm",
@@ -100,6 +111,7 @@
   },
   {
     "question": "Đâu không phải là tên một nhà cung cấp dịch vụ Internet ở Việt Nam",
+    "questionType": 1,
     "answers": [
       "Kaspersky",
       "FPT Telecom",
@@ -109,6 +121,7 @@
   },
   {
     "question": "Bài hát “Happy New Year” do ban nhạc nào thể hiện",
+    "questionType": 1,
     "answers": [
       "ABBA",
       "The Carpenter",
@@ -118,6 +131,7 @@
   },
   {
     "question": "Động vật nào sau đây có bướu",
+    "questionType": 1,
     "answers": [
       "Lạc đà",
       "Ngựa",
@@ -127,6 +141,7 @@
   },
   {
     "question": "Phép tính gì phải tách một số thành các phần bằng nhau",
+    "questionType": 1,
     "answers": [
       "Chia",
       "Nhân",
@@ -136,6 +151,7 @@
   },
   {
     "question": "Thuyền nào sau đây chạy bằng sức gió",
+    "questionType": 1,
     "answers": [
       "Thuyền buồm",
       "Thuyền thúng",
@@ -145,6 +161,7 @@
   },
   {
     "question": "Loài động vật nào cao nhất trong số các loài sau",
+    "questionType": 1,
     "answers": [
       "Hươu cao cổ",
       "Voi",
@@ -154,6 +171,7 @@
   },
   {
     "question": "Điền từ còn thiếu vào chỗ trống: 'Vặt đầu cá, vá ...'",
+    "questionType": 1,
     "answers": [
       "Đầu tôm",
       "Đầu gối",
@@ -163,6 +181,7 @@
   },
   {
     "question": "Màu sắc nào thuộc gam màu lạnh",
+    "questionType": 1,
     "answers": [
       "Tím",
       "Đỏ",
@@ -172,6 +191,7 @@
   },
   {
     "question": "Đâu là tên một thể loại tranh đặc trưng của Trung Quốc?",
+    "questionType": 1,
     "answers": [
       "Thủy mặc",
       "Thủy tức",
@@ -181,6 +201,7 @@
   },
   {
     "question": "Loại rau nào dưới đây có vị đắng và nhiều tác dụng trong Đông y?",
+    "questionType": 1,
     "answers": [
       "Ngải cứu",
       "Mồng tơi",
@@ -190,6 +211,7 @@
   },
   {
     "question": "Đâu là tên 1 bộ phận trong máy tính để bàn?",
+    "questionType": 1,
     "answers": [
       "Ổ cứng",
       "Ổ điện",
@@ -199,6 +221,7 @@
   },
   {
     "question": "Loại khí nào còn được gọi là khí cười?",
+    "questionType": 1,
     "answers": [
       "N<sub>2</sub>O",
       "CO<sub>2</sub>",
@@ -208,6 +231,7 @@
   },
   {
     "question": "Từ nào sau đây viết đúng chính tả?",
+    "questionType": 1,
     "answers": [
       "Liều lĩnh",
       "Liều nĩnh",
@@ -217,6 +241,7 @@
   },
   {
     "question": "Màu sắc nào sau đây không tồn tại",
+    "questionType": 1,
     "answers": [
       "Tím khế",
       "Vàng chanh",
@@ -226,6 +251,7 @@
   },
   {
     "question": "Đâu là một vật liệu xây dựng?",
+    "questionType": 1,
     "answers": [
       "Ngói",
       "Ngoi",
@@ -235,6 +261,7 @@
   },
   {
     "question": "Quả nào sau đây có gai",
+    "questionType": 1,
     "answers": [
       "Mít",
       "Mận",
@@ -244,6 +271,7 @@
   },
   {
     "question": "Cồng chiêng của người Tây Nguyên được làm từ chất liệu",
+    "questionType": 1,
     "answers": [
       "Đồng",
       "Vàng",
@@ -253,6 +281,7 @@
   },
   {
     "question": "Tác phẩm nào được coi là tác phẩm nổi tiếng nhất của Hector Malot",
+    "questionType": 2,
     "answers": [
       "Không gia đình",
       "Đồi gió hú",
@@ -262,6 +291,7 @@
   },
   {
     "question": "Ca sĩ nào không thuộc nhóm nhạc Big Bang",
+    "questionType": 2,
     "answers": [
       "Yoochun",
       "T.O.P",
@@ -271,6 +301,7 @@
   },
   {
     "question": "Đâu là một hợp kim của Nhôm",
+    "questionType": 2,
     "answers": [
       "Đuyra",
       "Ferit",
@@ -280,6 +311,7 @@
   },
   {
     "question": "Cầu thủ nào là Vua phá lưới giải Ngoại hạng Anh mùa giải 2019-2020",
+    "questionType": 2,
     "answers": [
       "Jamie Vardy",
       "Mohamed Salah",
@@ -289,6 +321,7 @@
   },
   {
     "question": "Thiên tài Albert Einstein đã từng được mời làm tổng thống nước",
+    "questionType": 2,
     "answers": [
       "Israel",
       "Latvia",
@@ -298,6 +331,7 @@
   },
   {
     "question": "Kimi Raikkonen là VĐV từng giành chức vô địch thế giới ở môn thể thao",
+    "questionType": 2,
     "answers": [
       "Đua xe F1",
       "Trượt tuyết",
@@ -307,6 +341,7 @@
   },
   {
     "question": "Quốc gia duy nhất trên thế giới có tới 3 thủ đô",
+    "questionType": 2,
     "answers": [
       "Nam Phi",
       "Bolivia",
@@ -316,6 +351,7 @@
   },
   {
     "question": "Trạng thái nào được coi là trạng thái thứ tư của vật chất (ngoài trừ rắn, lỏng, khí)",
+    "questionType": 2,
     "answers": [
       "Plasma",
       "Laser",
@@ -325,6 +361,7 @@
   },
   {
     "question": "Cây cầu vượt biển dài nhất nước ta hiện nay nằm ở tỉnh",
+    "questionType": 2,
     "answers": [
       "Hải Phòng",
       "Bà Rịa - Vũng Tàu",
@@ -334,6 +371,7 @@
   },
   {
     "question": "Tháng 8 dương lịch có",
+    "questionType": 2,
     "answers": [
       "31 ngày",
       "28 ngày",
@@ -343,6 +381,7 @@
   },
   {
     "question": "Bún tàu là tên gọi khác của",
+    "questionType": 2,
     "answers": [
       "Miến",
       "Phở",
@@ -351,7 +390,8 @@
     ]
   },
   {
-    "question": "Món ăn nào là đặc sản nổi tiếng Hồ Tây",
+    "question": "Món ăn nào là đặc sản nổi tiếng Hồ Tây",
+    "questionType": 2,
     "answers": [
       "Bánh tôm",
       "Bánh cốm",
@@ -361,6 +401,7 @@
   },
   {
     "question": "Sông Mê Kông không chảy qua địa phận nước",
+    "questionType": 2,
     "answers": [
       "Malaysia",
       "Thái Lan",
@@ -370,6 +411,7 @@
   },
   {
     "question": "Thiên thể nào thường được gọi theo tên của các nhà thiên văn học?",
+    "questionType": 2,
     "answers": [
       "Sao chổi",
       "Sao Hỏa",
@@ -379,6 +421,7 @@
   },
   {
     "question": "Tiểu thuyết Robinson Crusoe viết bởi nhà văn",
+    "questionType": 2,
     "answers": [
       "Daniel Defoe",
       "Mark Twain",
@@ -388,6 +431,7 @@
   },
   {
     "question": "Barista là tên khác của người",
+    "questionType": 2,
     "answers": [
       "Pha chế",
       "Đầu bếp",
@@ -397,6 +441,7 @@
   },
   {
     "question": "Toà nhà nào cao nhất Đông Nam Á hiện nay",
+    "questionType": 2,
     "answers": [
       "Exchange 106",
       "Landmark 81",
@@ -406,6 +451,7 @@
   },
   {
     "question": "Trong vở chèo “Quan âm thị kính”, Thị Kính giả trai dưới cái tên",
+    "questionType": 2,
     "answers": [
       "Kính Tâm",
       "Kính An",
@@ -415,6 +461,7 @@
   },
   {
     "question": "Tượng chúa cứu thế ở thành phố Rio de Janeiro nằm trên ngọn núi nào? ",
+    "questionType": 2,
     "answers": [
       "Corcovado",
       "Sugarloaf",
@@ -424,6 +471,7 @@
   },
   {
     "question": "'Lưỡi không xương nhiều đường lắt léo' là câu dùng để chỉ loại người",
+    "questionType": 2,
     "answers": [
       "Xảo trá",
       "Ngốc nghếch",
@@ -433,6 +481,7 @@
   },
   {
     "question": "Trong phần mềm soạn thảo văn bản của Microsoft, tổ hợp phím nào được dùng để đóng văn bản",
+    "questionType": 2,
     "answers": [
       "Ctrl + W",
       "Ctrl + Z",
@@ -442,6 +491,7 @@
   },
   {
     "question": "Loài hoa nào được nhắc đến trong bài hát Biết ơn chị Võ Thị Sáu",
+    "questionType": 2,
     "answers": [
       "Hoa lê-ki-ma",
       "Hoa lay-ơn",
@@ -451,20 +501,12 @@
   },
   {
     "question": "'Bát trân' là tên gọi của",
+    "questionType": 2,
     "answers": [
       "Tám món ăn quý",
       "Tám loại thuốc quý",
       "Tám bức tranh quý",
       "Tám loài hoa quý"
-    ]
-  },
-  {
-    "question": "",
-    "answers": [
-      "",
-      "",
-      "",
-      ""
     ]
   }
 ]

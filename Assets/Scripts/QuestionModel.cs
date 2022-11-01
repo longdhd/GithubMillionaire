@@ -8,6 +8,7 @@ public class QuestionModel
 {
     public string question { get; set; }
     public string[] answers { get; set; }
+    public string correctAns { get; set; }
     public bool asked { get; set; }
 
     public enum QuestionType
@@ -18,5 +19,7 @@ public class QuestionModel
         Hard
     }
 
-    public QuestionType questionType { get; set; } 
+    public int questionType;
+
+    public QuestionType Type { get; set; }
 }

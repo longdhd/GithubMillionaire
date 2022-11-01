@@ -7,27 +7,50 @@ using TMPro;
 public class QuestionController : MonoBehaviour
 {
     [HideInInspector] public QuestionModel currentQuestion;
-    UIController _viewController;
-    QuestCollection _collection;
-    QuestionModel.QuestionType questionType = QuestionModel.QuestionType.Unlock;
-    int currentLevel = 1;
+    public static QuestionController Instance;
+    public QuestCollection _collection;
+    public int currentLevel;
+    public UIController _viewController;
+    QuestionModel.QuestionType questionType;
+    [HideInInspector] public FiftyLifeline _fiftyLifeline;
+    [HideInInspector] SwitchLifeline _switchLifeline;
+    [HideInInspector] AudienceLifeline _audienceLifeline;
 
     void Awake()
     {
         _viewController = FindObjectOfType<UIController>();
         _collection = FindObjectOfType<QuestCollection>();
+        Instance = this;
     }
 
     void Start()
     {
+        currentLevel = 4;
+        _fiftyLifeline = new FiftyLifeline
+        {
+            Quantity = 0
+        };
+
+        _switchLifeline = new SwitchLifeline()
+        {
+            Quantity = 0
+        };
+        _audienceLifeline = new AudienceLifeline()
+        {
+            Quantity = 0
+        };
         StartCoroutine(PresentQuestion());
+
     }
 
     IEnumerator PresentQuestion()
     {
-        if(currentLevel == 1 || currentLevel == 4 
+        if (currentLevel == 1 || currentLevel == 4
             || currentLevel == 9 || currentLevel == 14)
             StartCoroutine(_viewController.DisplayMoneyTree());
+
+        if (currentLevel == 4 || currentLevel == 9)
+            _fiftyLifeline.Quantity += 1;
 
         if (currentLevel < 4)
             questionType = QuestionModel.QuestionType.Unlock;
@@ -48,13 +71,13 @@ public class QuestionController : MonoBehaviour
     {
         bool isCorrect = _viewController.answersButton[finalAnswer].transform
                             .GetChild(0).GetComponent<TextMeshProUGUI>()
-                            .text.Equals(currentQuestion.answers[0]);
-        
+                            .text.Equals(currentQuestion.correctAns);
+
         _viewController.HandleFinalAnswer(isCorrect);
 
-        if(isCorrect)
+        if (isCorrect)
         {
-            if(currentLevel < 19)
+            if (currentLevel < 19)
                 currentLevel++;
             StartCoroutine(NextQuestionAfterDelay());
         }
@@ -62,6 +85,54 @@ public class QuestionController : MonoBehaviour
         {
             currentLevel = 1;
         }
+    }
+
+    public void Use5050Lifeline()
+    {
+        if (_fiftyLifeline.Quantity > 0)
+        {
+            QuestionModel tempQuestion = _viewController.GetSortedAnswers();
+            QuestionModel newQuestion = _fiftyLifeline.Use(tempQuestion);
+            currentQuestion = newQuestion;
+            _viewController.SetUpUI(newQuestion, false);
+            _viewController.DisableEmptyAnswers();
+        }
+        else
+            return;
+    }
+
+    public void UseSwitchLifeline()
+    {
+        QuestionModel newQuestion = _switchLifeline.Use(currentQuestion);
+        if (newQuestion != null)
+        {
+            currentQuestion = newQuestion;
+            _viewController.SetUpUI(newQuestion);
+        }
+        else
+            return;
+    }
+
+    public void UseAudienceLifeline()
+    {
+        int availableAnswers = 0;
+        int correctAnswerIndex = 0;
+        for (int i = 0; i < _viewController.answersButton.Length; i++)
+        {
+            if (!string.IsNullOrEmpty(_viewController.answersButton[i].transform
+                .GetChild(0).GetComponent<TextMeshProUGUI>().text))
+                availableAnswers++;
+
+            if (_viewController.answersButton[i].transform
+                .GetChild(0).GetComponent<TextMeshProUGUI>().text.Equals(currentQuestion.correctAns))
+                correctAnswerIndex = i;
+        }
+
+        bool isUsing5050 = availableAnswers == 2 ? true : false;
+        int[] results = _audienceLifeline.Use(correctAnswerIndex, isUsing5050);
+        foreach (int result in results)
+            Debug.Log(result);
+        _viewController.DisplayAudiencePanel(results);
     }
 
     IEnumerator NextQuestionAfterDelay()

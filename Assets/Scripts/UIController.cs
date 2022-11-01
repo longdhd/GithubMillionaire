@@ -10,6 +10,7 @@ public class UIController : MonoBehaviour
     void Awake()
     {
         questionController = FindObjectOfType<QuestionController>();
+        lifelineContainer = moneyTree.transform.GetChild(0).GetChild(0).GetChild(0).gameObject;
 
         for (int i = 0; i < answersButton.Length; i++)
         {
@@ -22,16 +23,35 @@ public class UIController : MonoBehaviour
 
     }
 
-    public void SetUpUI(QuestionModel question)
+    void Update()
+    {
+        lifelineContainer.transform.GetChild(0).GetComponent<Image>().sprite
+            = questionController._fiftyLifeline.Quantity > 0 ? fiftyLifelineSprite[1] : fiftyLifelineSprite[0];
+    }
+
+    public void SetUpUI(QuestionModel question, bool randomOrderAnswers = true)
     {
         questionTMPUGUI.text = question.question.Replace("\\n", "\n");
-        string[] copiedArr = new string[question.answers.Length];
-        Array.Copy(question.answers, copiedArr, question.answers.Length);
-        Array.Sort(copiedArr, 0, UnityEngine.Random.Range(1, question.answers.Length));
-        for (int i = 0; i < question.answers.Length; i++)
+        
+        //Should the answers be arranged ramdomly
+        if (randomOrderAnswers)
         {
-            answersButton[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = copiedArr[i];
+            string[] copiedArr = new string[question.answers.Length];
+            Array.Copy(question.answers, copiedArr, question.answers.Length);
+            Array.Sort(copiedArr, 0, UnityEngine.Random.Range(1, question.answers.Length));
+            for (int i = 0; i < question.answers.Length; i++)
+            {
+                answersButton[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = copiedArr[i];
+            }
         }
+        else
+        {
+            for (int i = 0; i < question.answers.Length; i++)
+            {
+                answersButton[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = question.answers[i];
+            }
+        }
+
     }
 
     public IEnumerator DisplayMoneyTree()
@@ -105,32 +125,48 @@ public class UIController : MonoBehaviour
         questionContainer.transform.GetChild(0).GetChild(1).gameObject.SetActive(false);
     }
 
-    public void Use50Lifeline()
+    public void DisplayAudiencePanel(int[] results)
     {
-        int randomInt = UnityEngine.Random.Range(0, answersButton.Length);
+        LeanTween.moveX(audiencePanel, 1920f, 1f);
+        for(int i = 0; i < audienceSlider.Length; i++)
+        {
+            audienceSlider[i].value = results[i] / 100f;
+            audienceSlider[i].transform.GetChild(0).GetChild(0)
+                .GetComponent<TextMeshProUGUI>().text = $"{results[i]}%";
+        }
+    }
+
+    public QuestionModel GetSortedAnswers()
+    {
+        QuestionModel sortedAnswerQuestion = new QuestionModel()
+        {
+            question = questionController.currentQuestion.question,
+            correctAns = questionController.currentQuestion.correctAns,
+            answers = new string[answersButton.Length],
+            asked = true
+        };
+
         for (int i = 0; i < answersButton.Length; i++)
         {
-            if (answersButton[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text
-                                .Equals(questionController.currentQuestion.answers[0]))
-            {
-                if (randomInt == i && randomInt != answersButton.Length - 1) randomInt += 1;
-                Debug.Log(randomInt);
-            }
-
-            if (i != randomInt &&
-                !answersButton[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text
-                .Equals(questionController.currentQuestion.answers[0]))
-            {
-                answersButton[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "";
-                answersButton[i].enabled = false;
-            }
+            sortedAnswerQuestion.answers[i] = answersButton[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text;
         }
+
+        return sortedAnswerQuestion;
     }
 
     void ResetLayout()
     {
         LeanTween.moveLocalY(questionContainer, -(Screen.height + questionContainer.transform.GetComponent<RectTransform>().rect.height), 1f);
         LeanTween.moveLocalY(answersContainer, -(Screen.height + answersContainer.transform.GetComponent<RectTransform>().rect.height), 1f);
+    }
+
+    public void DisableEmptyAnswers()
+    {
+        for (int i = 0; i < answersButton.Length; i++)
+        {
+            answersButton[i].enabled
+                = !answersButton[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text.Equals("");
+        }
     }
 
     void ResetButton()
@@ -168,10 +204,20 @@ public class UIController : MonoBehaviour
     [SerializeField]
     GameObject moneyTree;
 
+    GameObject lifelineContainer;
+
+    [SerializeField]
+    GameObject audiencePanel;
+
+    [SerializeField]
+    Slider[] audienceSlider;
+
     [SerializeField]
     List<Sprite> slicedSprite;
+
+    [SerializeField]
+    List<Sprite> fiftyLifelineSprite;
 
     QuestionController questionController;
     float delayAfterFinalAnswer = 3f;
 }
-

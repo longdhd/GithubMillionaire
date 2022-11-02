@@ -31,8 +31,8 @@ public class UIController : MonoBehaviour
 
     public void SetUpUI(QuestionModel question, bool randomOrderAnswers = true)
     {
-        questionTMPUGUI.text = question.question.Replace("\\n", "\n").Replace("'","");
-        
+        questionTMPUGUI.text = question.question.Replace("\\n", "\n").Replace("'", "");
+
         //Should the answers be arranged ramdomly
         if (randomOrderAnswers)
         {
@@ -76,9 +76,37 @@ public class UIController : MonoBehaviour
 
     void SetFinalAnswer(Button button)
     {
-        int siblingIndex = button.transform.GetSiblingIndex();
-        button.transform.GetComponent<Image>().sprite
-            = siblingIndex == 0 ? slicedSprite[2] : slicedSprite[10];
+        onClickPointer = button.gameObject.GetComponent<OnClickPointer>();
+        if(onClickPointer.pointerState == OnClickPointer.PointerState.LOCK)
+        {
+            int siblingIndex = button.transform.GetSiblingIndex();
+            button.transform.GetComponent<Image>().sprite
+                = siblingIndex == 0 ? slicedSprite[0] : slicedSprite[8];
+
+            UnlockOtherAnswers(button);
+        }
+        else if (onClickPointer.pointerState == OnClickPointer.PointerState.FINAL)
+        {
+            Debug.Log("Set Final Answer!");
+            int siblingIndex = button.transform.GetSiblingIndex();
+            button.transform.GetComponent<Image>().sprite
+                = siblingIndex == 0 ? slicedSprite[2] : slicedSprite[10];
+        }
+    }
+
+    private void UnlockOtherAnswers(Button finalButton)
+    {
+        foreach(Button btn in answersButton)
+        {
+            if(btn != finalButton)
+            {
+                OnClickPointer onClickBtn = btn.gameObject.GetComponent<OnClickPointer>();
+                onClickBtn.pointerState = OnClickPointer.PointerState.BLANK;
+                int siblingIndex = btn.transform.GetSiblingIndex();
+                btn.transform.GetComponent<Image>().sprite
+                    = siblingIndex == 0 ? slicedSprite[3] : slicedSprite[11];
+            }
+        }
     }
 
     public void HandleFinalAnswer(bool isCorrect)
@@ -90,12 +118,12 @@ public class UIController : MonoBehaviour
             if (button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text
                                 .Equals(questionController.currentQuestion.correctAns))
             {
-                StartCoroutine(PlayAnimation(button, isCorrect));
+                StartCoroutine(RevealCorrectAnswer(button, isCorrect));
             }
         }
     }
 
-    IEnumerator PlayAnimation(Button button, bool isCorrect)
+    IEnumerator RevealCorrectAnswer(Button button, bool isCorrect)
     {
         yield return new WaitForSeconds(1.5f);
         button.transform.GetComponent<Animator>().enabled = true;
@@ -129,7 +157,7 @@ public class UIController : MonoBehaviour
     public void DisplayAudiencePanel(int[] results)
     {
         LeanTween.moveX(audiencePanel, 1920f, 1f);
-        for(int i = 0; i < audienceSlider.Length; i++)
+        for (int i = 0; i < audienceSlider.Length; i++)
         {
             audienceSlider[i].value = results[i] / 100f;
             audienceSlider[i].transform.GetChild(0).GetChild(0)
@@ -220,5 +248,6 @@ public class UIController : MonoBehaviour
     List<Sprite> fiftyLifelineSprite;
 
     QuestionController questionController;
+    OnClickPointer onClickPointer;
     float delayAfterFinalAnswer = 3f;
 }

@@ -67,23 +67,27 @@ public class QuestionController : MonoBehaviour
         StartCoroutine(_viewController.DisplayQuestionAndAnswer());
     }
 
-    public void SubmitAnswer(int finalAnswer)
+    public void LockAnswer(int finalAnswer)
     {
+        bool isSubmitted = _viewController.answersButton[finalAnswer]
+            .GetComponent<OnClickPointer>().pointerState == OnClickPointer.PointerState.FINAL;
+        
         bool isCorrect = _viewController.answersButton[finalAnswer].transform
                             .GetChild(0).GetComponent<TextMeshProUGUI>()
                             .text.Equals(currentQuestion.correctAns);
-
-        _viewController.HandleFinalAnswer(isCorrect);
-
-        if (isCorrect)
+        if (isSubmitted)
         {
-            if (currentLevel < 19)
-                currentLevel++;
-            StartCoroutine(NextQuestionAfterDelay());
-        }
-        else
-        {
-            currentLevel = 1;
+            _viewController.HandleFinalAnswer(isCorrect);
+            if (isCorrect)
+            {
+                if (currentLevel < 19)
+                    currentLevel++;
+                StartCoroutine(NextQuestionAfterDelay());
+            }
+            else
+            {
+                currentLevel = 1;
+            }
         }
     }
 
@@ -110,7 +114,7 @@ public class QuestionController : MonoBehaviour
             _viewController.SetUpUI(newQuestion);
         }
         else
-            return;
+            throw new UnityException("newQuestion is null");
     }
 
     public void UseAudienceLifeline()

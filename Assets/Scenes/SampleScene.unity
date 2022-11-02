@@ -278,7 +278,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300004, guid: 9a3f5bd5975de2443b59c6fbb1951811, type: 3}
+  m_Sprite: {fileID: 21300010, guid: 9a3f5bd5975de2443b59c6fbb1951811, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -328,6 +328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6d4e8800d566c042b7b44b33c4df77a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointerState: 0
 --- !u!1 &260192957
 GameObject:
   m_ObjectHideFlags: 0
@@ -1273,6 +1274,7 @@ GameObject:
   - component: {fileID: 510200955}
   - component: {fileID: 510200954}
   - component: {fileID: 510200956}
+  - component: {fileID: 510200958}
   - component: {fileID: 510200957}
   m_Layer: 5
   m_Name: AnswerB
@@ -1322,7 +1324,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300012, guid: 9a3f5bd5975de2443b59c6fbb1951811, type: 3}
+  m_Sprite: {fileID: 21300010, guid: 9a3f5bd5975de2443b59c6fbb1951811, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1416,6 +1418,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &510200958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510200952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6d4e8800d566c042b7b44b33c4df77a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointerState: 0
 --- !u!1 &552545767
 GameObject:
   m_ObjectHideFlags: 0
@@ -5272,6 +5287,7 @@ GameObject:
   - component: {fileID: 1763327684}
   - component: {fileID: 1763327683}
   - component: {fileID: 1763327685}
+  - component: {fileID: 1763327687}
   - component: {fileID: 1763327686}
   m_Layer: 5
   m_Name: AnswerD
@@ -5321,7 +5337,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300012, guid: 9a3f5bd5975de2443b59c6fbb1951811, type: 3}
+  m_Sprite: {fileID: 21300010, guid: 9a3f5bd5975de2443b59c6fbb1951811, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5415,6 +5431,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1763327687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763327681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6d4e8800d566c042b7b44b33c4df77a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointerState: 0
 --- !u!1 &1789722317
 GameObject:
   m_ObjectHideFlags: 0
@@ -5554,6 +5583,7 @@ GameObject:
   - component: {fileID: 1817872171}
   - component: {fileID: 1817872170}
   - component: {fileID: 1817872172}
+  - component: {fileID: 1817872174}
   - component: {fileID: 1817872173}
   m_Layer: 5
   m_Name: AnswerC
@@ -5603,7 +5633,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300004, guid: 9a3f5bd5975de2443b59c6fbb1951811, type: 3}
+  m_Sprite: {fileID: 21300010, guid: 9a3f5bd5975de2443b59c6fbb1951811, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5697,6 +5727,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1817872174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817872168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6d4e8800d566c042b7b44b33c4df77a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointerState: 0
 --- !u!1 &1854682634
 GameObject:
   m_ObjectHideFlags: 0

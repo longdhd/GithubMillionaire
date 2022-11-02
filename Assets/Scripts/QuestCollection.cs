@@ -8,12 +8,7 @@ using System;
 
 public class QuestCollection : MonoBehaviour
 {
-    [SerializeField] int unlockQuestionIndex;
-    [SerializeField] int easyQuestionIndex;
-    [SerializeField] int mediumQuestionIndex;
-    [SerializeField] int hardQuestionIndex;
-
-    QuestionModel[] allQuestion;
+    private QuestionModel[] allQuestion;
 
     void Awake()
     {

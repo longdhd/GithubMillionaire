@@ -17,7 +17,7 @@ public class UIController : MonoBehaviour
             var index = i;
             answersButton[index].onClick.AddListener(() =>
             {
-                SetFinalAnswer(answersButton[index]);
+                LockAndSetFinalAnswer(answersButton[index]);
             });
         }
 
@@ -74,9 +74,9 @@ public class UIController : MonoBehaviour
                  });
     }
 
-    void SetFinalAnswer(Button button)
+    void LockAndSetFinalAnswer(Button button)  
     {
-        onClickPointer = button.gameObject.GetComponent<OnClickPointer>();
+        OnClickPointer onClickPointer = button.gameObject.GetComponent<OnClickPointer>();
         if(onClickPointer.pointerState == OnClickPointer.PointerState.LOCK)
         {
             int siblingIndex = button.transform.GetSiblingIndex();
@@ -94,14 +94,14 @@ public class UIController : MonoBehaviour
         }
     }
 
-    private void UnlockOtherAnswers(Button finalButton)
+    void UnlockOtherAnswers(Button finalButton)
     {
         foreach(Button btn in answersButton)
         {
             if(btn != finalButton)
             {
                 OnClickPointer onClickBtn = btn.gameObject.GetComponent<OnClickPointer>();
-                onClickBtn.pointerState = OnClickPointer.PointerState.BLANK;
+                onClickBtn.pointerState = OnClickPointer.PointerState.IDLE;
                 int siblingIndex = btn.transform.GetSiblingIndex();
                 btn.transform.GetComponent<Image>().sprite
                     = siblingIndex == 0 ? slicedSprite[3] : slicedSprite[11];
@@ -204,7 +204,9 @@ public class UIController : MonoBehaviour
         {
             int siblingIndex = answersButton[i].transform.GetSiblingIndex();
             answersButton[i].transform.GetComponent<Image>().sprite
-            = siblingIndex == 0 ? slicedSprite[0] : slicedSprite[8];
+            = siblingIndex == 0 ? slicedSprite[3] : slicedSprite[11];
+
+            answersButton[i].GetComponent<OnClickPointer>().pointerState = OnClickPointer.PointerState.IDLE;
         }
 
         EnableButtons(true);
@@ -248,6 +250,5 @@ public class UIController : MonoBehaviour
     List<Sprite> fiftyLifelineSprite;
 
     QuestionController questionController;
-    OnClickPointer onClickPointer;
     float delayAfterFinalAnswer = 3f;
 }

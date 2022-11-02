@@ -508,5 +508,205 @@
       "Tám bức tranh quý",
       "Tám loài hoa quý"
     ]
+  },
+  {
+    "question": "Diễn viên nào đóng vai bà Vi trong phim “Của để dành”? ",
+    "questionType": 3,
+    "answers": [
+      "Hoàng Yến",
+      "Lê Mai",
+      "Thu An",
+      "Thanh Hoa"
+    ]
+  },
+  {
+    "question": "Bức tượng cao nhất Trung Quốc?",
+    "questionType": 3,
+    "answers": [
+      "Trung Nguyên Đại Phật",
+      "Linh Sơn Đại Phật",
+      "Tích Thủy Quan Âm",
+      "Lạc Sơn Đại Phật"
+    ]
+  },
+  {
+    "question": "Pôn Pốt mở đầu xâm lược biên giới tây nam nước ta vào ngày tháng năm nào?",
+    "questionType": 3,
+    "answers": [
+      "22/12/1978",
+      "20/12/1978",
+      "21/12/1978",
+      "24/12/1978"
+    ]
+  },
+  {
+    "question": "Đạo diễn của vở nhạc kịch Kim Vân Kiều là ai?",
+    "questionType": 3,
+    "answers": [
+      "Christophe Thiry",
+      "Nguyễn Đăng Bình",
+      "Johahn Bern",
+      "Alisa Karnet"
+    ]
+  },
+  {
+    "question": "Vật liệu nào được dùng để rèn những cây kiếm Katana huyền thoại của Nhật Bản?",
+    "questionType": 3,
+    "answers": [
+      "Tamahagane",
+      "Takashi",
+      "Orihaco",
+      "Katanashi"
+    ]
+  },
+  {
+    "question": "Luật sư nào đã bào chữa cho Nguyễn Ái Quốc trong vụ án năm 1931 ở Hồng Kông?",
+    "questionType": 3,
+    "answers": [
+      "Francis Henry Loseby",
+      "Karl Richard",
+      "Henry Peterson",
+      "Franky Luther Aston"
+    ]
+  },
+  {
+    "question": "Tên lửa nào dưới đây do Nga sản xuất? ",
+    "questionType": 3,
+    "answers": [
+      "Avangard",
+      "Tomahawk",
+      "Trident III",
+      "Minuteman III"
+    ]
+  },
+  {
+    "question": "Hoa nào được coi là Quốc hoa của Myanmar?",
+    "questionType": 3,
+    "answers": [
+      "Hoa Padauk",
+      "Hoa Simpor",
+      "Hoa Rumdul",
+      "Hoa Đại"
+    ]
+  },
+  {
+    "question": "Chuyến bay đầu tiên trong lịch sử nhân loại bằng phi cơ \n của anh em nhà Wright kéo dài bao nhiêu giây? ",
+    "questionType": 3,
+    "answers": [
+      "12",
+      "10",
+      "14",
+      "16"
+    ]
+  },
+  {
+    "question": "Chất độc nào có trong lá ngón ",
+    "questionType": 3,
+    "answers": [
+      "Alkaloid",
+      "Cyanua",
+      "Tetrodotoxi",
+      "Heteroizit"
+    ]
+  },
+  {
+    "question": "Nam Dương là tên phiên âm Hán-Việt của quốc gia nào?",
+    "questionType": 3,
+    "answers": [
+      "Indonesia",
+      "Philippines",
+      "Myanmar",
+      "Campuchia"
+    ]
+  },
+  {
+    "question": "The Cup Of Life là bài hát chính thức World Cup năm nào?",
+    "questionType": 3,
+    "answers": [
+      "1998",
+      "1994",
+      "2002",
+      "2006"
+    ]
+  },
+  {
+    "question": "Bộ Cửu Đỉnh trong Hoàng thành Huế là do vua nào ra lệnh cho đúc? ",
+    "questionType": 3,
+    "answers": [
+      "Minh Mạng",
+      "Hiệp Hòa",
+      "Gia Long",
+      "Đồng Khánh"
+    ]
+  },
+  {
+    "question": "Câu lạc bộ nào đoạt nhiều chức vô địch Champions League nhất? ",
+    "questionType": 3,
+    "answers": [
+      "Real Madrid",
+      "Manchester United",
+      "Liverpool",
+      "AC Milan"
+    ]
+  },
+  {
+    "question": "Euro năm 2012 là Euro lần thứ mấy trong lịch sử do hai nước cùng đăng cai tổ chức?",
+    "questionType": 3,
+    "answers": [
+      "3",
+      "2",
+      "1",
+      "4"
+    ]
+  },
+  {
+    "question": "Chỉ số nào sau đây không dùng để đo chỉ số phát triển con người HDI của một nước? ",
+    "questionType": 3,
+    "answers": [
+      "Chỉ số lạm phát",
+      "Tuổi thọ bình quân",
+      "Chỉ số giáo dục",
+      "GDP bình quân đầu người"
+    ]
+  },
+  {
+    "question": "Trái tim của nhạc sĩ nào còn được lưu giữ đến tận ngày nay ",
+    "questionType": 3,
+    "answers": [
+      "Frederic Chopin",
+      "Johan Sebastian Bach",
+      "Ludvig van Beethoven",
+      "Wolfgang Amadeus Mozart"
+    ]
+  },
+  {
+    "question": "Samuel Langhome Clemens là tên thật của nhà văn nổi tiếng nào sau đây ",
+    "questionType": 3,
+    "answers": [
+      "Mark Twain",
+      "Charles Dickens",
+      "O’Henry",
+      "Hemingway"
+    ]
+  },
+  {
+    "question": "Cây cầu nào sau đây không bắc qua sông",
+    "questionType": 3,
+    "answers": [
+      "Cầu La Ngà",
+      "Cầu Việt Trì",
+      "Cầu Tân Quang",
+      "Cầu Bình Ca"
+    ]
+  },
+  {
+    "question": "Ai là người đại diện chính thức cho nước Việt Nam Dân chủ Cộng hòa\n kí Hiệp định Paris ngày 27/1/1973 ",
+    "questionType": 3,
+    "answers": [
+      "Nguyễn Duy Trinh",
+      "Nguyễn Thị Bình",
+      "Lê Đức Thọ",
+      "Xuân Thủy"
+    ]
   }
 ]

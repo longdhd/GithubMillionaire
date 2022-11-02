@@ -28,16 +28,16 @@ public class QuestionController : MonoBehaviour
         currentLevel = 4;
         _fiftyLifeline = new FiftyLifeline
         {
-            Quantity = 0
+            Quantity = 1
         };
 
         _switchLifeline = new SwitchLifeline()
         {
-            Quantity = 0
+            Quantity = 1
         };
         _audienceLifeline = new AudienceLifeline()
         {
-            Quantity = 0
+            Quantity = 1
         };
         StartCoroutine(PresentQuestion());
 
@@ -130,8 +130,6 @@ public class QuestionController : MonoBehaviour
 
         bool isUsing5050 = availableAnswers == 2 ? true : false;
         int[] results = _audienceLifeline.Use(correctAnswerIndex, isUsing5050);
-        foreach (int result in results)
-            Debug.Log(result);
         _viewController.DisplayAudiencePanel(results);
     }
 

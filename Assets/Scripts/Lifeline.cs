@@ -68,17 +68,17 @@ public class AudienceLifeline
         int[] results = new int[4];
         if (isUsing5050Lifeline)
         {
+            //Should audience gives wrong answer
             if (UnityEngine.Random.Range(1, 101) > chanceOfCorrectAudience)
             {
                 int incorrectPercent = UnityEngine.Random.Range(51, 101);
+                results[correctIndex] = 100 - incorrectPercent;
                 for (int i = 0; i < QuestionController.Instance.currentQuestion.answers.Length; i++)
                 {
                     if (i != correctIndex && String.IsNullOrEmpty(QuestionController.Instance.currentQuestion.answers[i]))
                         results[i] = 0;
                     else if (i != correctIndex && !String.IsNullOrEmpty(QuestionController.Instance.currentQuestion.answers[i]))
                         results[i] = incorrectPercent;
-                    else if (i == correctIndex)
-                        results[i] = 100 - incorrectPercent;
                 }
             }
             else
@@ -102,7 +102,7 @@ public class AudienceLifeline
             int unusedPercent = 100 - correctPercent;
             int total = correctPercent;
 
-            //Random incorrect answers percantage
+            //Random wrong answers percent
             for (int i = 0; i < QuestionController.Instance.currentQuestion.answers.Length; i++)
             {
                 if (i != correctIndex)

@@ -31,7 +31,7 @@ public class UIController : MonoBehaviour
 
     public void SetUpUI(QuestionModel question, bool randomOrderAnswers = true)
     {
-        questionTMPUGUI.text = question.question.Replace("\\n", "\n");
+        questionTMPUGUI.text = question.question.Replace("\\n", "\n").Replace("'","");
         
         //Should the answers be arranged ramdomly
         if (randomOrderAnswers)
@@ -52,6 +52,7 @@ public class UIController : MonoBehaviour
             }
         }
 
+        LeanTween.moveX(audiencePanel, 0f, 1f);
     }
 
     public IEnumerator DisplayMoneyTree()
@@ -87,7 +88,7 @@ public class UIController : MonoBehaviour
         foreach (Button button in answersButton)
         {
             if (button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text
-                                .Equals(questionController.currentQuestion.answers[0]))
+                                .Equals(questionController.currentQuestion.correctAns))
             {
                 StartCoroutine(PlayAnimation(button, isCorrect));
             }

@@ -59,9 +59,26 @@ public class UIController : MonoBehaviour
     {
         LeanTween.moveLocalX(moneyTree, 640f, 1f);
         yield return new WaitForSeconds(3f);
-        //LeanTween.moveLocalX(moneyTree, 1360f, 1f);
+        LeanTween.moveLocalX(moneyTree, 1360f, 1f);
     }
 
+    public void ToggleMoneyTree()
+    {
+        bool isOn = moneyTree.transform.position.x == 1600f;
+        LeanTween.moveLocalX(moneyTree, isOn ? 1360f : 640f, 1f);
+    }
+
+    public void ClimbUpMoneyTree()
+    {
+        if (questionController.currentLevel > 0)
+        {
+            Vector3 currentPos = currentPrize.transform.position;
+            float offset = currentPrize.rect.height;
+            float newY = currentPos.y + offset;
+            Vector3 newPos = new Vector3(currentPos.x, newY, currentPos.z);
+            currentPrize.transform.position = newPos;
+        }
+    }
     public IEnumerator DisplayQuestionAndAnswer()
     {
         LeanTween.moveLocalY(questionContainer, -240f, 0.5f);
@@ -74,10 +91,10 @@ public class UIController : MonoBehaviour
                  });
     }
 
-    void LockAndSetFinalAnswer(Button button)  
+    void LockAndSetFinalAnswer(Button button)
     {
         OnClickPointer onClickPointer = button.gameObject.GetComponent<OnClickPointer>();
-        if(onClickPointer.pointerState == OnClickPointer.PointerState.LOCK)
+        if (onClickPointer.pointerState == OnClickPointer.PointerState.LOCK)
         {
             int siblingIndex = button.transform.GetSiblingIndex();
             button.transform.GetComponent<Image>().sprite
@@ -96,9 +113,9 @@ public class UIController : MonoBehaviour
 
     void UnlockOtherAnswers(Button finalButton)
     {
-        foreach(Button btn in answersButton)
+        foreach (Button btn in answersButton)
         {
-            if(btn != finalButton)
+            if (btn != finalButton)
             {
                 OnClickPointer onClickBtn = btn.gameObject.GetComponent<OnClickPointer>();
                 onClickBtn.pointerState = OnClickPointer.PointerState.IDLE;
@@ -125,10 +142,10 @@ public class UIController : MonoBehaviour
 
     IEnumerator RevealCorrectAnswer(Button button, bool isCorrect)
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(delayAfterFinalAnswer);
         button.transform.GetComponent<Animator>().enabled = true;
         button.transform.GetComponent<Animator>().SetTrigger(isCorrect ? "Correct" : "Incorrect");
-        yield return new WaitForSeconds(delayAfterFinalAnswer);
+        yield return new WaitForSeconds(1.5f);
         button.transform.GetComponent<Animator>().enabled = false;
 
         ResetButton();
@@ -142,12 +159,16 @@ public class UIController : MonoBehaviour
     {
         questionContainer.transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
         LeanTween.moveLocalY(answersContainer, -(Screen.height + answersContainer.transform.GetComponent<RectTransform>().rect.height), 0.5f);
-        LeanTween.rotateX(questionContainer, 360f, 0.5f).setOnComplete(() =>
+        if (questionController.currentLevel > 1)
         {
-            questionContainer.transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
-        });
-        LeanTween.moveLocalY(questionContainer, -320f, 0.5f);
-        yield return new WaitForSeconds(delayAfterFinalAnswer);
+            LeanTween.rotateX(questionContainer, 360f, 0.5f).setOnComplete(() =>
+            {
+                questionContainer.transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
+                questionContainer.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = prizeList[questionController.currentLevel - 2].text;
+            });
+            LeanTween.moveLocalY(questionContainer, -320f, 0.5f);
+            yield return new WaitForSeconds(delayAfterFinalAnswer);
+        }
         LeanTween.moveLocalY(questionContainer, -(Screen.height + questionContainer.transform.GetComponent<RectTransform>().rect.height), 0.5f);
         yield return new WaitForSeconds(1f);
         questionContainer.transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
@@ -232,13 +253,16 @@ public class UIController : MonoBehaviour
     [SerializeField]
     GameObject questionContainer;
 
-    [SerializeField]
-    GameObject moneyTree;
-
     GameObject lifelineContainer;
 
     [SerializeField]
+    GameObject moneyTree;
+
+    [SerializeField]
     GameObject audiencePanel;
+
+    [SerializeField]
+    RectTransform currentPrize;
 
     [SerializeField]
     Slider[] audienceSlider;
@@ -248,6 +272,13 @@ public class UIController : MonoBehaviour
 
     [SerializeField]
     List<Sprite> fiftyLifelineSprite;
+
+    [SerializeField]
+    List<TextMeshProUGUI> prizeList;
+
+    [SerializeField]
+    List<TextMeshProUGUI> lifelineQuantity;
+
 
     QuestionController questionController;
     float delayAfterFinalAnswer = 3f;

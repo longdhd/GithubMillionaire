@@ -1,26 +1,26 @@
 ﻿[
   {
-    "question": "Một cộng một bằng",
+    "question": "Loại hình bất động sản dự án Sunshine Heritage",
     "questionType": 0,
     "answers": [
-      "Hai",
-      "Một",
+      "Resort",
+      "Apartment",
+      "Villa",
+      "Sky Villa"
+    ]
+  },
+  {
+    "question": "Dự án Sunshine Heritage thuộc Sunshine Group có bao nhiêu phân khu",
+    "questionType": 0,
+    "answers": [
+      "Năm",
+      "Sáu",
       "Ba",
       "Bốn"
     ]
   },
   {
-    "question": "Hai nhân hai bằng",
-    "questionType": 0,
-    "answers": [
-      "Bốn",
-      "Không",
-      "Sáu",
-      "Tám"
-    ]
-  },
-  {
-    "question": "Sunshine Heritage thuộc quận",
+    "question": "Dự án Sunshine Heritage thuộc Sunshine Group nằm ở quận",
     "questionType": 0,
     "answers": [
       "Nam Từ Liêm",

@@ -25,7 +25,7 @@ public class QuestionController : MonoBehaviour
 
     void Start()
     {
-        currentLevel = 4;
+        currentLevel = 1;
         _fiftyLifeline = new FiftyLifeline
         {
             Quantity = 1
@@ -45,25 +45,25 @@ public class QuestionController : MonoBehaviour
 
     IEnumerator PresentQuestion()
     {
-        if (currentLevel == 1 || currentLevel == 4
-            || currentLevel == 9 || currentLevel == 14)
+        if (currentLevel == 1 || currentLevel == 6
+            || currentLevel == 11 || currentLevel == 15)
             StartCoroutine(_viewController.DisplayMoneyTree());
 
         if (currentLevel == 4 || currentLevel == 9)
             _fiftyLifeline.Quantity += 1;
 
-        if (currentLevel < 4)
+        if (currentLevel < 1)
             questionType = QuestionModel.QuestionType.Unlock;
-        else if (currentLevel >= 4 && currentLevel < 9)
+        else if (currentLevel >= 1 && currentLevel < 6)
             questionType = QuestionModel.QuestionType.Easy;
-        else if (currentLevel >= 9 && currentLevel < 14)
+        else if (currentLevel >= 6 && currentLevel < 11)
             questionType = QuestionModel.QuestionType.Medium;
-        else if (currentLevel >= 14 && currentLevel < 19)
+        else if (currentLevel >= 11 && currentLevel < 16)
             questionType = QuestionModel.QuestionType.Hard;
 
         currentQuestion = _collection.GetUnaskedQuestion(questionType);
         _viewController.SetUpUI(currentQuestion);
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
         StartCoroutine(_viewController.DisplayQuestionAndAnswer());
     }
 
@@ -80,8 +80,11 @@ public class QuestionController : MonoBehaviour
             _viewController.HandleFinalAnswer(isCorrect);
             if (isCorrect)
             {
-                if (currentLevel < 19)
+                if (currentLevel < 15)
+                {
                     currentLevel++;
+                }
+                _viewController.ClimbUpMoneyTree();
                 StartCoroutine(NextQuestionAfterDelay());
             }
             else
@@ -139,7 +142,7 @@ public class QuestionController : MonoBehaviour
 
     IEnumerator NextQuestionAfterDelay()
     {
-        yield return new WaitForSeconds(8f);
+        yield return new WaitForSeconds(5f);
         StartCoroutine(PresentQuestion());
     }
 }

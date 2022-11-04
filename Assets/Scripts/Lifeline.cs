@@ -130,6 +130,7 @@ public class AudienceLifeline
                 if (lowestIndex != -1) results[lowestIndex] += leftover;
             }
         }
+        Quantity -= 1;
         return results;
     }
 

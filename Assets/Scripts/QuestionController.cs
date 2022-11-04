@@ -7,14 +7,14 @@ using TMPro;
 public class QuestionController : MonoBehaviour
 {
     [HideInInspector] public QuestionModel currentQuestion;
-    public static QuestionController Instance;
-    public QuestCollection _collection;
-    public int currentLevel;
-    public UIController _viewController;
-    QuestionModel.QuestionType questionType;
+    [HideInInspector]  public QuestCollection _collection;
+    [HideInInspector] public UIController _viewController;
     [HideInInspector] public FiftyLifeline _fiftyLifeline;
-    [HideInInspector] SwitchLifeline _switchLifeline;
-    [HideInInspector] AudienceLifeline _audienceLifeline;
+    [HideInInspector] public SwitchLifeline _switchLifeline;
+    [HideInInspector] public AudienceLifeline _audienceLifeline;
+    public static QuestionController Instance;
+    public int currentLevel;
+    QuestionModel.QuestionType questionType;
 
     void Awake()
     {
@@ -25,7 +25,7 @@ public class QuestionController : MonoBehaviour
 
     void Start()
     {
-        currentLevel = 1;
+        currentLevel = -2;
         _fiftyLifeline = new FiftyLifeline
         {
             Quantity = 1
@@ -71,7 +71,7 @@ public class QuestionController : MonoBehaviour
     {
         bool isSubmitted = _viewController.answersButton[finalAnswer]
             .GetComponent<OnClickPointer>().pointerState == OnClickPointer.PointerState.FINAL;
-        
+
         bool isCorrect = _viewController.answersButton[finalAnswer].transform
                             .GetChild(0).GetComponent<TextMeshProUGUI>()
                             .text.Equals(currentQuestion.correctAns);
@@ -85,6 +85,7 @@ public class QuestionController : MonoBehaviour
                     currentLevel++;
                 }
                 _viewController.ClimbUpMoneyTree();
+                _viewController.UpdateDiamonds(currentLevel);
                 StartCoroutine(NextQuestionAfterDelay());
             }
             else
@@ -110,34 +111,40 @@ public class QuestionController : MonoBehaviour
 
     public void UseSwitchLifeline()
     {
-        QuestionModel newQuestion = _switchLifeline.Use(currentQuestion);
-        if (newQuestion != null)
+        if (_switchLifeline.Quantity > 0)
         {
-            currentQuestion = newQuestion;
-            _viewController.SetUpUI(newQuestion);
+            QuestionModel newQuestion = _switchLifeline.Use(currentQuestion);
+            if (newQuestion != null)
+            {
+                currentQuestion = newQuestion;
+                _viewController.SetUpUI(newQuestion);
+            }
+            else
+                throw new UnityException("newQuestion is null");
         }
-        else
-            throw new UnityException("newQuestion is null");
     }
 
     public void UseAudienceLifeline()
     {
-        int availableAnswers = 0;
-        int correctAnswerIndex = 0;
-        for (int i = 0; i < _viewController.answersButton.Length; i++)
+        if (_audienceLifeline.Quantity > 0)
         {
-            if (!string.IsNullOrEmpty(_viewController.answersButton[i].transform
-                .GetChild(0).GetComponent<TextMeshProUGUI>().text))
-                availableAnswers++;
+            int availableAnswers = 0;
+            int correctAnswerIndex = 0;
+            for (int i = 0; i < _viewController.answersButton.Length; i++)
+            {
+                if (!string.IsNullOrEmpty(_viewController.answersButton[i].transform
+                    .GetChild(0).GetComponent<TextMeshProUGUI>().text))
+                    availableAnswers++;
 
-            if (_viewController.answersButton[i].transform
-                .GetChild(0).GetComponent<TextMeshProUGUI>().text.Equals(currentQuestion.correctAns))
-                correctAnswerIndex = i;
+                if (_viewController.answersButton[i].transform
+                    .GetChild(0).GetComponent<TextMeshProUGUI>().text.Equals(currentQuestion.correctAns))
+                    correctAnswerIndex = i;
+            }
+
+            bool isUsing5050 = availableAnswers == 2 ? true : false;
+            int[] results = _audienceLifeline.Use(correctAnswerIndex, isUsing5050);
+            _viewController.DisplayAudiencePanel(results);
         }
-
-        bool isUsing5050 = availableAnswers == 2 ? true : false;
-        int[] results = _audienceLifeline.Use(correctAnswerIndex, isUsing5050);
-        _viewController.DisplayAudiencePanel(results);
     }
 
     IEnumerator NextQuestionAfterDelay()

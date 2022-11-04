@@ -25,8 +25,7 @@ public class UIController : MonoBehaviour
 
     void Update()
     {
-        lifelineContainer.transform.GetChild(0).GetComponent<Image>().sprite
-            = questionController._fiftyLifeline.Quantity > 0 ? fiftyLifelineSprite[1] : fiftyLifelineSprite[0];
+        UpdateLifeline();
     }
 
     public void SetUpUI(QuestionModel question, bool randomOrderAnswers = true)
@@ -204,6 +203,34 @@ public class UIController : MonoBehaviour
         return sortedAnswerQuestion;
     }
 
+    void UpdateLifeline()
+    {
+        lifelineContainer.transform.GetChild(0).GetComponent<Image>().sprite
+            = questionController._fiftyLifeline.Quantity > 0 ? fiftyLifelineSprite[1] : fiftyLifelineSprite[0];
+        lifelineContainer.transform.GetChild(0).GetChild(0).gameObject.SetActive(questionController._fiftyLifeline.Quantity > 0 ? true : false);
+        lifelineContainer.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = questionController._fiftyLifeline.Quantity > 1 ? questionController._fiftyLifeline.Quantity.ToString() : "";
+
+        lifelineContainer.transform.GetChild(1).GetComponent<Image>().sprite
+            = questionController._switchLifeline.Quantity > 0 ? switchLifelineSprite[1] : switchLifelineSprite[0];
+        lifelineContainer.transform.GetChild(1).GetChild(0).gameObject.SetActive(questionController._switchLifeline.Quantity > 0 ? true : false);
+        lifelineContainer.transform.GetChild(1).GetChild(1).GetComponent<TextMeshProUGUI>().text = questionController._switchLifeline.Quantity > 1 ? questionController._switchLifeline.Quantity.ToString() : "";
+
+        lifelineContainer.transform.GetChild(2).GetComponent<Image>().sprite
+            = questionController._audienceLifeline.Quantity > 0 ? audienceLifelineSprite[1] : audienceLifelineSprite[0];
+        lifelineContainer.transform.GetChild(1).GetChild(0).gameObject.SetActive(questionController._audienceLifeline.Quantity > 0 ? true : false);
+        lifelineContainer.transform.GetChild(1).GetChild(1).GetComponent<TextMeshProUGUI>().text = questionController._audienceLifeline.Quantity > 1 ? questionController._audienceLifeline.Quantity.ToString() : "";
+    }
+
+    public void UpdateDiamonds(int currentLevel)
+    {
+        int childCount = diamondContainer.transform.childCount;
+        for (int i = childCount -1; i >= 0; i--)
+        {
+            if (i + currentLevel > childCount)
+                diamondContainer.transform.GetChild(i).gameObject.SetActive(true);
+        }
+    }
+
     void ResetLayout()
     {
         LeanTween.moveLocalY(questionContainer, -(Screen.height + questionContainer.transform.GetComponent<RectTransform>().rect.height), 1f);
@@ -256,6 +283,9 @@ public class UIController : MonoBehaviour
     GameObject lifelineContainer;
 
     [SerializeField]
+    GameObject diamondContainer;
+
+    [SerializeField]
     GameObject moneyTree;
 
     [SerializeField]
@@ -272,6 +302,12 @@ public class UIController : MonoBehaviour
 
     [SerializeField]
     List<Sprite> fiftyLifelineSprite;
+
+    [SerializeField]
+    List<Sprite> switchLifelineSprite;
+
+    [SerializeField]
+    List<Sprite> audienceLifelineSprite;
 
     [SerializeField]
     List<TextMeshProUGUI> prizeList;

@@ -30,7 +30,7 @@ public class UIController : MonoBehaviour
 
     public void SetUpUI(QuestionModel question, bool randomOrderAnswers = true)
     {
-        questionTMPUGUI.text = question.question.Replace("\\n", "\n").Replace("'", "");
+        questionTMPUGUI.text = question.question.Replace("\\n", "\n").Replace("'", string.Empty);
 
         //Should the answers be arranged ramdomly
         if (randomOrderAnswers)
@@ -92,7 +92,6 @@ public class UIController : MonoBehaviour
         }
         else if (onClickPointer.pointerState == OnClickPointer.PointerState.FINAL)
         {
-            Debug.Log("Set Final Answer!");
             int siblingIndex = button.transform.GetSiblingIndex();
             button.transform.GetComponent<Image>().sprite
                 = siblingIndex == 0 ? slicedSprite[2] : slicedSprite[10];
@@ -197,32 +196,32 @@ public class UIController : MonoBehaviour
         lifelineContainer.transform.GetChild(0).GetComponent<Image>().sprite
             = questionController._fiftyLifeline.Quantity > 0 ? fiftyLifelineSprite[1] : fiftyLifelineSprite[0];
         lifelineContainer.transform.GetChild(0).GetChild(0).gameObject.SetActive(questionController._fiftyLifeline.Quantity > 0 ? true : false);
-        lifelineContainer.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = questionController._fiftyLifeline.Quantity > 1 ? questionController._fiftyLifeline.Quantity.ToString() : "";
+        lifelineContainer.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = questionController._fiftyLifeline.Quantity > 1 ? questionController._fiftyLifeline.Quantity.ToString() : string.Empty;
 
         lifelineContainer.transform.GetChild(1).GetComponent<Image>().sprite
             = questionController._switchLifeline.Quantity > 0 ? switchLifelineSprite[1] : switchLifelineSprite[0];
         lifelineContainer.transform.GetChild(1).GetChild(0).gameObject.SetActive(questionController._switchLifeline.Quantity > 0 ? true : false);
-        lifelineContainer.transform.GetChild(1).GetChild(1).GetComponent<TextMeshProUGUI>().text = questionController._switchLifeline.Quantity > 1 ? questionController._switchLifeline.Quantity.ToString() : "";
+        lifelineContainer.transform.GetChild(1).GetChild(1).GetComponent<TextMeshProUGUI>().text = questionController._switchLifeline.Quantity > 1 ? questionController._switchLifeline.Quantity.ToString() : string.Empty;
 
         lifelineContainer.transform.GetChild(2).GetComponent<Image>().sprite
             = questionController._audienceLifeline.Quantity > 0 ? audienceLifelineSprite[1] : audienceLifelineSprite[0];
         lifelineContainer.transform.GetChild(2).GetChild(0).gameObject.SetActive(questionController._audienceLifeline.Quantity > 0 ? true : false);
-        lifelineContainer.transform.GetChild(2).GetChild(1).GetComponent<TextMeshProUGUI>().text = questionController._audienceLifeline.Quantity > 1 ? questionController._audienceLifeline.Quantity.ToString() : "";
+        lifelineContainer.transform.GetChild(2).GetChild(1).GetComponent<TextMeshProUGUI>().text = questionController._audienceLifeline.Quantity > 1 ? questionController._audienceLifeline.Quantity.ToString() : string.Empty;
     }
 
     public void UpdateMoneyTree(int currentLevel)
     {
-        if (questionController.currentLevel > 0)
+        if (currentLevel > 0)
         {
-            Vector3 currentPos = currentPrize.transform.position;
+            Vector3 initialPos = new Vector3(currentPrize.transform.position.x, 53.2f, currentPrize.transform.position.z);
             float offset = currentPrize.rect.height;
-            float newY = currentPos.y + offset;
-            Vector3 newPos = new Vector3(currentPos.x, newY, currentPos.z);
+            float newY = initialPos.y + offset * currentLevel;
+            Vector3 newPos = new Vector3(initialPos.x, newY, initialPos.z);
             currentPrize.transform.position = newPos;
         }
 
         int childCount = diamondContainer.transform.childCount;
-        for (int i = childCount -1; i >= 0; i--)
+        for (int i = childCount - 1; i >= 0; i--)
         {
             if (i + currentLevel > childCount)
                 diamondContainer.transform.GetChild(i).gameObject.SetActive(true);
@@ -240,7 +239,7 @@ public class UIController : MonoBehaviour
         for (int i = 0; i < answersButton.Length; i++)
         {
             answersButton[i].enabled
-                = !answersButton[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text.Equals("");
+                = !answersButton[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text.Equals(string.Empty);
         }
     }
 

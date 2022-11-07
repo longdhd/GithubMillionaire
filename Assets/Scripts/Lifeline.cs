@@ -28,7 +28,7 @@ public class FiftyLifeline : Lifeline
 
             if (i != randomInt
                 && !question.answers[i].Equals(question.correctAns))
-                question.answers[i] = "";
+                question.answers[i] = string.Empty;
         }
         Quantity -= 1;
         return question;

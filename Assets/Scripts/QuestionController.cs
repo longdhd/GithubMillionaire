@@ -3,6 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+public enum GameState
+{
+    IDLE,
+    USING_LIFELINE,
+    FINAL_ANSWER,
+    CORRECT,
+    INCORRECT
+}
 
 public class QuestionController : MonoBehaviour
 {
@@ -12,12 +20,13 @@ public class QuestionController : MonoBehaviour
     [HideInInspector] public FiftyLifeline _fiftyLifeline;
     [HideInInspector] public SwitchLifeline _switchLifeline;
     [HideInInspector] public AudienceLifeline _audienceLifeline;
+    public static QuestionController Instance;
+    public int currentLevel;
+    public GameState gameState = GameState.IDLE;
     [SerializeField] ActionOnTimer actionOnTimer;
     [SerializeField] TextMeshProUGUI timerText;
     [SerializeField] Image timerImage;
     [SerializeField] List<Sprite> timerSprites;
-    public static QuestionController Instance;
-    public int currentLevel;
     QuestionModel.QuestionType questionType;
 
     void Awake()
@@ -61,14 +70,14 @@ public class QuestionController : MonoBehaviour
     {
         int imageIndex = 20 * (15 - actionOnTimer.GetRemainingTime());
         string imageName = $"tmr{(imageIndex == 0 ? "00" : (imageIndex >= 100 ? string.Empty : "0"))}{imageIndex}";
-        Debug.Log(imageName);
+        //Debug.Log(imageName);
         foreach(Sprite spr in timerSprites)
         {
             if (spr.name.Equals(imageName))
                 return spr;
         }
 
-        return null;
+        return timerSprites[0];
     }
 
     IEnumerator PresentQuestion()
@@ -131,18 +140,21 @@ public class QuestionController : MonoBehaviour
         {
             _viewController.HandleFinalAnswer(isCorrect);
             actionOnTimer.Stop();
+            gameState = GameState.FINAL_ANSWER;
             if (isCorrect)
             {
                 if (currentLevel < 15)
                 {
                     currentLevel++;
                 }
+                gameState = GameState.CORRECT;
                 _viewController.UpdateMoneyTree(currentLevel);
                 StartCoroutine(NextQuestionAfterDelay());
             }
             else
             {
                 currentLevel = 1;
+                gameState = GameState.INCORRECT;
             }
         }
     }
@@ -152,6 +164,7 @@ public class QuestionController : MonoBehaviour
         if (_fiftyLifeline.Quantity > 0)
         {
             actionOnTimer.Stop();
+            gameState = GameState.USING_LIFELINE;
             QuestionModel tempQuestion = _viewController.GetSortedAnswers();
             QuestionModel newQuestion = _fiftyLifeline.Use(tempQuestion);
             currentQuestion = newQuestion;
@@ -167,6 +180,7 @@ public class QuestionController : MonoBehaviour
         if (_switchLifeline.Quantity > 0)
         {
             actionOnTimer.Stop();
+            gameState = GameState.USING_LIFELINE;
             QuestionModel newQuestion = _switchLifeline.Use(currentQuestion);
             if (newQuestion != null)
             {
@@ -183,6 +197,7 @@ public class QuestionController : MonoBehaviour
         if (_audienceLifeline.Quantity > 0)
         {
             actionOnTimer.Stop();
+            gameState = GameState.USING_LIFELINE;
             int availableAnswers = 0;
             int correctAnswerIndex = 0;
             for (int i = 0; i < _viewController.answersButton.Length; i++)

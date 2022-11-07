@@ -67,17 +67,6 @@ public class UIController : MonoBehaviour
         LeanTween.moveLocalX(moneyTree, isOn ? 1360f : 640f, 1f);
     }
 
-    public void ClimbUpMoneyTree()
-    {
-        if (questionController.currentLevel > 0)
-        {
-            Vector3 currentPos = currentPrize.transform.position;
-            float offset = currentPrize.rect.height;
-            float newY = currentPos.y + offset;
-            Vector3 newPos = new Vector3(currentPos.x, newY, currentPos.z);
-            currentPrize.transform.position = newPos;
-        }
-    }
     public IEnumerator DisplayQuestionAndAnswer()
     {
         LeanTween.moveLocalY(questionContainer, -240f, 0.5f);
@@ -217,12 +206,21 @@ public class UIController : MonoBehaviour
 
         lifelineContainer.transform.GetChild(2).GetComponent<Image>().sprite
             = questionController._audienceLifeline.Quantity > 0 ? audienceLifelineSprite[1] : audienceLifelineSprite[0];
-        lifelineContainer.transform.GetChild(1).GetChild(0).gameObject.SetActive(questionController._audienceLifeline.Quantity > 0 ? true : false);
-        lifelineContainer.transform.GetChild(1).GetChild(1).GetComponent<TextMeshProUGUI>().text = questionController._audienceLifeline.Quantity > 1 ? questionController._audienceLifeline.Quantity.ToString() : "";
+        lifelineContainer.transform.GetChild(2).GetChild(0).gameObject.SetActive(questionController._audienceLifeline.Quantity > 0 ? true : false);
+        lifelineContainer.transform.GetChild(2).GetChild(1).GetComponent<TextMeshProUGUI>().text = questionController._audienceLifeline.Quantity > 1 ? questionController._audienceLifeline.Quantity.ToString() : "";
     }
 
-    public void UpdateDiamonds(int currentLevel)
+    public void UpdateMoneyTree(int currentLevel)
     {
+        if (questionController.currentLevel > 0)
+        {
+            Vector3 currentPos = currentPrize.transform.position;
+            float offset = currentPrize.rect.height;
+            float newY = currentPos.y + offset;
+            Vector3 newPos = new Vector3(currentPos.x, newY, currentPos.z);
+            currentPrize.transform.position = newPos;
+        }
+
         int childCount = diamondContainer.transform.childCount;
         for (int i = childCount -1; i >= 0; i--)
         {
@@ -231,7 +229,7 @@ public class UIController : MonoBehaviour
         }
     }
 
-    void ResetLayout()
+    public void ResetLayout()
     {
         LeanTween.moveLocalY(questionContainer, -(Screen.height + questionContainer.transform.GetComponent<RectTransform>().rect.height), 1f);
         LeanTween.moveLocalY(answersContainer, -(Screen.height + answersContainer.transform.GetComponent<RectTransform>().rect.height), 1f);
@@ -246,7 +244,7 @@ public class UIController : MonoBehaviour
         }
     }
 
-    void ResetButton()
+    public void ResetButton()
     {
         for (int i = 0; i < answersButton.Length; i++)
         {
@@ -260,7 +258,7 @@ public class UIController : MonoBehaviour
         EnableButtons(true);
     }
 
-    void EnableButtons(bool value)
+    public void EnableButtons(bool value)
     {
         for (int i = 0; i < answersButton.Length; i++)
         {

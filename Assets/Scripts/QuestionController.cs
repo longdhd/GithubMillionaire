@@ -7,11 +7,15 @@ using TMPro;
 public class QuestionController : MonoBehaviour
 {
     [HideInInspector] public QuestionModel currentQuestion;
-    [HideInInspector]  public QuestCollection _collection;
+    [HideInInspector] public QuestCollection _collection;
     [HideInInspector] public UIController _viewController;
     [HideInInspector] public FiftyLifeline _fiftyLifeline;
     [HideInInspector] public SwitchLifeline _switchLifeline;
     [HideInInspector] public AudienceLifeline _audienceLifeline;
+    [SerializeField] ActionOnTimer actionOnTimer;
+    [SerializeField] TextMeshProUGUI timerText;
+    [SerializeField] Image timerImage;
+    [SerializeField] List<Sprite> timerSprites;
     public static QuestionController Instance;
     public int currentLevel;
     QuestionModel.QuestionType questionType;
@@ -43,10 +47,34 @@ public class QuestionController : MonoBehaviour
 
     }
 
+    void Update()
+    {
+        if (actionOnTimer.GetRemainingTime() >= 0)
+            timerText.text = actionOnTimer.GetRemainingTime().ToString();
+        else
+            timerText.text = string.Empty;
+
+        timerImage.sprite = SetTimerImage();
+    }
+
+    Sprite SetTimerImage()
+    {
+        int imageIndex = 20 * (15 - actionOnTimer.GetRemainingTime());
+        string imageName = $"tmr{(imageIndex == 0 ? "00" : (imageIndex >= 100 ? string.Empty : "0"))}{imageIndex}";
+        Debug.Log(imageName);
+        foreach(Sprite spr in timerSprites)
+        {
+            if (spr.name.Equals(imageName))
+                return spr;
+        }
+
+        return null;
+    }
+
     IEnumerator PresentQuestion()
     {
-        if (currentLevel == 1 || currentLevel == 6
-            || currentLevel == 11 || currentLevel == 15)
+        if (currentLevel == 1 || currentLevel == 5
+            || currentLevel == 10 || currentLevel == 15)
             StartCoroutine(_viewController.DisplayMoneyTree());
 
         if (currentLevel == 4 || currentLevel == 9)
@@ -65,6 +93,30 @@ public class QuestionController : MonoBehaviour
         _viewController.SetUpUI(currentQuestion);
         yield return new WaitForSeconds(3f);
         StartCoroutine(_viewController.DisplayQuestionAndAnswer());
+        yield return new WaitForSeconds(5f);
+
+        actionOnTimer.SetTimer(15f, () => { StartTimer(); });
+        timerText.gameObject.SetActive(true);
+        timerImage.gameObject.SetActive(true);
+    }
+
+    void StartTimer()
+    {
+        bool hasSubmit = false;
+        foreach (Button btn in _viewController.answersButton)
+        {
+            if (btn.GetComponent<OnClickPointer>().pointerState == OnClickPointer.PointerState.FINAL)
+                hasSubmit = true;
+        }
+
+        if (!hasSubmit)
+        {
+            _viewController.EnableButtons(false);
+            currentLevel = 1;
+            _viewController.ResetLayout();
+            _viewController.ResetButton();
+            StartCoroutine(NextQuestionAfterDelay());
+        }
     }
 
     public void LockAnswer(int finalAnswer)
@@ -78,14 +130,14 @@ public class QuestionController : MonoBehaviour
         if (isSubmitted)
         {
             _viewController.HandleFinalAnswer(isCorrect);
+            actionOnTimer.Stop();
             if (isCorrect)
             {
                 if (currentLevel < 15)
                 {
                     currentLevel++;
                 }
-                _viewController.ClimbUpMoneyTree();
-                _viewController.UpdateDiamonds(currentLevel);
+                _viewController.UpdateMoneyTree(currentLevel);
                 StartCoroutine(NextQuestionAfterDelay());
             }
             else
@@ -99,6 +151,7 @@ public class QuestionController : MonoBehaviour
     {
         if (_fiftyLifeline.Quantity > 0)
         {
+            actionOnTimer.Stop();
             QuestionModel tempQuestion = _viewController.GetSortedAnswers();
             QuestionModel newQuestion = _fiftyLifeline.Use(tempQuestion);
             currentQuestion = newQuestion;
@@ -113,6 +166,7 @@ public class QuestionController : MonoBehaviour
     {
         if (_switchLifeline.Quantity > 0)
         {
+            actionOnTimer.Stop();
             QuestionModel newQuestion = _switchLifeline.Use(currentQuestion);
             if (newQuestion != null)
             {
@@ -128,6 +182,7 @@ public class QuestionController : MonoBehaviour
     {
         if (_audienceLifeline.Quantity > 0)
         {
+            actionOnTimer.Stop();
             int availableAnswers = 0;
             int correctAnswerIndex = 0;
             for (int i = 0; i < _viewController.answersButton.Length; i++)
@@ -150,6 +205,8 @@ public class QuestionController : MonoBehaviour
     IEnumerator NextQuestionAfterDelay()
     {
         yield return new WaitForSeconds(5f);
+        timerText.gameObject.SetActive(false);
+        timerImage.gameObject.SetActive(false);
         StartCoroutine(PresentQuestion());
     }
 }

@@ -22,11 +22,8 @@ public class QuestionController : MonoBehaviour
     [HideInInspector] public AudienceLifeline _audienceLifeline;
     public static QuestionController Instance;
     public int currentLevel;
-    public GameState gameState = GameState.IDLE;
-    [SerializeField] ActionOnTimer actionOnTimer;
-    [SerializeField] TextMeshProUGUI timerText;
-    [SerializeField] Image timerImage;
-    [SerializeField] List<Sprite> timerSprites;
+    [SerializeField] public GameStateManager gameStateManager;
+    [SerializeField] public ActionOnTimer actionOnTimer;
     QuestionModel.QuestionType questionType;
 
     void Awake()
@@ -56,30 +53,6 @@ public class QuestionController : MonoBehaviour
 
     }
 
-    void Update()
-    {
-        if (actionOnTimer.GetRemainingTime() >= 0)
-            timerText.text = actionOnTimer.GetRemainingTime().ToString();
-        else
-            timerText.text = string.Empty;
-
-        timerImage.sprite = SetTimerImage();
-    }
-
-    Sprite SetTimerImage()
-    {
-        int imageIndex = 20 * (15 - actionOnTimer.GetRemainingTime());
-        string imageName = $"tmr{(imageIndex == 0 ? "00" : (imageIndex >= 100 ? string.Empty : "0"))}{imageIndex}";
-        //Debug.Log(imageName);
-        foreach(Sprite spr in timerSprites)
-        {
-            if (spr.name.Equals(imageName))
-                return spr;
-        }
-
-        return timerSprites[0];
-    }
-
     IEnumerator PresentQuestion()
     {
         if (currentLevel == 1 || currentLevel == 5
@@ -102,11 +75,9 @@ public class QuestionController : MonoBehaviour
         _viewController.SetUpUI(currentQuestion);
         yield return new WaitForSeconds(3f);
         StartCoroutine(_viewController.DisplayQuestionAndAnswer());
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(4f);
 
         actionOnTimer.SetTimer(15f, () => { StartTimer(); });
-        timerText.gameObject.SetActive(true);
-        timerImage.gameObject.SetActive(true);
     }
 
     void StartTimer()
@@ -138,23 +109,24 @@ public class QuestionController : MonoBehaviour
                             .text.Equals(currentQuestion.correctAns);
         if (isSubmitted)
         {
-            _viewController.HandleFinalAnswer(isCorrect);
+            GameFinalState finalState = gameStateManager.FinalState;
+            gameStateManager.SwitchState(finalState);
+
             actionOnTimer.Stop();
-            gameState = GameState.FINAL_ANSWER;
+
+            _viewController.HandleFinalAnswer(isCorrect);
             if (isCorrect)
             {
                 if (currentLevel < 15)
                 {
                     currentLevel++;
                 }
-                gameState = GameState.CORRECT;
                 _viewController.UpdateMoneyTree(currentLevel);
                 StartCoroutine(NextQuestionAfterDelay());
             }
             else
             {
                 currentLevel = 1;
-                gameState = GameState.INCORRECT;
             }
         }
     }
@@ -164,7 +136,10 @@ public class QuestionController : MonoBehaviour
         if (_fiftyLifeline.Quantity > 0)
         {
             actionOnTimer.Stop();
-            gameState = GameState.USING_LIFELINE;
+
+            GameLifelineState lifelifeState = gameStateManager.LifelineState;
+            gameStateManager.SwitchState(lifelifeState);
+
             QuestionModel tempQuestion = _viewController.GetSortedAnswers();
             QuestionModel newQuestion = _fiftyLifeline.Use(tempQuestion);
             currentQuestion = newQuestion;
@@ -179,8 +154,11 @@ public class QuestionController : MonoBehaviour
     {
         if (_switchLifeline.Quantity > 0)
         {
+            GameLifelineState lifelifeState = gameStateManager.LifelineState;
+            gameStateManager.SwitchState(lifelifeState);
+
             actionOnTimer.Stop();
-            gameState = GameState.USING_LIFELINE;
+
             QuestionModel newQuestion = _switchLifeline.Use(currentQuestion);
             if (newQuestion != null)
             {
@@ -196,8 +174,11 @@ public class QuestionController : MonoBehaviour
     {
         if (_audienceLifeline.Quantity > 0)
         {
+            GameLifelineState lifelifeState = gameStateManager.LifelineState;
+            gameStateManager.SwitchState(lifelifeState);
+            
             actionOnTimer.Stop();
-            gameState = GameState.USING_LIFELINE;
+
             int availableAnswers = 0;
             int correctAnswerIndex = 0;
             for (int i = 0; i < _viewController.answersButton.Length; i++)
@@ -220,8 +201,6 @@ public class QuestionController : MonoBehaviour
     IEnumerator NextQuestionAfterDelay()
     {
         yield return new WaitForSeconds(5f);
-        timerText.gameObject.SetActive(false);
-        timerImage.gameObject.SetActive(false);
         StartCoroutine(PresentQuestion());
     }
 }

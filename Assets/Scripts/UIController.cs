@@ -26,6 +26,13 @@ public class UIController : MonoBehaviour
     void Update()
     {
         UpdateLifeline();
+
+        if (questionController.actionOnTimer.GetRemainingTime() >= 0)
+            timerText.text = questionController.actionOnTimer.GetRemainingTime().ToString();
+        else
+            timerText.text = string.Empty;
+
+        timerImage.sprite = SetTimerImage();
     }
 
     public void SetUpUI(QuestionModel question, bool randomOrderAnswers = true)
@@ -77,6 +84,9 @@ public class UIController : MonoBehaviour
                  {
                      LeanTween.moveLocalY(answersContainer, -160f, 0.5f);
                  });
+        yield return new WaitForSeconds(1f);
+        timerText.gameObject.SetActive(true);
+        timerImage.gameObject.SetActive(true);
     }
 
     void LockAndSetFinalAnswer(Button button)
@@ -130,10 +140,17 @@ public class UIController : MonoBehaviour
     IEnumerator RevealCorrectAnswer(Button button, bool isCorrect)
     {
         yield return new WaitForSeconds(delayAfterFinalAnswer);
+        GameCorrectState correctState = questionController.gameStateManager.CorrectState;
+        GameIncorrectState incorrectState = questionController.gameStateManager.IncorrectState;
+        questionController.gameStateManager.SwitchState(isCorrect ? correctState : incorrectState);
+
         button.transform.GetComponent<Animator>().enabled = true;
         button.transform.GetComponent<Animator>().SetTrigger(isCorrect ? "Correct" : "Incorrect");
         yield return new WaitForSeconds(1.5f);
         button.transform.GetComponent<Animator>().enabled = false;
+
+        timerText.gameObject.SetActive(false);
+        timerImage.gameObject.SetActive(false);
 
         ResetButton();
         if (isCorrect)
@@ -209,6 +226,20 @@ public class UIController : MonoBehaviour
         lifelineContainer.transform.GetChild(2).GetChild(1).GetComponent<TextMeshProUGUI>().text = questionController._audienceLifeline.Quantity > 1 ? questionController._audienceLifeline.Quantity.ToString() : string.Empty;
     }
 
+    Sprite SetTimerImage()
+    {
+        int imageIndex = 20 * (15 - questionController.actionOnTimer.GetRemainingTime());
+        string imageName = $"tmr{(imageIndex == 0 ? "00" : (imageIndex >= 100 ? string.Empty : "0"))}{imageIndex}";
+        //Debug.Log(imageName);
+        foreach (Sprite spr in timerSprites)
+        {
+            if (spr.name.Equals(imageName))
+                return spr;
+        }
+
+        return timerSprites[0];
+    }
+
     public void UpdateMoneyTree(int currentLevel)
     {
         if (currentLevel > 0)
@@ -225,6 +256,8 @@ public class UIController : MonoBehaviour
         {
             if (i + currentLevel > childCount)
                 diamondContainer.transform.GetChild(i).gameObject.SetActive(true);
+            else
+                diamondContainer.transform.GetChild(i).gameObject.SetActive(false);
         }
     }
 
@@ -309,9 +342,14 @@ public class UIController : MonoBehaviour
     [SerializeField]
     List<TextMeshProUGUI> prizeList;
 
-    [SerializeField]
-    List<TextMeshProUGUI> lifelineQuantity;
+    [SerializeField] 
+    TextMeshProUGUI timerText;
 
+    [SerializeField] 
+    Image timerImage;
+
+    [SerializeField] 
+    List<Sprite> timerSprites;
 
     QuestionController questionController;
     float delayAfterFinalAnswer = 3f;

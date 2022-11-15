@@ -58,7 +58,7 @@ public class UIController : MonoBehaviour
             }
         }
 
-        LeanTween.moveX(audiencePanel, 0f, 1f);
+        LeanTween.moveLocalX(audiencePanel, 0f, 1f);
     }
 
     public IEnumerator DisplayMoneyTree()
@@ -70,7 +70,7 @@ public class UIController : MonoBehaviour
 
     public void ToggleMoneyTree()
     {
-        bool isOn = moneyTree.transform.position.x == 1600f;
+        bool isOn = moneyTree.GetComponent<RectTransform>().localPosition.x == 640f;
         LeanTween.moveLocalX(moneyTree, isOn ? 1360f : 640f, 1f);
     }
 
@@ -181,7 +181,7 @@ public class UIController : MonoBehaviour
 
     public void DisplayAudiencePanel(int[] results)
     {
-        LeanTween.moveX(audiencePanel, 1920f, 1f);
+        LeanTween.moveLocalX(audiencePanel, 1920f, 1f);
         for (int i = 0; i < audienceSlider.Length; i++)
         {
             audienceSlider[i].value = results[i] / 100f;
@@ -241,14 +241,15 @@ public class UIController : MonoBehaviour
     }
 
     public void UpdateMoneyTree(int currentLevel)
+
     {
         if (currentLevel > 0)
         {
-            Vector3 initialPos = new Vector3(currentPrize.transform.position.x, 53.2f, currentPrize.transform.position.z);
-            float offset = currentPrize.rect.height;
-            float newY = initialPos.y + offset * currentLevel;
-            Vector3 newPos = new Vector3(initialPos.x, newY, initialPos.z);
-            currentPrize.transform.position = newPos;
+            RectTransform rectTransform = currentPrize.transform.GetComponent<RectTransform>();
+            Vector2 initialPos = new Vector2(rectTransform.localPosition.x, -450f);
+            float newY = initialPos.y + rectTransform.rect.height * currentLevel;
+            Vector2 newPos = new Vector2(initialPos.x, newY);
+            rectTransform.localPosition = newPos;
         }
 
         int childCount = diamondContainer.transform.childCount;
@@ -258,7 +259,7 @@ public class UIController : MonoBehaviour
                 diamondContainer.transform.GetChild(i).gameObject.SetActive(true);
             else
                 diamondContainer.transform.GetChild(i).gameObject.SetActive(false);
-        }
+        } 
     }
 
     public void ResetLayout()
@@ -342,13 +343,13 @@ public class UIController : MonoBehaviour
     [SerializeField]
     List<TextMeshProUGUI> prizeList;
 
-    [SerializeField] 
+    [SerializeField]
     TextMeshProUGUI timerText;
 
-    [SerializeField] 
+    [SerializeField]
     Image timerImage;
 
-    [SerializeField] 
+    [SerializeField]
     List<Sprite> timerSprites;
 
     QuestionController questionController;

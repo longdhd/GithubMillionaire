@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -19,7 +18,7 @@ public class QuestionController : MonoBehaviour
     public static QuestionController Instance;
     public int currentLevel;
     public bool IsUnlocked { get { return isUnlocked; } set { isUnlocked = value; } }
-    bool isUnlocked = false;
+    bool isUnlocked = true;
     QuestionType questionType;
 
     void Awake()

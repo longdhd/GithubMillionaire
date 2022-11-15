@@ -17,12 +17,16 @@ public class GameCorrectState : GameBaseState
         SoundManager.Instance.PlayEffect(state.CorrectEffectClip[ramdomClip]);
 
         timer = 0;
+
+        LightAnimationManager.Instance.ChangeLightColor(false);
     }
     public override void UpdateState(GameStateManager state)
     {
         timer += Time.deltaTime;
         if (timer >= 5f)
             CameraManager.Instance.SwitchTo("HostCam");
+
+        LightAnimationManager.Instance.RotateDownLightOff();
     }
     public override void ExitState(GameStateManager state)
     {

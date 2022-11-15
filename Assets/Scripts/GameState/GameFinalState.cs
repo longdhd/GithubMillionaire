@@ -14,7 +14,7 @@ public class GameFinalState : GameBaseState
     }
     public override void UpdateState(GameStateManager state)
     {
-
+        LightAnimationManager.Instance.RotateUpLightOn();
     }
     public override void ExitState(GameStateManager state)
     {

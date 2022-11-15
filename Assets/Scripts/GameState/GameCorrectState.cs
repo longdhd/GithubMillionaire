@@ -4,20 +4,25 @@ using UnityEngine;
 
 public class GameCorrectState : GameBaseState
 {
-    int animIDCorrect1 = Animator.StringToHash("Correct1");
-    int animIDCorrect2 = Animator.StringToHash("Correct2");
+    float? timer = null;
     public override void EnterState(GameStateManager state)
     {
         int random = Random.Range(1, 3);
-        Animator animator = state.GetComponent<Animator>();
-        if (random == 1)
-            animator.SetTrigger(animIDCorrect1);
-        else
-            animator.SetTrigger(animIDCorrect2);
+        state.PlayerAnimator.SetTrigger(random == 1 ? state.AnimIDCorrect1 : state.AnimIDCorrect2);
+        state.HostAnimator.SetTrigger(random == 1 ? "Correct1" : "Correct2");
+
+        SoundManager.Instance.PlayMusic(state.CorrectAudioClip);
+
+        int ramdomClip = Random.Range(0, state.CorrectEffectClip.Length);
+        SoundManager.Instance.PlayEffect(state.CorrectEffectClip[ramdomClip]);
+
+        timer = 0;
     }
     public override void UpdateState(GameStateManager state)
     {
-
+        timer += Time.deltaTime;
+        if (timer >= 5f)
+            CameraManager.Instance.SwitchTo("HostCam");
     }
     public override void ExitState(GameStateManager state)
     {

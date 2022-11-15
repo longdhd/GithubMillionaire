@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class GameFinalState : GameBaseState
 {
-    int animIDFinal = Animator.StringToHash("Final");
     public override void EnterState(GameStateManager state)
     {
-        Animator animator = state.GetComponent<Animator>();
-        animator.SetTrigger(animIDFinal);
+        state.PlayerAnimator.SetTrigger(state.AnimIDFinal);
+        state.HostAnimator.SetTrigger("Final");
+
+        CameraManager.Instance.SwitchTo("OverviewCam");
+        SoundManager.Instance.PlayEffect(state.FinalEffectClip);
     }
     public override void UpdateState(GameStateManager state)
     {

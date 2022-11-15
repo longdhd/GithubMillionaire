@@ -47,7 +47,7 @@ public class SwitchLifeline : Lifeline
     public QuestionModel Use(QuestionModel question)
     {
         //Get same difficulty question 
-        QuestionModel.QuestionType t = question.Type;
+        QuestionType t = question.Type;
         QuestionModel newQuestion = QuestionController.Instance._collection.GetUnaskedQuestion(t);
         Quantity -= 1;
         return newQuestion;

@@ -3,14 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-public enum GameState
-{
-    IDLE,
-    USING_LIFELINE,
-    FINAL_ANSWER,
-    CORRECT,
-    INCORRECT
-}
 
 public class QuestionController : MonoBehaviour
 {
@@ -20,11 +12,15 @@ public class QuestionController : MonoBehaviour
     [HideInInspector] public FiftyLifeline _fiftyLifeline;
     [HideInInspector] public SwitchLifeline _switchLifeline;
     [HideInInspector] public AudienceLifeline _audienceLifeline;
-    public static QuestionController Instance;
-    public int currentLevel;
     [SerializeField] public GameStateManager gameStateManager;
     [SerializeField] public ActionOnTimer actionOnTimer;
-    QuestionModel.QuestionType questionType;
+    [SerializeField] GameObject InstructionGO;
+    [SerializeField] GameObject PlayAgainGO;
+    public static QuestionController Instance;
+    public int currentLevel;
+    public bool IsUnlocked { get { return isUnlocked; } set { isUnlocked = value; } }
+    bool isUnlocked = false;
+    QuestionType questionType;
 
     void Awake()
     {
@@ -59,17 +55,9 @@ public class QuestionController : MonoBehaviour
             || currentLevel == 10 || currentLevel == 15)
             StartCoroutine(_viewController.DisplayMoneyTree());
 
-        if (currentLevel == 4 || currentLevel == 9)
-            _fiftyLifeline.Quantity += 1;
+        AddUpLifeline();
 
-        if (currentLevel < 1)
-            questionType = QuestionModel.QuestionType.Unlock;
-        else if (currentLevel >= 1 && currentLevel < 6)
-            questionType = QuestionModel.QuestionType.Easy;
-        else if (currentLevel >= 6 && currentLevel < 11)
-            questionType = QuestionModel.QuestionType.Medium;
-        else if (currentLevel >= 11 && currentLevel < 16)
-            questionType = QuestionModel.QuestionType.Hard;
+        GetQuestionType();
 
         currentQuestion = _collection.GetUnaskedQuestion(questionType);
         _viewController.SetUpUI(currentQuestion);
@@ -77,10 +65,18 @@ public class QuestionController : MonoBehaviour
         StartCoroutine(_viewController.DisplayQuestionAndAnswer());
         yield return new WaitForSeconds(4f);
 
-        actionOnTimer.SetTimer(15f, () => { StartTimer(); });
+        GameIdleState idleState = gameStateManager.IdleState;
+        gameStateManager.SwitchState(idleState);
+
+        if (isUnlocked)
+            actionOnTimer.SetTimer(30f, () => { OnTimerAction(); });
+        else
+        {
+            InstructionGO.SetActive(true);
+        }
     }
 
-    void StartTimer()
+    void OnTimerAction()
     {
         bool hasSubmit = false;
         foreach (Button btn in _viewController.answersButton)
@@ -126,7 +122,7 @@ public class QuestionController : MonoBehaviour
             }
             else
             {
-                currentLevel = 1;
+                LeanTween.moveLocalY(PlayAgainGO.transform.GetChild(0).gameObject, 0f, 5f).setOnComplete(() => PlayAgainGO.SetActive(true));
             }
         }
     }
@@ -176,7 +172,7 @@ public class QuestionController : MonoBehaviour
         {
             GameLifelineState lifelifeState = gameStateManager.LifelineState;
             gameStateManager.SwitchState(lifelifeState);
-            
+
             actionOnTimer.Stop();
 
             int availableAnswers = 0;
@@ -196,6 +192,43 @@ public class QuestionController : MonoBehaviour
             int[] results = _audienceLifeline.Use(correctAnswerIndex, isUsing5050);
             _viewController.DisplayAudiencePanel(results);
         }
+    }
+
+    public void PlayAgain()
+    {
+        if (isUnlocked)
+            currentLevel = 1;
+        else
+            currentLevel = -2;
+
+        PlayAgainGO.SetActive(false);
+        PlayAgainGO.transform.GetChild(0).LeanMoveY
+            (-(PlayAgainGO.transform.GetComponent<RectTransform>().rect.height + Screen.height), 0.5f);
+        _viewController.UpdateMoneyTree(currentLevel);
+        StartCoroutine(NextQuestionAfterDelay());
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    void AddUpLifeline()
+    {
+        if (currentLevel == 4 || currentLevel == 9)
+            _fiftyLifeline.Quantity += 1;
+    }
+
+    void GetQuestionType()
+    {
+        if (currentLevel < 1)
+            questionType = QuestionType.Unlock;
+        else if (currentLevel >= 1 && currentLevel < 6)
+            questionType = QuestionType.Easy;
+        else if (currentLevel >= 6 && currentLevel < 11)
+            questionType = QuestionType.Medium;
+        else if (currentLevel >= 11 && currentLevel < 16)
+            questionType = QuestionType.Hard;
     }
 
     IEnumerator NextQuestionAfterDelay()

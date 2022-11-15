@@ -4,6 +4,13 @@ using UnityEngine;
 using System;
 
 [Serializable]
+public enum QuestionType
+{
+    Unlock,
+    Easy,
+    Medium,
+    Hard
+}
 public class QuestionModel
 {
     public string question { get; set; }
@@ -11,13 +18,6 @@ public class QuestionModel
     public string correctAns { get; set; }
     public bool asked { get; set; }
 
-    public enum QuestionType
-    {
-        Unlock,
-        Easy,
-        Medium,
-        Hard
-    }
 
     public int questionType;
 

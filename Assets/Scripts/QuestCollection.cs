@@ -26,41 +26,41 @@ public class QuestCollection : MonoBehaviour
         SetCorrectAnswer();
     }
 
-    public QuestionModel GetUnaskedQuestion(QuestionModel.QuestionType questionType)
+    public QuestionModel GetUnaskedQuestion(QuestionType questionType)
     {
         QuestionModel unasked;
         switch (questionType)
         {
-            case QuestionModel.QuestionType.Unlock:
-                unasked = allQuestion.Where(t => t.asked == false && t.Type == QuestionModel.QuestionType.Unlock)
+            case QuestionType.Unlock:
+                unasked = allQuestion.Where(t => t.asked == false && t.Type == QuestionType.Unlock)
                                                     .OrderBy(t => UnityEngine.Random.Range(0, allQuestion.Length - 1))
                                                     .FirstOrDefault();
                 unasked.asked = true;
                 return unasked;
 
-            case QuestionModel.QuestionType.Easy:
-                unasked = allQuestion.Where(t => t.asked == false && t.Type == QuestionModel.QuestionType.Easy)
+            case QuestionType.Easy:
+                unasked = allQuestion.Where(t => t.asked == false && t.Type == QuestionType.Easy)
                                                     .OrderBy(t => UnityEngine.Random.Range(0, allQuestion.Length - 1))
                                                     .FirstOrDefault();
                 unasked.asked = true;
                 return unasked;
 
-            case QuestionModel.QuestionType.Medium:
-                unasked = allQuestion.Where(t => t.asked == false && t.Type == QuestionModel.QuestionType.Medium)
+            case QuestionType.Medium:
+                unasked = allQuestion.Where(t => t.asked == false && t.Type == QuestionType.Medium)
                                                     .OrderBy(t => UnityEngine.Random.Range(0, allQuestion.Length - 1))
                                                     .FirstOrDefault(); ;
                 unasked.asked = true;
                 return unasked;
 
-            case QuestionModel.QuestionType.Hard:
-                unasked = allQuestion.Where(t => t.asked == false && t.Type == QuestionModel.QuestionType.Hard)
+            case QuestionType.Hard:
+                unasked = allQuestion.Where(t => t.asked == false && t.Type == QuestionType.Hard)
                                                     .OrderBy(t => UnityEngine.Random.Range(0, allQuestion.Length - 1))
                                                     .FirstOrDefault(); ;
                 unasked.asked = true;
                 return unasked;
 
             default:
-                unasked = allQuestion.Where(t => t.asked == false && t.Type == QuestionModel.QuestionType.Unlock)
+                unasked = allQuestion.Where(t => t.asked == false && t.Type == QuestionType.Unlock)
                                                      .OrderBy(t => UnityEngine.Random.Range(0, allQuestion.Length - 1))
                                                     .FirstOrDefault();
                 unasked.asked = true;
@@ -72,7 +72,7 @@ public class QuestCollection : MonoBehaviour
     {
         foreach (QuestionModel question in allQuestion)
         {
-            question.Type = (QuestionModel.QuestionType)question.questionType;
+            question.Type = (QuestionType)question.questionType;
         }
     }
 

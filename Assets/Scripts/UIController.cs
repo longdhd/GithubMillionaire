@@ -228,7 +228,7 @@ public class UIController : MonoBehaviour
 
     Sprite SetTimerImage()
     {
-        int imageIndex = 20 * (15 - questionController.actionOnTimer.GetRemainingTime());
+        int imageIndex = 10 * (30 - questionController.actionOnTimer.GetRemainingTime());
         string imageName = $"tmr{(imageIndex == 0 ? "00" : (imageIndex >= 100 ? string.Empty : "0"))}{imageIndex}";
         //Debug.Log(imageName);
         foreach (Sprite spr in timerSprites)

@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class GameIdleState : GameBaseState
 {
+    AudioClip lastClip;
+
     public override void EnterState(GameStateManager state)
     {
-        
+        AudioClip clip = RandomClip(state.IdleAudioClip);
+        SoundManager.Instance.PlayMusic(clip);
+
+        CameraManager.Instance.SwitchTo("PlayerCam");
     }
     public override void UpdateState(GameStateManager state)
     {
@@ -15,5 +20,17 @@ public class GameIdleState : GameBaseState
     public override void ExitState(GameStateManager state)
     {
 
+    }
+    AudioClip RandomClip(AudioClip[] audioClipArray)
+    {
+        int attempts = 3;
+        AudioClip newClip = audioClipArray[Random.Range(0, audioClipArray.Length)];
+        while (newClip == lastClip && attempts > 0)
+        {
+            newClip = audioClipArray[Random.Range(0, audioClipArray.Length)];
+            attempts--;
+        }
+        lastClip = newClip; 
+        return newClip;
     }
 }

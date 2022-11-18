@@ -86,7 +86,7 @@ public class QuestCollection : MonoBehaviour
 
     }
 
-    void ResetAllQuestions()
+    public void ResetAllQuestions()
     {
         if (allQuestion?.Any((t => t.asked == false)) == false)
         {

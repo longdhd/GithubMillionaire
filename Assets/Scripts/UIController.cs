@@ -89,7 +89,7 @@ public class UIController : MonoBehaviour
         timerImage.gameObject.SetActive(true);
     }
 
-    void LockAndSetFinalAnswer(Button button)
+    public void LockAndSetFinalAnswer(Button button)
     {
         OnClickPointer onClickPointer = button.gameObject.GetComponent<OnClickPointer>();
         if (onClickPointer.pointerState == OnClickPointer.PointerState.LOCK)

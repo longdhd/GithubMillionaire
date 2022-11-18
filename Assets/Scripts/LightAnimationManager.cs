@@ -8,39 +8,31 @@ public class LightAnimationManager : MonoBehaviour
     [SerializeField] Material whiteLightmat;
     [SerializeField] Material blueLightmat;
     [SerializeField] Light dirLight;
+    [SerializeField] float rotSpeed = 20f;
     public static LightAnimationManager Instance;
 
-    // Start is called before the first frame update
     void Awake()
     {
         Instance = this;
     }
-
+       
     public void RotateUpLightOn()
     {
-        dirLight.intensity = 0.4f;
+        dirLight.intensity = Lerp(dirLight.intensity, 0.47f, Time.deltaTime);
+
         foreach (var light in _lightList)
         {
-            Vector3 newDirection = Vector3.RotateTowards(light.transform.forward, transform.up, Time.fixedDeltaTime, 0.0f);
-            light.transform.rotation = Quaternion.LookRotation(newDirection);
-
-            float angleDiff = Vector3.Angle(light.transform.forward, transform.up);
-            if (angleDiff <= 2f)
-                light.SetActive(true);
+            light.transform.rotation = Quaternion.Euler(-90, light.transform.localEulerAngles.y, light.transform.localEulerAngles.z);
         }
     }
 
     public void RotateDownLightOff()
     {
-        dirLight.intensity = 0.8f;
+        dirLight.intensity = Lerp(dirLight.intensity, 1.32f, Time.deltaTime);
+
         foreach (var light in _lightList)
         {
-            Vector3 newDirection = Vector3.RotateTowards(light.transform.forward, transform.forward, Time.fixedDeltaTime * 0.125f, 0.0f);
-            light.transform.rotation = Quaternion.LookRotation(newDirection);
-            
-            float angleDiff = Vector3.Angle(light.transform.forward, transform.forward);
-            if (angleDiff <= 2f)
-                light.SetActive(false);
+            light.transform.Rotate(Vector3.right * Time.deltaTime * rotSpeed);
         }
          
     }
@@ -51,5 +43,10 @@ public class LightAnimationManager : MonoBehaviour
         {
             light.GetComponent<MeshRenderer>().material = setBlue ? blueLightmat : whiteLightmat;
         }
+    }
+
+    float Lerp(float a, float b, float t)
+    {
+        return (1 -t) * a + t * b;
     }
 }

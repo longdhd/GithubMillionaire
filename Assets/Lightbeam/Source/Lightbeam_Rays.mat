@@ -46,7 +46,7 @@ Material:
     - _Tweak: 0.65
     - _Width: 8.71
     m_Colors:
-    - _Color: {r: 0.9868598, g: 0.99999994, b: 0.9328925, a: 0.8039216}
+    - _Color: {r: 0.9868598, g: 0.99999994, b: 0.9328925, a: 1}
     - _DetailAnim: {r: 0, g: 0, b: 0, a: 0}
     - _DustAnim: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

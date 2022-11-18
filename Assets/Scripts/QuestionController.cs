@@ -17,8 +17,7 @@ public class QuestionController : MonoBehaviour
     [SerializeField] GameObject PlayAgainGO;
     public static QuestionController Instance;
     public int currentLevel;
-    public bool IsUnlocked { get { return isUnlocked; } set { isUnlocked = value; } }
-    bool isUnlocked = true;
+    public bool IsUsing5050 = false;
     QuestionType questionType;
 
     void Awake()
@@ -30,12 +29,11 @@ public class QuestionController : MonoBehaviour
 
     void Start()
     {
-        currentLevel = -2;
+        currentLevel = 1;
         _fiftyLifeline = new FiftyLifeline
         {
             Quantity = 1
         };
-
         _switchLifeline = new SwitchLifeline()
         {
             Quantity = 1
@@ -67,12 +65,7 @@ public class QuestionController : MonoBehaviour
         GameIdleState idleState = gameStateManager.IdleState;
         gameStateManager.SwitchState(idleState);
 
-        if (isUnlocked)
-            actionOnTimer.SetTimer(30f, () => { OnTimerAction(); });
-        else
-        {
-            InstructionGO.SetActive(true);
-        }
+        actionOnTimer.SetTimer(30f, () => { OnTimerAction(); });
     }
 
     void OnTimerAction()
@@ -108,6 +101,7 @@ public class QuestionController : MonoBehaviour
             gameStateManager.SwitchState(finalState);
 
             actionOnTimer.Stop();
+            if (IsUsing5050) IsUsing5050 = false;
 
             _viewController.HandleFinalAnswer(isCorrect);
             if (isCorrect)
@@ -121,14 +115,14 @@ public class QuestionController : MonoBehaviour
             }
             else
             {
-                LeanTween.moveLocalY(PlayAgainGO.transform.GetChild(0).gameObject, 0f, 5f).setOnComplete(() => PlayAgainGO.SetActive(true));
+                LeanTween.moveLocalY(PlayAgainGO.transform.GetChild(0).gameObject, 0f, 7f).setOnComplete(() => PlayAgainGO.SetActive(true));
             }
         }
     }
 
     public void Use5050Lifeline()
     {
-        if (_fiftyLifeline.Quantity > 0)
+        if (_fiftyLifeline.Quantity > 0 && !IsUsing5050)
         {
             actionOnTimer.Stop();
 
@@ -140,6 +134,8 @@ public class QuestionController : MonoBehaviour
             currentQuestion = newQuestion;
             _viewController.SetUpUI(newQuestion, false);
             _viewController.DisableEmptyAnswers();
+
+            IsUsing5050 = true;
         }
         else
             return;
@@ -161,7 +157,9 @@ public class QuestionController : MonoBehaviour
                 _viewController.SetUpUI(newQuestion);
             }
             else
-                throw new UnityException("newQuestion is null");
+            {
+                Debug.Log("No answers left when using Switch");
+            }
         }
     }
 
@@ -195,10 +193,12 @@ public class QuestionController : MonoBehaviour
 
     public void PlayAgain()
     {
-        if (isUnlocked)
+        if (currentLevel > 1)
             currentLevel = 1;
         else
             currentLevel = -2;
+
+        _collection.ResetAllQuestions();
 
         PlayAgainGO.SetActive(false);
         PlayAgainGO.transform.GetChild(0).LeanMoveY
@@ -209,12 +209,16 @@ public class QuestionController : MonoBehaviour
 
     public void QuitGame()
     {
-        Application.Quit();
+        #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+        #else
+                Application.Quit();
+        #endif
     }
 
     void AddUpLifeline()
     {
-        if (currentLevel == 4 || currentLevel == 9)
+        if (currentLevel == 6 || currentLevel == 11)
             _fiftyLifeline.Quantity += 1;
     }
 

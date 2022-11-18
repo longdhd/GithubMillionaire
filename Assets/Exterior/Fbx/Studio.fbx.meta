@@ -67,6 +67,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Studio
+    second: {fileID: 2100000, guid: 0b3aa537180198e4db42308be31b6c10, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: White
     second: {fileID: 2100000, guid: 873171974e75b6c4086929f7a903b07c, type: 2}
   - first:

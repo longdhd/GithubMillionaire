@@ -27,31 +27,22 @@ public class QuestionController : MonoBehaviour, IDataPersistence
         Instance = this;
     }
 
-    void Start()
+    public void BeginGame()
     {
-        //currentLevel = 1;
-        //_fiftyLifeline = new FiftyLifeline
-        //{
-        //    Quantity = 1
-        //};
-        //_switchLifeline = new SwitchLifeline()
-        //{
-        //    Quantity = 1
-        //};
-        //_audienceLifeline = new AudienceLifeline()
-        //{
-        //    Quantity = 1
-        //};
         StartCoroutine(PresentQuestion());
     }
 
     IEnumerator PresentQuestion()
     {
+        Debug.Log("Current Level: " + currentLevel);
+
+
         if (currentLevel == 1 || currentLevel == 5
             || currentLevel == 10 || currentLevel == 15)
             StartCoroutine(_viewController.DisplayMoneyTree());
 
         GetQuestionType();
+        Debug.Log("Question Type: " + questionType.ToString());
 
         currentQuestion = _collection.GetUnaskedQuestion(questionType);
         _viewController.SetUpUI(currentQuestion);
@@ -76,11 +67,12 @@ public class QuestionController : MonoBehaviour, IDataPersistence
 
         if (!hasSubmit)
         {
-            _viewController.EnableButtons(false);
-            currentLevel = 1;
-            _viewController.ResetLayout();
-            _viewController.ResetButton();
-            StartCoroutine(NextQuestionAfterDelay());
+            //_viewController.EnableButtons(false);
+            //currentLevel = 1;
+            //_viewController.ResetLayout();
+            //_viewController.ResetButton();
+            _viewController.HandleFinalAnswer(false);
+            LeanTween.moveLocalY(PlayAgainGO.transform.GetChild(0).gameObject, 0f, 7f).setOnComplete(() => PlayAgainGO.SetActive(true));
         }
     }
 
@@ -130,7 +122,7 @@ public class QuestionController : MonoBehaviour, IDataPersistence
 
     public void SaveGame(ref GameData gameData)
     {
-        gameData.Level = this.currentLevel - 1;
+        gameData.Level = this.currentLevel;
         gameData.FiftyLifeline = this._fiftyLifeline.Quantity;
         gameData.SwitchLifeline = this._switchLifeline.Quantity;
         gameData.AudienceLifeline = this._audienceLifeline.Quantity;

@@ -18,7 +18,7 @@ public class QuestCollection : MonoBehaviour
     void LoadAllQuestions()
     {
         ResetAllQuestions();
-        var jsonPath = Application.dataPath + "/JSON/questions.json";
+        var jsonPath = Application.streamingAssetsPath + "/JSON/questions.json";
         var jsonFile = File.ReadAllText(jsonPath);
         allQuestion = JsonConvert.DeserializeObject<QuestionModel[]>(jsonFile);
 

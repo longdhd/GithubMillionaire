@@ -75,6 +75,7 @@ public class UIController : MonoBehaviour
     {
         bool isOn = moneyTree.GetComponent<RectTransform>().localPosition.x == 640f;
         LeanTween.moveLocalX(moneyTree, isOn ? 1360f : 640f, 1f);
+        LeanTween.rotateAround(moneyTreeToggleGO, moneyTreeToggleGO.transform.forward, 180f, 0.5f);
     }
 
     public IEnumerator DisplayQuestionAndAnswer()
@@ -285,7 +286,7 @@ public class UIController : MonoBehaviour
 
             answersButton[i].GetComponent<OnClickPointer>().pointerState = OnClickPointer.PointerState.IDLE;
         }
-
+        
         EnableButtons(true);
     }
 
@@ -316,6 +317,9 @@ public class UIController : MonoBehaviour
 
     [SerializeField]
     GameObject moneyTree;
+
+    [SerializeField]
+    GameObject moneyTreeToggleGO;
 
     [SerializeField]
     GameObject audiencePanel;

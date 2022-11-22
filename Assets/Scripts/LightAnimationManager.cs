@@ -41,7 +41,7 @@ public class LightAnimationManager : MonoBehaviour
     {
         foreach (var light in _lightList)
         {
-            light.GetComponent<MeshRenderer>().material = setBlue ? blueLightmat : whiteLightmat;
+            light.transform.GetChild(0).GetComponent<MeshRenderer>().material = setBlue ? blueLightmat : whiteLightmat;
         }
     }
 

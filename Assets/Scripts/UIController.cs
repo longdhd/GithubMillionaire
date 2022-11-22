@@ -27,12 +27,15 @@ public class UIController : MonoBehaviour
     {
         UpdateLifeline();
 
-        if (questionController.actionOnTimer.GetRemainingTime() >= 0)
-            timerText.text = questionController.actionOnTimer.GetRemainingTime().ToString();
-        else
-            timerText.text = string.Empty;
+        if(timerImage.gameObject.activeSelf)
+        {
+            if (questionController.actionOnTimer.GetRemainingTime() >= 0)
+                timerText.text = questionController.actionOnTimer.GetRemainingTime().ToString();
+            else
+                timerText.text = string.Empty;
 
-        timerImage.sprite = SetTimerImage();
+            timerImage.sprite = SetTimerImage();
+        }
     }
 
     public void SetUpUI(QuestionModel question, bool randomOrderAnswers = true)
@@ -228,16 +231,11 @@ public class UIController : MonoBehaviour
 
     Sprite SetTimerImage()
     {
-        int imageIndex = 10 * (30 - questionController.actionOnTimer.GetRemainingTime());
-        string imageName = $"tmr{(imageIndex == 0 ? "00" : (imageIndex >= 100 ? string.Empty : "0"))}{imageIndex}";
-        //Debug.Log(imageName);
-        foreach (Sprite spr in timerSprites)
-        {
-            if (spr.name.Equals(imageName))
-                return spr;
-        }
+        //int imageIndex = 10 * (30 - questionController.actionOnTimer.GetRemainingTime());
+        //string imageName = $"tmr{(imageIndex == 0 ? "00" : (imageIndex >= 100 ? string.Empty : "0"))}{imageIndex}";
 
-        return timerSprites[0];
+        int imageIndex = 30 - questionController.actionOnTimer.GetRemainingTime();
+        return timerSprites[imageIndex];
     }
 
     public void UpdateMoneyTree(int currentLevel)

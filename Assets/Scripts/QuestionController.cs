@@ -3,14 +3,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class QuestionController : MonoBehaviour
+public class QuestionController : MonoBehaviour, IDataPersistence
 {
     [HideInInspector] public QuestionModel currentQuestion;
     [HideInInspector] public QuestCollection _collection;
     [HideInInspector] public UIController _viewController;
-    [HideInInspector] public FiftyLifeline _fiftyLifeline;
-    [HideInInspector] public SwitchLifeline _switchLifeline;
-    [HideInInspector] public AudienceLifeline _audienceLifeline;
+    [HideInInspector] public FiftyLifeline _fiftyLifeline = new ();
+    [HideInInspector] public SwitchLifeline _switchLifeline = new ();
+    [HideInInspector] public AudienceLifeline _audienceLifeline = new();
     [SerializeField] public GameStateManager gameStateManager;
     [SerializeField] public ActionOnTimer actionOnTimer;
     [SerializeField] GameObject InstructionGO;
@@ -29,21 +29,20 @@ public class QuestionController : MonoBehaviour
 
     void Start()
     {
-        currentLevel = 1;
-        _fiftyLifeline = new FiftyLifeline
-        {
-            Quantity = 1
-        };
-        _switchLifeline = new SwitchLifeline()
-        {
-            Quantity = 1
-        };
-        _audienceLifeline = new AudienceLifeline()
-        {
-            Quantity = 1
-        };
+        //currentLevel = 1;
+        //_fiftyLifeline = new FiftyLifeline
+        //{
+        //    Quantity = 1
+        //};
+        //_switchLifeline = new SwitchLifeline()
+        //{
+        //    Quantity = 1
+        //};
+        //_audienceLifeline = new AudienceLifeline()
+        //{
+        //    Quantity = 1
+        //};
         StartCoroutine(PresentQuestion());
-
     }
 
     IEnumerator PresentQuestion()
@@ -51,8 +50,6 @@ public class QuestionController : MonoBehaviour
         if (currentLevel == 1 || currentLevel == 5
             || currentLevel == 10 || currentLevel == 15)
             StartCoroutine(_viewController.DisplayMoneyTree());
-
-        AddUpLifeline();
 
         GetQuestionType();
 
@@ -106,10 +103,13 @@ public class QuestionController : MonoBehaviour
             _viewController.HandleFinalAnswer(isCorrect);
             if (isCorrect)
             {
+                AddUpLifeline();
+
                 if (currentLevel < 15)
                 {
                     currentLevel++;
                 }
+
                 _viewController.UpdateMoneyTree(currentLevel);
                 StartCoroutine(NextQuestionAfterDelay());
             }
@@ -118,6 +118,22 @@ public class QuestionController : MonoBehaviour
                 LeanTween.moveLocalY(PlayAgainGO.transform.GetChild(0).gameObject, 0f, 7f).setOnComplete(() => PlayAgainGO.SetActive(true));
             }
         }
+    }
+
+    public void LoadGame(GameData gameData)
+    {
+        this.currentLevel = gameData.Level;
+        this._fiftyLifeline.Quantity = gameData.FiftyLifeline;
+        this._switchLifeline.Quantity = gameData.SwitchLifeline;
+        this._audienceLifeline.Quantity = gameData.AudienceLifeline;
+    }
+
+    public void SaveGame(ref GameData gameData)
+    {
+        gameData.Level = this.currentLevel - 1;
+        gameData.FiftyLifeline = this._fiftyLifeline.Quantity;
+        gameData.SwitchLifeline = this._switchLifeline.Quantity;
+        gameData.AudienceLifeline = this._audienceLifeline.Quantity;
     }
 
     public void Use5050Lifeline()
@@ -218,8 +234,19 @@ public class QuestionController : MonoBehaviour
 
     void AddUpLifeline()
     {
-        if (currentLevel == 6 || currentLevel == 11)
-            _fiftyLifeline.Quantity += 1;
+        switch(currentLevel)
+        {
+            case 1:
+                _fiftyLifeline.Quantity += 1;
+                _switchLifeline.Quantity += 1;
+                _audienceLifeline.Quantity += 1;
+                break;
+            case 11:
+                _fiftyLifeline.Quantity += 1;
+                break;
+            default:
+                break;
+        }
     }
 
     void GetQuestionType()

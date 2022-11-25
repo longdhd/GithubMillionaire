@@ -25,11 +25,16 @@ public class SoundManager : MonoBehaviour
         EffectSource.Play();
     }
 
+    public void UnloadMusic(AudioClip clip)
+    {
+        clip.UnloadAudioData();
+        EffectSource.clip = null;
+    }
+
     public void PlayEffect(AudioClip clip)
     {
         MusicSource.clip = clip;
         MusicSource.Play();
     }
-
     
 }

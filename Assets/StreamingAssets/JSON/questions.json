@@ -50,27 +50,17 @@
     ]
   },
   {
-    "question": "Đâu là tên một ngôi chùa nổi tiếng ở Hà Nam?",
+    "question": "Hoàng hậu cuối cùng của chế độ phong kiến Việt Nam là ai?",
     "questionType": 1,
     "answers": [
-      "Tam Chúc",
-      "Bổ Đà",
-      "Trấn Quốc",
-      "Bái Đính"
+      "Nam Phương",
+      "Ý Lan",
+      "Dương Văn Nga",
+      "Ngọc Hân"
     ]
   },
   {
-    "question": "Sóng biển thường được tạo ra do",
-    "questionType": 1,
-    "answers": [
-      "Gió",
-      "Nắng",
-      "Mưa",
-      "Sương mù"
-    ]
-  },
-  {
-    "question": "Âm thanh có tần số lớn hơn 20KHz",
+    "question": "Âm thanh có tần số lớn hơn 20KHz được gọi là",
     "questionType": 1,
     "answers": [
       "Siêu âm",
@@ -113,7 +103,7 @@
     "question": "Đâu không phải là tên một nhà cung cấp dịch vụ Internet ở Việt Nam",
     "questionType": 1,
     "answers": [
-      "Kaspersky",
+      "AT&T",
       "FPT Telecom",
       "Viettel Telecom",
       "VNPT"
@@ -140,7 +130,7 @@
     ]
   },
   {
-    "question": "Phép tính gì phải tách một số thành các phần bằng nhau",
+    "question": "Phép tính nào sau đây tách một số thành các phần bằng nhau",
     "questionType": 1,
     "answers": [
       "Chia",
@@ -280,6 +270,176 @@
     ]
   },
   {
+    "question": "Đâu không phải là tên một loại nhạc cụ?",
+    "questionType": 1,
+    "answers": [
+      "Gia cầm",
+      "Vĩ cầm",
+      "Dương cầm",
+      "Nguyệt cầm"
+    ]
+  },
+  {
+    "question": "Hãy cho biết tên gọi khác của “Truyện Kiều”?",
+    "questionType": 1,
+    "answers": [
+      "Đoạn trường tân thanh",
+      "Đoạn trường thanh tâm",
+      "Đoạn trường thanh tân",
+      "Đoạn trường tân tân"
+    ]
+  },
+  {
+    "question": "Trong bài hát “Chú ếch con”, tác giả miêu tả chú ếch ngồi học bài bên cái gì?",
+    "questionType": 1,
+    "answers": [
+      "Hố bom kề vườn xoan",
+      "Vườn xoan kề hố bom",
+      "Cái võng sau nhà",
+      "Cái bàn phòng khách"
+    ]
+  },
+  {
+    "question": "Loại bánh nào là đặc sản của tỉnh Thái Bình?",
+    "questionType": 1,
+    "answers": [
+      "Bánh cáy",
+      "Bánh in",
+      "Bánh xèo",
+      "Bánh khọt"
+    ]
+  },
+  {
+    "question": "Làng Lệ Mật quận Long Biên nổi tiếng với nghề gì?",
+    "questionType": 1,
+    "answers": [
+      "Nuôi bắt rắn",
+      "Đúc đồng",
+      "Làm miến",
+      "Làm vàng mã"
+    ]
+  },
+  {
+    "question": "Chân vịt là bộ phận quan trọng của phương tiện nào dưới đây?",
+    "questionType": 1,
+    "answers": [
+      "Tàu thủy",
+      "Tàu hỏa",
+      "Xích lô/Ba gác",
+      "Thuyền con vịt"
+    ]
+  },
+  {
+    "question": "Con vật nào dưới đây khi ngủ thường treo ngược cơ thể?",
+    "questionType": 1,
+    "answers": [
+      "Dơi",
+      "Gấu Koala",
+      "Gấu trúc",
+      "Cá sấu"
+    ]
+  },
+  {
+    "question": "Đâu không phải là tên một bức tranh dân gian Đông Hồ? ",
+    "questionType": 1,
+    "answers": [
+      "Thiếu nữ bên hoa huệ",
+      "Mục đồng thổi sáo",
+      "Đánh ghen",
+      "Đám cưới chuột"
+    ]
+  },
+  {
+    "question": "Đâu là tên một cây cầu nổi tiếng ở Đà Nẵng?",
+    "questionType": 1,
+    "answers": [
+      "Cầu Rồng",
+      "Cầu Hàm Rồng",
+      "Cầu Thăng Long",
+      "Cầu Long Biên"
+    ]
+  },
+  {
+    "question": "Đâu là tên một loại hoa cúc?",
+    "questionType": 1,
+    "answers": [
+      "Họa Mi",
+      "Họa Bì",
+      "Họa Hổ",
+      "Họa Nhân"
+    ]
+  },
+  {
+    "question": "Hoa Sứ Đại là biểu tượng của đất nước nào sau đây?",
+    "questionType": 1,
+    "answers": [
+      "Lào",
+      "Bulgari",
+      "Hà Lan",
+      "Canada"
+    ]
+  },
+  {
+    "question": "Kí hiệu đơn vị đo lường nào sau đây phải viết hoa?",
+    "questionType": 1,
+    "answers": [
+      "Volt",
+      "Héc-ta",
+      "Ki-lô-gam",
+      "Mét"
+    ]
+  },
+  {
+    "question": "Kí hiệu đơn vị đo lường nào sau đây phải viết hoa?",
+    "questionType": 1,
+    "answers": [
+      "Volt",
+      "Héc-ta",
+      "Ki-lô-gam",
+      "Mét"
+    ]
+  },
+  {
+    "question": "Vòng chung kết World Cup 2018 được tổ chức tại",
+    "questionType": 1,
+    "answers": [
+      "Nga",
+      "Qatar",
+      "Brazil",
+      "Nam Phi"
+    ]
+  },
+  {
+    "question": "Đại dương nào có diện tích lớn nhất",
+    "questionType": 1,
+    "answers": [
+      "Thái Bình Dương",
+      "Đại Tây Dương",
+      "Bắc Băng Dương",
+      "Ấn Độ Dương"
+    ]
+  },
+  {
+    "question": "Theo dân gian, Ngưu Lang Chức Nữ chỉ được gặp nhau ngày nào trong năm Âm lịch",
+    "questionType": 1,
+    "answers": [
+      "7 tháng Bảy",
+      "14 tháng Hai",
+      "8 tháng Ba",
+      "Rằm tháng Tám"
+    ]
+  },
+  {
+    "question": "Đâu là tên một họa sĩ nổi tiếng?",
+    "questionType": 2,
+    "answers": [
+      "Tô Ngọc Vân",
+      "Tô Hiệu",
+      "Tô Hiến Thành",
+      "Tô Vĩnh Diện"
+    ]
+  },
+  {
     "question": "Tác phẩm nào được coi là tác phẩm nổi tiếng nhất của Hector Malot",
     "questionType": 2,
     "answers": [
@@ -350,7 +510,7 @@
     ]
   },
   {
-    "question": "Trạng thái nào được coi là trạng thái thứ tư của vật chất (ngoài trừ rắn, lỏng, khí)",
+    "question": "Trạng thái nào được coi là trạng thái thứ tư\n của vật chất (bên cạnh rắn, lỏng, khí)",
     "questionType": 2,
     "answers": [
       "Plasma",
@@ -370,13 +530,13 @@
     ]
   },
   {
-    "question": "Tháng 8 dương lịch có",
+    "question": "Nghệ thuật vẽ tranh chân dung giống y người thật gọi là",
     "questionType": 2,
     "answers": [
-      "31 ngày",
-      "28 ngày",
-      "29 ngày",
-      "30 ngày"
+      "Truyền thân",
+      "Khỏa thân",
+      "Sơn dầu",
+      "Ký họa"
     ]
   },
   {
@@ -410,16 +570,6 @@
     ]
   },
   {
-    "question": "Thiên thể nào thường được gọi theo tên của các nhà thiên văn học?",
-    "questionType": 2,
-    "answers": [
-      "Sao chổi",
-      "Sao Hỏa",
-      "Sao Kim",
-      "Sao Thổ"
-    ]
-  },
-  {
     "question": "Tiểu thuyết Robinson Crusoe viết bởi nhà văn",
     "questionType": 2,
     "answers": [
@@ -430,13 +580,13 @@
     ]
   },
   {
-    "question": "Barista là tên khác của người",
+    "question": "Làng Đồng Xâm ở Thái Bình nổi tiếng với nghề thủ công",
     "questionType": 2,
     "answers": [
-      "Pha chế",
-      "Đầu bếp",
-      "Bảo vệ",
-      "Nhạc sĩ"
+      "Chạm bạc",
+      "Đúc đồng",
+      "Đan mây tre",
+      "Dệt vải"
     ]
   },
   {
@@ -456,7 +606,7 @@
       "Kính Tâm",
       "Kính An",
       "Kính Thi",
-      "Kính Cường Lực"
+      "Kính Thị"
     ]
   },
   {
@@ -470,43 +620,133 @@
     ]
   },
   {
-    "question": "'Lưỡi không xương nhiều đường lắt léo' là câu dùng để chỉ loại người",
+    "question": "Đèo Hải Vân cắt ngang dãy núi nào của dãy Trường Sơn",
     "questionType": 2,
     "answers": [
-      "Xảo trá",
-      "Ngốc nghếch",
-      "Khù khờ",
-      "Xởi lởi"
+      "Bạch Mã",
+      "Ngọc Linh",
+      "Chư Yang Sin",
+      "Vọng Phu"
     ]
   },
   {
-    "question": "Trong phần mềm soạn thảo văn bản của Microsoft, tổ hợp phím nào được dùng để đóng văn bản",
+    "question": "Trong phần mềm soạn thảo văn bản của Microsoft, tổ hợp phím nào\n được dùng để đóng văn bản",
     "questionType": 2,
     "answers": [
       "Ctrl + W",
-      "Ctrl + Z",
-      "Ctrl + C",
-      "Ctrl + V"
+      "Ctrl + A",
+      "Ctrl + S",
+      "Ctrl + D"
     ]
   },
   {
-    "question": "Loài hoa nào được nhắc đến trong bài hát Biết ơn chị Võ Thị Sáu",
+    "question": "Xứ Cảng thơm là tên gọi khác của",
     "questionType": 2,
     "answers": [
-      "Hoa lê-ki-ma",
-      "Hoa lay-ơn",
-      "Hoa ly",
-      "Hoa mai"
+      "Hongkong",
+      "Macau",
+      "Đài Loan",
+      "Triều Tiên"
     ]
   },
   {
-    "question": "'Bát trân' là tên gọi của",
+    "question": "Loại vải nào được sản xuất thủ công bằng việc trồng dâu, nuôi tằm lấy tơ",
     "questionType": 2,
     "answers": [
-      "Tám món ăn quý",
-      "Tám loại thuốc quý",
-      "Tám bức tranh quý",
-      "Tám loài hoa quý"
+      "Lụa",
+      "Len",
+      "Lanh",
+      "Sợi"
+    ]
+  },
+  {
+    "question": "Tác giả của tiểu thuyết Dấu chân người lính",
+    "questionType": 2,
+    "answers": [
+      "Nguyễn Minh Châu",
+      "Nguyễn Huy Thiệp",
+      "Nguyễn Quang Sáng",
+      "Nguyễn Khải"
+    ]
+  },
+  {
+    "question": "Đâu không phải là tên một tác phẩm kịch nói của Lưu Quang Vũ",
+    "questionType": 2,
+    "answers": [
+      "Cát bụi",
+      "Lời thế thứ 9",
+      "Nàng Sita",
+      "Hồn Trương Ba, da hàng thịt"
+    ]
+  },
+  {
+    "question": "Chủng tộc người có chiều cao trung bình thấp nhất thế giới",
+    "questionType": 2,
+    "answers": [
+      "Pygmy",
+      "Homo sapien",
+      "Negroid",
+      "Mongoloid"
+    ]
+  },
+  {
+    "question": "Cấp điện áp cao nhất của đường dây truyền tải điện ở Việt Nam là",
+    "questionType": 2,
+    "answers": [
+      "500kV",
+      "750kV",
+      "220kV",
+      "1000kV"
+    ]
+  },
+  {
+    "question": "Hệ Mặt Trời của chúng ta có bao nhiêu hành tinh",
+    "questionType": 2,
+    "answers": [
+      "8",
+      "9",
+      "10",
+      "12"
+    ]
+  },
+  {
+    "question": "Chiều dài một chặng đua Marathon chính thức tại các kỳ Olympic",
+    "questionType": 2,
+    "answers": [
+      "42.195 km",
+      "42.095 km",
+      "40.195 km",
+      "40.2 km"
+    ]
+  },
+  {
+    "question": "Loài chim nào dưới đây có thể bay lùi",
+    "questionType": 2,
+    "answers": [
+      "Chim ruồi",
+      "Chim bói cá",
+      "Chim Toucan",
+      "Thần Điêu của Dương Quá"
+    ]
+  },
+  {
+    "question": "Mũi Sa Vĩ thuộc tỉnh nào ở nước ta",
+    "questionType": 2,
+    "answers": [
+      "Quảng Ninh",
+      "Quảng Bình",
+      "Quảng Trị",
+      "Quảng Ngãi"
+    ]
+  },
+  {
+    "question": "Tập tục Chợ tình khâu vai được tiến hành ở",
+    "questionType": 2,
+    "answers": [
+      "Hà Giang",
+      "Cao Bằng",
+      "Lào Cai",
+      "Lai Châu"
     ]
   },
   {
@@ -560,7 +800,7 @@
     ]
   },
   {
-    "question": "Luật sư nào đã bào chữa cho Nguyễn Ái Quốc trong vụ án năm 1931 ở Hồng Kông?",
+    "question": "Luật sư nào đã bào chữa cho Nguyễn Ái Quốc\n trong vụ án năm 1931 ở Hồng Kông?",
     "questionType": 3,
     "answers": [
       "Francis Henry Loseby",
@@ -660,7 +900,7 @@
     ]
   },
   {
-    "question": "Chỉ số nào sau đây không dùng để đo chỉ số phát triển con người HDI của một nước? ",
+    "question": "Chỉ số nào sau đây không dùng để đo\n chỉ số phát triển con người (HDI) của một nước? ",
     "questionType": 3,
     "answers": [
       "Chỉ số lạm phát",

@@ -18,7 +18,7 @@ public class LightAnimationManager : MonoBehaviour
        
     public void RotateUpLightOn()
     {
-        dirLight.intensity = Lerp(dirLight.intensity, 0.47f, Time.deltaTime);
+        dirLight.intensity = Lerp(dirLight.intensity, 0.25f, Time.deltaTime);
 
         foreach (var light in _lightList)
         {
@@ -28,7 +28,7 @@ public class LightAnimationManager : MonoBehaviour
 
     public void RotateDownLightOff()
     {
-        dirLight.intensity = Lerp(dirLight.intensity, 1.32f, Time.deltaTime);
+        dirLight.intensity = Lerp(dirLight.intensity, 0.75f, Time.deltaTime);
 
         foreach (var light in _lightList)
         {

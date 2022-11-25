@@ -5,10 +5,11 @@ using UnityEngine;
 public class GameIdleState : GameBaseState
 {
     AudioClip lastClip;
-
+    AudioClip currentClip;
     public override void EnterState(GameStateManager state)
     {
         AudioClip clip = RandomClip(state.IdleAudioClip);
+        currentClip = clip;
         SoundManager.Instance.PlayMusic(clip);
 
         CameraManager.Instance.SwitchTo("PlayerCam");
@@ -19,7 +20,7 @@ public class GameIdleState : GameBaseState
     }
     public override void ExitState(GameStateManager state)
     {
-
+        SoundManager.Instance.UnloadMusic(currentClip);
     }
     AudioClip RandomClip(AudioClip[] audioClipArray)
     {

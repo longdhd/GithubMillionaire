@@ -60,11 +60,7 @@ public class QuestCollection : MonoBehaviour
                 return unasked;
 
             default:
-                unasked = allQuestion.Where(t => t.asked == false && t.Type == QuestionType.Unlock)
-                                                     .OrderBy(t => UnityEngine.Random.Range(0, allQuestion.Length - 1))
-                                                    .FirstOrDefault();
-                unasked.asked = true;
-                return unasked;
+                return null;
         }
     }
 
@@ -88,10 +84,13 @@ public class QuestCollection : MonoBehaviour
 
     public void ResetAllQuestions()
     {
-        if (allQuestion?.Any((t => t.asked == false)) == false)
+        //if (allQuestion?.Any((t => t.asked == false)) == false)
+        //{
+        if (allQuestion != null)
         {
             foreach (var question in allQuestion)
                 question.asked = false;
         }
+        //}
     }
 }

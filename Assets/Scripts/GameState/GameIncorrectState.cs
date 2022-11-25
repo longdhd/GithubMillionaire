@@ -21,6 +21,6 @@ public class GameIncorrectState : GameBaseState
     }
     public override void ExitState(GameStateManager state)
     {
-
+        SoundManager.Instance.UnloadMusic(state.IncorrectAudioClip);
     }
 }

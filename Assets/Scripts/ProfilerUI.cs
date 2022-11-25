@@ -8,7 +8,7 @@ using System.Text;
 public class ProfilerUI : MonoBehaviour
 {
     private TextMeshProUGUI m_Text;
-    ProfilerRecorder m_GarbageAllocatedRecorder;
+    ProfilerRecorder m_GCMemoryRecorder;
     // Start is called before the first frame update
     void Awake()
     {
@@ -16,19 +16,19 @@ public class ProfilerUI : MonoBehaviour
     }
     private void OnEnable()
     {
-        m_GarbageAllocatedRecorder = ProfilerRecorder.StartNew(ProfilerCategory.Memory, "GC Allocated In Frame");
+        m_GCMemoryRecorder = ProfilerRecorder.StartNew(ProfilerCategory.Memory, "GC Reserved Memory");
     }
 
     // Update is called once per frame
     void Update()
     {
         var stringBuilder = new StringBuilder();
-        stringBuilder.AppendLine($"Garbage Allocated\t\t{m_GarbageAllocatedRecorder.LastValue}");
+        stringBuilder.AppendLine($"GC Memory\t\t{m_GCMemoryRecorder.LastValue}");
         m_Text.text = stringBuilder.ToString();
     }
 
     private void OnDisable()
     {
-        m_GarbageAllocatedRecorder.Dispose();
+        m_GCMemoryRecorder.Dispose();
     }
 }

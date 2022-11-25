@@ -21,6 +21,8 @@ public class UIController : MonoBehaviour
             });
         }
 
+        correctState = questionController.gameStateManager.CorrectState;
+        incorrectState = questionController.gameStateManager.IncorrectState;
     }
 
     void Update()
@@ -36,6 +38,8 @@ public class UIController : MonoBehaviour
 
             timerImage.sprite = SetTimerImage();
         }
+
+        Debug.Log(questionController.gameStateManager.LastQuestion);
     }
 
     public void SetUpUI(QuestionModel question, bool randomOrderAnswers = true)
@@ -47,7 +51,7 @@ public class UIController : MonoBehaviour
         {
             string[] copiedArr = new string[question.answers.Length];
             Array.Copy(question.answers, copiedArr, question.answers.Length);
-            Array.Sort(copiedArr, 0, UnityEngine.Random.Range(1, question.answers.Length));
+            Array.Sort(copiedArr, 0, question.answers.Length);
             for (int i = 0; i < question.answers.Length; i++)
             {
                 answersButton[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = copiedArr[i];
@@ -73,9 +77,14 @@ public class UIController : MonoBehaviour
 
     public void ToggleMoneyTree()
     {
+        //Editor's On Click disable button to avoid click spam
         bool isOn = moneyTree.GetComponent<RectTransform>().localPosition.x == 640f;
         LeanTween.moveLocalX(moneyTree, isOn ? 1360f : 640f, 1f);
-        LeanTween.rotateAround(moneyTreeToggleGO, moneyTreeToggleGO.transform.forward, 180f, 0.5f);
+        LeanTween.rotateAround(moneyTreeToggleGO, moneyTreeToggleGO.transform.forward, 180f, 0.5f).setOnComplete(() =>
+        {
+            //Enable button after anim
+            moneyTreeToggleGO.GetComponent<Button>().enabled = true;
+        });
     }
 
     public IEnumerator DisplayQuestionAndAnswer()
@@ -91,6 +100,11 @@ public class UIController : MonoBehaviour
         yield return new WaitForSeconds(1f);
         timerText.gameObject.SetActive(true);
         timerImage.gameObject.SetActive(true);
+
+        foreach (Button lifeline in lifelineContainer.GetComponentsInChildren<Button>())
+        {
+            lifeline.enabled = true;
+        }
     }
 
     public void LockAndSetFinalAnswer(Button button)
@@ -109,6 +123,11 @@ public class UIController : MonoBehaviour
             int siblingIndex = button.transform.GetSiblingIndex();
             button.transform.GetComponent<Image>().sprite
                 = siblingIndex == 0 ? slicedSprite[2] : slicedSprite[10];
+
+            foreach (Button lifeline in lifelineContainer.GetComponentsInChildren<Button>())
+            {
+                lifeline.enabled = false;
+            }
         }
     }
 
@@ -127,7 +146,7 @@ public class UIController : MonoBehaviour
         }
     }
 
-    public void HandleFinalAnswer(bool isCorrect)
+    public void HandleFinalAnswer(bool isCorrect, bool isLastQuestion)
     {
         EnableButtons(false);
 
@@ -136,16 +155,16 @@ public class UIController : MonoBehaviour
             if (button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text
                                 .Equals(questionController.currentQuestion.correctAns))
             {
-                StartCoroutine(RevealCorrectAnswer(button, isCorrect));
+                StartCoroutine(RevealCorrectAnswer(button, isCorrect, isLastQuestion));
             }
         }
     }
 
-    IEnumerator RevealCorrectAnswer(Button button, bool isCorrect)
+    IEnumerator RevealCorrectAnswer(Button button, bool isCorrect, bool isLastQuestion)
     {
         yield return new WaitForSeconds(delayAfterFinalAnswer);
-        GameCorrectState correctState = questionController.gameStateManager.CorrectState;
-        GameIncorrectState incorrectState = questionController.gameStateManager.IncorrectState;
+
+        questionController.gameStateManager.LastQuestion = isLastQuestion;
         questionController.gameStateManager.SwitchState(isCorrect ? correctState : incorrectState);
 
         button.transform.GetComponent<Animator>().enabled = true;
@@ -355,5 +374,7 @@ public class UIController : MonoBehaviour
     List<Sprite> timerSprites;
 
     QuestionController questionController;
+    GameCorrectState correctState;
+    GameIncorrectState incorrectState;
     float delayAfterFinalAnswer = 3f;
 }

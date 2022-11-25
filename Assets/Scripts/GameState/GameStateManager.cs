@@ -10,6 +10,11 @@ public class GameStateManager : MonoBehaviour
     public GameFinalState FinalState = new();
     public GameCorrectState CorrectState = new();
     public GameIncorrectState IncorrectState = new();
+    public GameFinishState FinishState = new();
+
+    [SerializeField] public GameObject[] objsToHide;
+    bool lastQuestion = false;
+    public bool LastQuestion { get { return lastQuestion; } set { lastQuestion = value; } } 
 
     private Animator _playerAnimator;
     private int animIDLifeline;
@@ -26,6 +31,8 @@ public class GameStateManager : MonoBehaviour
     public AudioClip CorrectAudioClip;
     [SerializeField]
     public AudioClip IncorrectAudioClip;
+    [SerializeField]
+    public AudioClip FinishAudioClip;
 
     [SerializeField]
     public AudioClip[] CorrectEffectClip;
@@ -33,8 +40,6 @@ public class GameStateManager : MonoBehaviour
     public AudioClip[] IncorrectEffectClip;
     [SerializeField]
     public AudioClip FinalEffectClip;
-
-
 
     public Animator PlayerAnimator { get { return _playerAnimator; } }
     public Animator HostAnimator { get { return _hostAnimator; } }

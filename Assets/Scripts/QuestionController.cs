@@ -8,8 +8,8 @@ public class QuestionController : MonoBehaviour, IDataPersistence
     [HideInInspector] public QuestionModel currentQuestion;
     [HideInInspector] public QuestCollection _collection;
     [HideInInspector] public UIController _viewController;
-    [HideInInspector] public FiftyLifeline _fiftyLifeline = new ();
-    [HideInInspector] public SwitchLifeline _switchLifeline = new ();
+    [HideInInspector] public FiftyLifeline _fiftyLifeline = new();
+    [HideInInspector] public SwitchLifeline _switchLifeline = new();
     [HideInInspector] public AudienceLifeline _audienceLifeline = new();
     [SerializeField] public GameStateManager gameStateManager;
     [SerializeField] public ActionOnTimer actionOnTimer;
@@ -19,38 +19,47 @@ public class QuestionController : MonoBehaviour, IDataPersistence
     public int currentLevel;
     public bool IsUsing5050 = false;
     QuestionType questionType;
+    GameIdleState idleState;
+    GameFinalState finalState;
+    GameFinishState finishState;
 
     void Awake()
     {
         _viewController = FindObjectOfType<UIController>();
         _collection = FindObjectOfType<QuestCollection>();
+
+        idleState = gameStateManager.IdleState;
+        finalState = gameStateManager.FinalState;
+        finishState = gameStateManager.FinishState;
+
         Instance = this;
     }
 
     public void BeginGame()
     {
+        _viewController.UpdateMoneyTree(currentLevel);
         StartCoroutine(PresentQuestion());
     }
 
     IEnumerator PresentQuestion()
     {
-        Debug.Log("Current Level: " + currentLevel);
-
-
         if (currentLevel == 1 || currentLevel == 5
             || currentLevel == 10 || currentLevel == 15)
             StartCoroutine(_viewController.DisplayMoneyTree());
 
         GetQuestionType();
-        Debug.Log("Question Type: " + questionType.ToString());
 
         currentQuestion = _collection.GetUnaskedQuestion(questionType);
+        if (currentQuestion == null)
+        {
+            _collection.ResetAllQuestions();
+            currentQuestion = _collection.GetUnaskedQuestion(questionType);
+        }
         _viewController.SetUpUI(currentQuestion);
         yield return new WaitForSeconds(3f);
         StartCoroutine(_viewController.DisplayQuestionAndAnswer());
         yield return new WaitForSeconds(4f);
 
-        GameIdleState idleState = gameStateManager.IdleState;
         gameStateManager.SwitchState(idleState);
 
         actionOnTimer.SetTimer(30f, () => { OnTimerAction(); });
@@ -67,11 +76,7 @@ public class QuestionController : MonoBehaviour, IDataPersistence
 
         if (!hasSubmit)
         {
-            //_viewController.EnableButtons(false);
-            //currentLevel = 1;
-            //_viewController.ResetLayout();
-            //_viewController.ResetButton();
-            _viewController.HandleFinalAnswer(false);
+            _viewController.HandleFinalAnswer(false, false);
             LeanTween.moveLocalY(PlayAgainGO.transform.GetChild(0).gameObject, 0f, 7f).setOnComplete(() => PlayAgainGO.SetActive(true));
         }
     }
@@ -86,27 +91,41 @@ public class QuestionController : MonoBehaviour, IDataPersistence
                             .text.Equals(currentQuestion.correctAns);
         if (isSubmitted)
         {
-            GameFinalState finalState = gameStateManager.FinalState;
             gameStateManager.SwitchState(finalState);
 
             actionOnTimer.Stop();
             if (IsUsing5050) IsUsing5050 = false;
 
-            _viewController.HandleFinalAnswer(isCorrect);
+            _viewController.HandleFinalAnswer(isCorrect, currentLevel == 15);
             if (isCorrect)
             {
                 AddUpLifeline();
+                _viewController.UpdateMoneyTree(currentLevel);
 
                 if (currentLevel < 15)
                 {
                     currentLevel++;
+                    StartCoroutine(NextQuestionAfterDelay());
+                }
+                else if (currentLevel == 15)
+                {
+                    //You win!!
+                    Debug.Log("You win A million dollar !!!");
+
+                    gameStateManager.SwitchState(finishState);
+
+                    currentLevel = 1;
                 }
 
-                _viewController.UpdateMoneyTree(currentLevel);
-                StartCoroutine(NextQuestionAfterDelay());
             }
             else
             {
+                if (currentLevel > 1)
+                    currentLevel = 1;
+                else
+                    currentLevel = -2;
+
+                ResetLifeline();
                 LeanTween.moveLocalY(PlayAgainGO.transform.GetChild(0).gameObject, 0f, 7f).setOnComplete(() => PlayAgainGO.SetActive(true));
             }
         }
@@ -199,13 +218,15 @@ public class QuestionController : MonoBehaviour, IDataPersistence
         }
     }
 
+    void ResetLifeline()
+    {
+        _fiftyLifeline.Quantity = 0;
+        _switchLifeline.Quantity = 0;
+        _audienceLifeline.Quantity = 0;
+    }
+
     public void PlayAgain()
     {
-        if (currentLevel > 1)
-            currentLevel = 1;
-        else
-            currentLevel = -2;
-
         _collection.ResetAllQuestions();
 
         PlayAgainGO.SetActive(false);
@@ -217,23 +238,23 @@ public class QuestionController : MonoBehaviour, IDataPersistence
 
     public void QuitGame()
     {
-        #if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
-        #else
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
                 Application.Quit();
-        #endif
+#endif
     }
 
     void AddUpLifeline()
     {
-        switch(currentLevel)
+        switch (currentLevel)
         {
             case 1:
                 _fiftyLifeline.Quantity += 1;
                 _switchLifeline.Quantity += 1;
                 _audienceLifeline.Quantity += 1;
                 break;
-            case 11:
+            case 10:
                 _fiftyLifeline.Quantity += 1;
                 break;
             default:

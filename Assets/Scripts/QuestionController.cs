@@ -76,7 +76,7 @@ public class QuestionController : MonoBehaviour, IDataPersistence
 
         if (!hasSubmit)
         {
-            _viewController.HandleFinalAnswer(false, false);
+            _viewController.HandleFinalAnswer(false);
             LeanTween.moveLocalY(PlayAgainGO.transform.GetChild(0).gameObject, 0f, 7f).setOnComplete(() => PlayAgainGO.SetActive(true));
         }
     }
@@ -96,7 +96,7 @@ public class QuestionController : MonoBehaviour, IDataPersistence
             actionOnTimer.Stop();
             if (IsUsing5050) IsUsing5050 = false;
 
-            _viewController.HandleFinalAnswer(isCorrect, currentLevel == 15);
+            _viewController.HandleFinalAnswer(isCorrect);
             if (isCorrect)
             {
                 AddUpLifeline();
@@ -114,9 +114,8 @@ public class QuestionController : MonoBehaviour, IDataPersistence
 
                     gameStateManager.SwitchState(finishState);
 
-                    currentLevel = 1;
+                    _viewController.DisplayWinGameUI();
                 }
-
             }
             else
             {
@@ -224,6 +223,8 @@ public class QuestionController : MonoBehaviour, IDataPersistence
         _switchLifeline.Quantity = 0;
         _audienceLifeline.Quantity = 0;
     }
+
+
 
     public void PlayAgain()
     {

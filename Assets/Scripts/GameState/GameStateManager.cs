@@ -13,8 +13,7 @@ public class GameStateManager : MonoBehaviour
     public GameFinishState FinishState = new();
 
     [SerializeField] public GameObject[] objsToHide;
-    bool lastQuestion = false;
-    public bool LastQuestion { get { return lastQuestion; } set { lastQuestion = value; } } 
+    [SerializeField] public GameObject[] objsToShow;
 
     private Animator _playerAnimator;
     private int animIDLifeline;

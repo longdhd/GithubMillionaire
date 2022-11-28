@@ -38,8 +38,6 @@ public class UIController : MonoBehaviour
 
             timerImage.sprite = SetTimerImage();
         }
-
-        Debug.Log(questionController.gameStateManager.LastQuestion);
     }
 
     public void SetUpUI(QuestionModel question, bool randomOrderAnswers = true)
@@ -146,7 +144,7 @@ public class UIController : MonoBehaviour
         }
     }
 
-    public void HandleFinalAnswer(bool isCorrect, bool isLastQuestion)
+    public void HandleFinalAnswer(bool isCorrect)
     {
         EnableButtons(false);
 
@@ -155,17 +153,19 @@ public class UIController : MonoBehaviour
             if (button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text
                                 .Equals(questionController.currentQuestion.correctAns))
             {
-                StartCoroutine(RevealCorrectAnswer(button, isCorrect, isLastQuestion));
+                StartCoroutine(RevealCorrectAnswer(button, isCorrect));
             }
         }
     }
 
-    IEnumerator RevealCorrectAnswer(Button button, bool isCorrect, bool isLastQuestion)
+    IEnumerator RevealCorrectAnswer(Button button, bool isCorrect)
     {
         yield return new WaitForSeconds(delayAfterFinalAnswer);
 
-        questionController.gameStateManager.LastQuestion = isLastQuestion;
-        questionController.gameStateManager.SwitchState(isCorrect ? correctState : incorrectState);
+        if(questionController.currentLevel != 15)
+        {
+            questionController.gameStateManager.SwitchState(isCorrect ? correctState : incorrectState);
+        }
 
         button.transform.GetComponent<Animator>().enabled = true;
         button.transform.GetComponent<Animator>().SetTrigger(isCorrect ? "Correct" : "Incorrect");
@@ -317,6 +317,20 @@ public class UIController : MonoBehaviour
         }
     }
 
+    public void DisplayWinGameUI()
+    {
+        StartCoroutine(DisplayWinGameUICoroutine());
+    }
+
+    IEnumerator DisplayWinGameUICoroutine()
+    {
+        yield return new WaitForSeconds(delayAfterFinalAnswer);
+        LeanTween.moveLocalY(bankCheck, -264f, 0.5f).setOnComplete(() =>
+        {
+            firework.SetActive(true);
+        });
+    }
+
     [SerializeField]
     TextMeshProUGUI questionTMPUGUI;
 
@@ -342,6 +356,12 @@ public class UIController : MonoBehaviour
 
     [SerializeField]
     GameObject audiencePanel;
+
+    [SerializeField]
+    GameObject bankCheck;
+
+    [SerializeField]
+    GameObject firework;
 
     [SerializeField]
     RectTransform currentPrize;

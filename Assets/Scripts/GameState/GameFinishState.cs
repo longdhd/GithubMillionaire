@@ -6,15 +6,21 @@ public class GameFinishState : GameBaseState
 {
     public override void EnterState(GameStateManager state)
     {
-        CameraManager.Instance.SwitchTo("OverviewCamera");
+        CameraManager.Instance.SwitchTo("OverviewCam");
 
         state.PlayerAnimator.SetTrigger("Finish");
+        state.HostAnimator.SetTrigger("Finish");
 
         SoundManager.Instance.PlayMusic(state.FinishAudioClip);
 
         foreach(var obj in state.objsToHide)
         {
             obj.SetActive(false);
+        }
+
+        foreach (var obj in state.objsToShow)
+        {
+            obj.SetActive(true);
         }
     }
 
@@ -30,6 +36,9 @@ public class GameFinishState : GameBaseState
             obj.SetActive(true);
         }
 
-        state.LastQuestion = false;
+        foreach (var obj in state.objsToShow)
+        {
+            obj.SetActive(false);
+        }
     }
 }

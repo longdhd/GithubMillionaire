@@ -18,8 +18,6 @@ public class QuestionModel
     public string correctAns { get; set; }
     public bool asked { get; set; }
 
-
     public int questionType;
-
     public QuestionType Type { get; set; }
 }

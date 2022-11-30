@@ -5,6 +5,7 @@ using System.Linq;
 using Newtonsoft.Json;
 using UnityEngine;
 using System;
+using UnityEngine.Networking;
 
 public class QuestCollection : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class QuestCollection : MonoBehaviour
 
     void Awake()
     {
-        LoadAllQuestions();
+        GetAllQuestions();
     }
 
     void LoadAllQuestions()
@@ -24,6 +25,11 @@ public class QuestCollection : MonoBehaviour
 
         SetQuestionType();
         SetCorrectAnswer();
+    }
+
+    void GetAllQuestions()
+    {
+        StartCoroutine(GetRequest("localhost:8080/api/v1/questions"));
     }
 
     public QuestionModel GetUnaskedQuestion(QuestionType questionType)
@@ -92,5 +98,34 @@ public class QuestCollection : MonoBehaviour
                 question.asked = false;
         }
         //}
+    }
+
+    IEnumerator GetRequest(string uri)
+    {
+        using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
+        {
+            // Request and wait for the desired page.
+            yield return webRequest.SendWebRequest();
+
+            string[] pages = uri.Split('/');
+            int page = pages.Length - 1;
+
+            switch (webRequest.result)
+            {
+                case UnityWebRequest.Result.ConnectionError:
+                case UnityWebRequest.Result.DataProcessingError:
+                    Debug.LogError(pages[page] + ": Error: " + webRequest.error);
+                    break;
+                case UnityWebRequest.Result.ProtocolError:
+                    Debug.LogError(pages[page] + ": HTTP Error: " + webRequest.error);
+                    break;
+                case UnityWebRequest.Result.Success:
+                    var result = webRequest.downloadHandler.text;
+                    allQuestion = JsonConvert.DeserializeObject<QuestionModel[]>(result);
+                    SetQuestionType();
+                    SetCorrectAnswer();
+                    break;
+            }
+        }
     }
 }

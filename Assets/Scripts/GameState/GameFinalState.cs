@@ -6,15 +6,15 @@ public class GameFinalState : GameBaseState
 {
     public override void EnterState(GameStateManager state)
     {
-        state.PlayerAnimator.SetTrigger(state.AnimIDFinal);
-        state.HostAnimator.SetTrigger("Final");
+        //state.PlayerAnimator.SetTrigger(state.AnimIDFinal);
+        //state.HostAnimator.SetTrigger("Final");
 
-        CameraManager.Instance.SwitchTo("OverviewCam");
+        //CameraManager.Instance.SwitchTo("OverviewCam");
         SoundManager.Instance.PlayEffect(state.FinalEffectClip);
     }
     public override void UpdateState(GameStateManager state)
     {
-        LightAnimationManager.Instance.RotateUpLightOn();
+        //LightAnimationManager.Instance.RotateUpLightOn();
     }
     public override void ExitState(GameStateManager state)
     {

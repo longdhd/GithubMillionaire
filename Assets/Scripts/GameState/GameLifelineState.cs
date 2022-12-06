@@ -6,8 +6,8 @@ public class GameLifelineState : GameBaseState
 {
     public override void EnterState(GameStateManager state)
     {
-        state.PlayerAnimator.SetTrigger(state.AnimIDLifeline);
-        state.HostAnimator.SetTrigger("Lifeline");
+        //state.PlayerAnimator.SetTrigger(state.AnimIDLifeline);
+        //state.HostAnimator.SetTrigger("Lifeline");
 
     }
     public override void UpdateState(GameStateManager state)
@@ -16,7 +16,7 @@ public class GameLifelineState : GameBaseState
     }
     public override void ExitState(GameStateManager state)
     {
-        state.PlayerAnimator.ResetTrigger(state.AnimIDLifeline);
-        state.HostAnimator.ResetTrigger(state.AnimIDLifeline);
+        //state.PlayerAnimator.ResetTrigger(state.AnimIDLifeline);
+        //state.HostAnimator.ResetTrigger(state.AnimIDLifeline);
     }
 }

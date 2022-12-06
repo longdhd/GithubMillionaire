@@ -188,11 +188,8 @@ public class UIController : MonoBehaviour
         LeanTween.moveLocalY(answersContainer, -(Screen.height + answersContainer.transform.GetComponent<RectTransform>().rect.height), 0.5f);
         if (questionController.currentLevel > 1)
         {
-            LeanTween.rotateX(questionContainer, 360f, 0.5f).setOnComplete(() =>
-            {
-                questionContainer.transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
-                questionContainer.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = prizeList[questionController.currentLevel - 2].text;
-            });
+            questionContainer.transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
+            questionContainer.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = prizeList[questionController.currentLevel - 2].text;
             LeanTween.moveLocalY(questionContainer, -320f, 0.5f);
             yield return new WaitForSeconds(delayAfterFinalAnswer);
         }

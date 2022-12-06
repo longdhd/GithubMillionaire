@@ -1,0 +1,952 @@
+﻿[
+  {
+    "question": "Loại hình bất động sản dự án Sunshine Heritage",
+    "questionType": 0,
+    "answers": [
+      "Resort",
+      "Apartment",
+      "Villa",
+      "Sky Villa"
+    ]
+  },
+  {
+    "question": "Dự án Sunshine Heritage thuộc Sunshine Group có bao nhiêu phân khu",
+    "questionType": 0,
+    "answers": [
+      "Năm",
+      "Sáu",
+      "Ba",
+      "Bốn"
+    ]
+  },
+  {
+    "question": "Dự án Sunshine Heritage thuộc Sunshine Group nằm ở quận",
+    "questionType": 0,
+    "answers": [
+      "Nam Từ Liêm",
+      "Bắc Từ Liêm",
+      "Long Biên",
+      "Tây Hồ"
+    ]
+  },
+  {
+    "question": "Điền từ còn thiếu vào chỗ trống trong câu: 'Đục nước béo …'",
+    "questionType": 1,
+    "answers": [
+      "Cò  ",
+      "Cá",
+      "Mèo",
+      "Vạc"
+    ]
+  },
+  {
+    "question": "Việt Nam có chung biên giới với quốc gia",
+    "questionType": 1,
+    "answers": [
+      "Trung Quốc",
+      "Thái Lan",
+      "Brunei",
+      "Myanmar"
+    ]
+  },
+  {
+    "question": "Hoàng hậu cuối cùng của chế độ phong kiến Việt Nam là ai?",
+    "questionType": 1,
+    "answers": [
+      "Nam Phương",
+      "Ý Lan",
+      "Dương Văn Nga",
+      "Ngọc Hân"
+    ]
+  },
+  {
+    "question": "Âm thanh có tần số lớn hơn 20KHz được gọi là",
+    "questionType": 1,
+    "answers": [
+      "Siêu âm",
+      "Hạ âm",
+      "Cận âm",
+      "Quá âm"
+    ]
+  },
+  {
+    "question": "Điền từ còn thiếu vào chỗ trống: \n'Bao giờ trời kéo vảy ... / Sắp gồng sắp gánh ta về kẻo mưa'?",
+    "questionType": 1,
+    "answers": [
+      "Tê",
+      "Đê",
+      "Dê",
+      "Mê"
+    ]
+  },
+  {
+    "question": "Năm nhuận có bao nhiêu ngày?",
+    "questionType": 1,
+    "answers": [
+      "366",
+      "365",
+      "364",
+      "363"
+    ]
+  },
+  {
+    "question": "Kích thước tiêu chuẩn của khổ giấy A4",
+    "questionType": 1,
+    "answers": [
+      "210 x 297mm",
+      "297 x 420mm",
+      "105 x 148mm",
+      "594 x 841mm"
+    ]
+  },
+  {
+    "question": "Đâu không phải là tên một nhà cung cấp dịch vụ Internet ở Việt Nam",
+    "questionType": 1,
+    "answers": [
+      "AT&T",
+      "FPT Telecom",
+      "Viettel Telecom",
+      "VNPT"
+    ]
+  },
+  {
+    "question": "Bài hát “Happy New Year” do ban nhạc nào thể hiện",
+    "questionType": 1,
+    "answers": [
+      "ABBA",
+      "The Carpenter",
+      "Spice Girls",
+      "MLTR"
+    ]
+  },
+  {
+    "question": "Động vật nào sau đây có bướu",
+    "questionType": 1,
+    "answers": [
+      "Lạc đà",
+      "Ngựa",
+      "Chó",
+      "Voi"
+    ]
+  },
+  {
+    "question": "Phép tính nào sau đây tách một số thành các phần bằng nhau",
+    "questionType": 1,
+    "answers": [
+      "Chia",
+      "Nhân",
+      "Trừ",
+      "Cộng"
+    ]
+  },
+  {
+    "question": "Thuyền nào sau đây chạy bằng sức gió",
+    "questionType": 1,
+    "answers": [
+      "Thuyền buồm",
+      "Thuyền thúng",
+      "Thuyền độc mộc",
+      "Thuyền nan"
+    ]
+  },
+  {
+    "question": "Loài động vật nào cao nhất trong số các loài sau",
+    "questionType": 1,
+    "answers": [
+      "Hươu cao cổ",
+      "Voi",
+      "Gấu",
+      "Hổ"
+    ]
+  },
+  {
+    "question": "Điền từ còn thiếu vào chỗ trống: 'Vặt đầu cá, vá ...'",
+    "questionType": 1,
+    "answers": [
+      "Đầu tôm",
+      "Đầu gối",
+      "Đầu đường",
+      "Đầu lâu"
+    ]
+  },
+  {
+    "question": "Màu sắc nào thuộc gam màu lạnh",
+    "questionType": 1,
+    "answers": [
+      "Tím",
+      "Đỏ",
+      "Vàng",
+      "Hồng"
+    ]
+  },
+  {
+    "question": "Đâu là tên một thể loại tranh đặc trưng của Trung Quốc?",
+    "questionType": 1,
+    "answers": [
+      "Thủy mặc",
+      "Thủy tức",
+      "Thủy sinh",
+      "Thủy tinh"
+    ]
+  },
+  {
+    "question": "Loại rau nào dưới đây có vị đắng và nhiều tác dụng trong Đông y?",
+    "questionType": 1,
+    "answers": [
+      "Ngải cứu",
+      "Mồng tơi",
+      "Rau ngót",
+      "Rau muống"
+    ]
+  },
+  {
+    "question": "Đâu là tên 1 bộ phận trong máy tính để bàn?",
+    "questionType": 1,
+    "answers": [
+      "Ổ cứng",
+      "Ổ điện",
+      "Ổ gà",
+      "Ổ voi"
+    ]
+  },
+  {
+    "question": "Loại khí nào còn được gọi là khí cười?",
+    "questionType": 1,
+    "answers": [
+      "N<sub>2</sub>O",
+      "CO<sub>2</sub>",
+      "H<sub>2</sub>S",
+      "O<sub>2</sub>"
+    ]
+  },
+  {
+    "question": "Từ nào sau đây viết đúng chính tả?",
+    "questionType": 1,
+    "answers": [
+      "Liều lĩnh",
+      "Liều nĩnh",
+      "Niều lĩnh",
+      "Niều nĩnh"
+    ]
+  },
+  {
+    "question": "Màu sắc nào sau đây không tồn tại",
+    "questionType": 1,
+    "answers": [
+      "Tím khế",
+      "Vàng chanh",
+      "Xanh trứng xáo",
+      "Đỏ đun"
+    ]
+  },
+  {
+    "question": "Đâu là một vật liệu xây dựng?",
+    "questionType": 1,
+    "answers": [
+      "Ngói",
+      "Ngoi",
+      "Ngòi",
+      "Ngỏi"
+    ]
+  },
+  {
+    "question": "Quả nào sau đây có gai",
+    "questionType": 1,
+    "answers": [
+      "Mít",
+      "Mận",
+      "Cóc",
+      "Ổi"
+    ]
+  },
+  {
+    "question": "Cồng chiêng của người Tây Nguyên được làm từ chất liệu",
+    "questionType": 1,
+    "answers": [
+      "Đồng",
+      "Vàng",
+      "Bạc",
+      "Nhôm"
+    ]
+  },
+  {
+    "question": "Đâu không phải là tên một loại nhạc cụ?",
+    "questionType": 1,
+    "answers": [
+      "Gia cầm",
+      "Vĩ cầm",
+      "Dương cầm",
+      "Nguyệt cầm"
+    ]
+  },
+  {
+    "question": "Hãy cho biết tên gọi khác của “Truyện Kiều”?",
+    "questionType": 1,
+    "answers": [
+      "Đoạn trường tân thanh",
+      "Đoạn trường thanh tâm",
+      "Đoạn trường thanh tân",
+      "Đoạn trường tân tân"
+    ]
+  },
+  {
+    "question": "Trong bài hát “Chú ếch con”, tác giả miêu tả chú ếch ngồi học bài bên cái gì?",
+    "questionType": 1,
+    "answers": [
+      "Hố bom kề vườn xoan",
+      "Vườn xoan kề hố bom",
+      "Cái võng sau nhà",
+      "Cái bàn phòng khách"
+    ]
+  },
+  {
+    "question": "Loại bánh nào là đặc sản của tỉnh Thái Bình?",
+    "questionType": 1,
+    "answers": [
+      "Bánh cáy",
+      "Bánh in",
+      "Bánh xèo",
+      "Bánh khọt"
+    ]
+  },
+  {
+    "question": "Làng Lệ Mật quận Long Biên nổi tiếng với nghề gì?",
+    "questionType": 1,
+    "answers": [
+      "Nuôi bắt rắn",
+      "Đúc đồng",
+      "Làm miến",
+      "Làm vàng mã"
+    ]
+  },
+  {
+    "question": "Chân vịt là bộ phận quan trọng của phương tiện nào dưới đây?",
+    "questionType": 1,
+    "answers": [
+      "Tàu thủy",
+      "Tàu hỏa",
+      "Xích lô/Ba gác",
+      "Thuyền con vịt"
+    ]
+  },
+  {
+    "question": "Con vật nào dưới đây khi ngủ thường treo ngược cơ thể?",
+    "questionType": 1,
+    "answers": [
+      "Dơi",
+      "Gấu Koala",
+      "Gấu trúc",
+      "Cá sấu"
+    ]
+  },
+  {
+    "question": "Đâu không phải là tên một bức tranh dân gian Đông Hồ? ",
+    "questionType": 1,
+    "answers": [
+      "Thiếu nữ bên hoa huệ",
+      "Mục đồng thổi sáo",
+      "Đánh ghen",
+      "Đám cưới chuột"
+    ]
+  },
+  {
+    "question": "Đâu là tên một cây cầu nổi tiếng ở Đà Nẵng?",
+    "questionType": 1,
+    "answers": [
+      "Cầu Rồng",
+      "Cầu Hàm Rồng",
+      "Cầu Thăng Long",
+      "Cầu Long Biên"
+    ]
+  },
+  {
+    "question": "Đâu là tên một loại hoa cúc?",
+    "questionType": 1,
+    "answers": [
+      "Họa Mi",
+      "Họa Bì",
+      "Họa Hổ",
+      "Họa Nhân"
+    ]
+  },
+  {
+    "question": "Hoa Sứ Đại là biểu tượng của đất nước nào sau đây?",
+    "questionType": 1,
+    "answers": [
+      "Lào",
+      "Bulgari",
+      "Hà Lan",
+      "Canada"
+    ]
+  },
+  {
+    "question": "Kí hiệu đơn vị đo lường nào sau đây phải viết hoa?",
+    "questionType": 1,
+    "answers": [
+      "Volt",
+      "Héc-ta",
+      "Ki-lô-gam",
+      "Mét"
+    ]
+  },
+  {
+    "question": "Kí hiệu đơn vị đo lường nào sau đây phải viết hoa?",
+    "questionType": 1,
+    "answers": [
+      "Volt",
+      "Héc-ta",
+      "Ki-lô-gam",
+      "Mét"
+    ]
+  },
+  {
+    "question": "Vòng chung kết World Cup 2018 được tổ chức tại",
+    "questionType": 1,
+    "answers": [
+      "Nga",
+      "Qatar",
+      "Brazil",
+      "Nam Phi"
+    ]
+  },
+  {
+    "question": "Đại dương nào có diện tích lớn nhất",
+    "questionType": 1,
+    "answers": [
+      "Thái Bình Dương",
+      "Đại Tây Dương",
+      "Bắc Băng Dương",
+      "Ấn Độ Dương"
+    ]
+  },
+  {
+    "question": "Theo dân gian, Ngưu Lang Chức Nữ chỉ được gặp nhau ngày nào trong năm Âm lịch",
+    "questionType": 1,
+    "answers": [
+      "7 tháng Bảy",
+      "14 tháng Hai",
+      "8 tháng Ba",
+      "Rằm tháng Tám"
+    ]
+  },
+  {
+    "question": "Đâu là tên một họa sĩ nổi tiếng?",
+    "questionType": 2,
+    "answers": [
+      "Tô Ngọc Vân",
+      "Tô Hiệu",
+      "Tô Hiến Thành",
+      "Tô Vĩnh Diện"
+    ]
+  },
+  {
+    "question": "Tác phẩm nào được coi là tác phẩm nổi tiếng nhất của Hector Malot",
+    "questionType": 2,
+    "answers": [
+      "Không gia đình",
+      "Đồi gió hú",
+      "Giã từ vũ khí",
+      "Miếng da lừa"
+    ]
+  },
+  {
+    "question": "Ca sĩ nào không thuộc nhóm nhạc Big Bang",
+    "questionType": 2,
+    "answers": [
+      "Yoochun",
+      "T.O.P",
+      "G-Dragon",
+      "Daesung"
+    ]
+  },
+  {
+    "question": "Đâu là một hợp kim của Nhôm",
+    "questionType": 2,
+    "answers": [
+      "Đuyra",
+      "Ferit",
+      "Alkanoid",
+      "Alumin"
+    ]
+  },
+  {
+    "question": "Cầu thủ nào là Vua phá lưới giải Ngoại hạng Anh mùa giải 2019-2020",
+    "questionType": 2,
+    "answers": [
+      "Jamie Vardy",
+      "Mohamed Salah",
+      "Aubameyang",
+      "Raheem Sterling"
+    ]
+  },
+  {
+    "question": "Thiên tài Albert Einstein đã từng được mời làm tổng thống nước",
+    "questionType": 2,
+    "answers": [
+      "Israel",
+      "Latvia",
+      "Jordan",
+      "Bulgari"
+    ]
+  },
+  {
+    "question": "Kimi Raikkonen là VĐV từng giành chức vô địch thế giới ở môn thể thao",
+    "questionType": 2,
+    "answers": [
+      "Đua xe F1",
+      "Trượt tuyết",
+      "Bơi lội",
+      "Thể dục dụng cụ"
+    ]
+  },
+  {
+    "question": "Quốc gia duy nhất trên thế giới có tới 3 thủ đô",
+    "questionType": 2,
+    "answers": [
+      "Nam Phi",
+      "Bolivia",
+      "Montenegro",
+      "Sri Lanka"
+    ]
+  },
+  {
+    "question": "Trạng thái nào được coi là trạng thái thứ tư\n của vật chất (bên cạnh rắn, lỏng, khí)",
+    "questionType": 2,
+    "answers": [
+      "Plasma",
+      "Laser",
+      "Ketogenic",
+      "Obitan"
+    ]
+  },
+  {
+    "question": "Cây cầu vượt biển dài nhất nước ta hiện nay nằm ở tỉnh",
+    "questionType": 2,
+    "answers": [
+      "Hải Phòng",
+      "Bà Rịa - Vũng Tàu",
+      "Bình Thuận",
+      "Khánh Hòa"
+    ]
+  },
+  {
+    "question": "Nghệ thuật vẽ tranh chân dung giống y người thật gọi là",
+    "questionType": 2,
+    "answers": [
+      "Truyền thân",
+      "Khỏa thân",
+      "Sơn dầu",
+      "Ký họa"
+    ]
+  },
+  {
+    "question": "Bún tàu là tên gọi khác của",
+    "questionType": 2,
+    "answers": [
+      "Miến",
+      "Phở",
+      "Bánh đa",
+      "Mì"
+    ]
+  },
+  {
+    "question": "Món ăn nào là đặc sản nổi tiếng Hồ Tây",
+    "questionType": 2,
+    "answers": [
+      "Bánh tôm",
+      "Bánh cốm",
+      "Bánh bèo",
+      "Bánh tằm"
+    ]
+  },
+  {
+    "question": "Sông Mê Kông không chảy qua địa phận nước",
+    "questionType": 2,
+    "answers": [
+      "Malaysia",
+      "Thái Lan",
+      "Lào",
+      "Campuchia"
+    ]
+  },
+  {
+    "question": "Tiểu thuyết Robinson Crusoe viết bởi nhà văn",
+    "questionType": 2,
+    "answers": [
+      "Daniel Defoe",
+      "Mark Twain",
+      "Charles Dicken",
+      "Robert Stevenson"
+    ]
+  },
+  {
+    "question": "Làng Đồng Xâm ở Thái Bình nổi tiếng với nghề thủ công",
+    "questionType": 2,
+    "answers": [
+      "Chạm bạc",
+      "Đúc đồng",
+      "Đan mây tre",
+      "Dệt vải"
+    ]
+  },
+  {
+    "question": "Toà nhà nào cao nhất Đông Nam Á hiện nay",
+    "questionType": 2,
+    "answers": [
+      "Exchange 106",
+      "Landmark 81",
+      "Unicloud Smart Factory",
+      "Petronas"
+    ]
+  },
+  {
+    "question": "Trong vở chèo “Quan âm thị kính”, Thị Kính giả trai dưới cái tên",
+    "questionType": 2,
+    "answers": [
+      "Kính Tâm",
+      "Kính An",
+      "Kính Thi",
+      "Kính Thị"
+    ]
+  },
+  {
+    "question": "Tượng chúa cứu thế ở thành phố Rio de Janeiro nằm trên ngọn núi nào? ",
+    "questionType": 2,
+    "answers": [
+      "Corcovado",
+      "Sugarloaf",
+      "Roraima",
+      "Pico de Neblina"
+    ]
+  },
+  {
+    "question": "Đèo Hải Vân cắt ngang dãy núi nào của dãy Trường Sơn",
+    "questionType": 2,
+    "answers": [
+      "Bạch Mã",
+      "Ngọc Linh",
+      "Chư Yang Sin",
+      "Vọng Phu"
+    ]
+  },
+  {
+    "question": "Trong phần mềm soạn thảo văn bản của Microsoft, tổ hợp phím nào\n được dùng để đóng văn bản",
+    "questionType": 2,
+    "answers": [
+      "Ctrl + W",
+      "Ctrl + A",
+      "Ctrl + S",
+      "Ctrl + D"
+    ]
+  },
+  {
+    "question": "Xứ Cảng thơm là tên gọi khác của",
+    "questionType": 2,
+    "answers": [
+      "Hongkong",
+      "Macau",
+      "Đài Loan",
+      "Triều Tiên"
+    ]
+  },
+  {
+    "question": "Loại vải nào được sản xuất thủ công bằng việc trồng dâu, nuôi tằm lấy tơ",
+    "questionType": 2,
+    "answers": [
+      "Lụa",
+      "Len",
+      "Lanh",
+      "Sợi"
+    ]
+  },
+  {
+    "question": "Tác giả của tiểu thuyết Dấu chân người lính",
+    "questionType": 2,
+    "answers": [
+      "Nguyễn Minh Châu",
+      "Nguyễn Huy Thiệp",
+      "Nguyễn Quang Sáng",
+      "Nguyễn Khải"
+    ]
+  },
+  {
+    "question": "Đâu không phải là tên một tác phẩm kịch nói của Lưu Quang Vũ",
+    "questionType": 2,
+    "answers": [
+      "Cát bụi",
+      "Lời thế thứ 9",
+      "Nàng Sita",
+      "Hồn Trương Ba, da hàng thịt"
+    ]
+  },
+  {
+    "question": "Chủng tộc người có chiều cao trung bình thấp nhất thế giới",
+    "questionType": 2,
+    "answers": [
+      "Pygmy",
+      "Homo sapien",
+      "Negroid",
+      "Mongoloid"
+    ]
+  },
+  {
+    "question": "Cấp điện áp cao nhất của đường dây truyền tải điện ở Việt Nam là",
+    "questionType": 2,
+    "answers": [
+      "500kV",
+      "750kV",
+      "220kV",
+      "1000kV"
+    ]
+  },
+  {
+    "question": "Hệ Mặt Trời của chúng ta có bao nhiêu hành tinh",
+    "questionType": 2,
+    "answers": [
+      "8",
+      "9",
+      "10",
+      "12"
+    ]
+  },
+  {
+    "question": "Chiều dài một chặng đua Marathon chính thức tại các kỳ Olympic",
+    "questionType": 2,
+    "answers": [
+      "42.195 km",
+      "42.095 km",
+      "40.195 km",
+      "40.2 km"
+    ]
+  },
+  {
+    "question": "Loài chim nào dưới đây có thể bay lùi",
+    "questionType": 2,
+    "answers": [
+      "Chim ruồi",
+      "Chim bói cá",
+      "Chim Toucan",
+      "Thần Điêu của Dương Quá"
+    ]
+  },
+  {
+    "question": "Mũi Sa Vĩ thuộc tỉnh nào ở nước ta",
+    "questionType": 2,
+    "answers": [
+      "Quảng Ninh",
+      "Quảng Bình",
+      "Quảng Trị",
+      "Quảng Ngãi"
+    ]
+  },
+  {
+    "question": "Tập tục Chợ tình khâu vai được tiến hành ở",
+    "questionType": 2,
+    "answers": [
+      "Hà Giang",
+      "Cao Bằng",
+      "Lào Cai",
+      "Lai Châu"
+    ]
+  },
+  {
+    "question": "Diễn viên nào đóng vai bà Vi trong phim “Của để dành”? ",
+    "questionType": 3,
+    "answers": [
+      "Hoàng Yến",
+      "Lê Mai",
+      "Thu An",
+      "Thanh Hoa"
+    ]
+  },
+  {
+    "question": "Bức tượng cao nhất Trung Quốc?",
+    "questionType": 3,
+    "answers": [
+      "Trung Nguyên Đại Phật",
+      "Linh Sơn Đại Phật",
+      "Tích Thủy Quan Âm",
+      "Lạc Sơn Đại Phật"
+    ]
+  },
+  {
+    "question": "Pôn Pốt mở đầu xâm lược biên giới tây nam nước ta vào ngày tháng năm nào?",
+    "questionType": 3,
+    "answers": [
+      "22/12/1978",
+      "20/12/1978",
+      "21/12/1978",
+      "24/12/1978"
+    ]
+  },
+  {
+    "question": "Đạo diễn của vở nhạc kịch Kim Vân Kiều là ai?",
+    "questionType": 3,
+    "answers": [
+      "Christophe Thiry",
+      "Nguyễn Đăng Bình",
+      "Johahn Bern",
+      "Alisa Karnet"
+    ]
+  },
+  {
+    "question": "Vật liệu nào được dùng để rèn những cây kiếm Katana huyền thoại của Nhật Bản?",
+    "questionType": 3,
+    "answers": [
+      "Tamahagane",
+      "Takashi",
+      "Orihaco",
+      "Katanashi"
+    ]
+  },
+  {
+    "question": "Luật sư nào đã bào chữa cho Nguyễn Ái Quốc\n trong vụ án năm 1931 ở Hồng Kông?",
+    "questionType": 3,
+    "answers": [
+      "Francis Henry Loseby",
+      "Karl Richard",
+      "Henry Peterson",
+      "Franky Luther Aston"
+    ]
+  },
+  {
+    "question": "Tên lửa nào dưới đây do Nga sản xuất? ",
+    "questionType": 3,
+    "answers": [
+      "Avangard",
+      "Tomahawk",
+      "Trident III",
+      "Minuteman III"
+    ]
+  },
+  {
+    "question": "Hoa nào được coi là Quốc hoa của Myanmar?",
+    "questionType": 3,
+    "answers": [
+      "Hoa Padauk",
+      "Hoa Simpor",
+      "Hoa Rumdul",
+      "Hoa Đại"
+    ]
+  },
+  {
+    "question": "Chuyến bay đầu tiên trong lịch sử nhân loại bằng phi cơ \n của anh em nhà Wright kéo dài bao nhiêu giây? ",
+    "questionType": 3,
+    "answers": [
+      "12",
+      "10",
+      "14",
+      "16"
+    ]
+  },
+  {
+    "question": "Chất độc nào có trong lá ngón ",
+    "questionType": 3,
+    "answers": [
+      "Alkaloid",
+      "Cyanua",
+      "Tetrodotoxi",
+      "Heteroizit"
+    ]
+  },
+  {
+    "question": "Nam Dương là tên phiên âm Hán-Việt của quốc gia nào?",
+    "questionType": 3,
+    "answers": [
+      "Indonesia",
+      "Philippines",
+      "Myanmar",
+      "Campuchia"
+    ]
+  },
+  {
+    "question": "The Cup Of Life là bài hát chính thức World Cup năm nào?",
+    "questionType": 3,
+    "answers": [
+      "1998",
+      "1994",
+      "2002",
+      "2006"
+    ]
+  },
+  {
+    "question": "Bộ Cửu Đỉnh trong Hoàng thành Huế là do vua nào ra lệnh cho đúc? ",
+    "questionType": 3,
+    "answers": [
+      "Minh Mạng",
+      "Hiệp Hòa",
+      "Gia Long",
+      "Đồng Khánh"
+    ]
+  },
+  {
+    "question": "Câu lạc bộ nào đoạt nhiều chức vô địch Champions League nhất? ",
+    "questionType": 3,
+    "answers": [
+      "Real Madrid",
+      "Manchester United",
+      "Liverpool",
+      "AC Milan"
+    ]
+  },
+  {
+    "question": "Euro năm 2012 là Euro lần thứ mấy trong lịch sử do hai nước cùng đăng cai tổ chức?",
+    "questionType": 3,
+    "answers": [
+      "3",
+      "2",
+      "1",
+      "4"
+    ]
+  },
+  {
+    "question": "Chỉ số nào sau đây không dùng để đo\n chỉ số phát triển con người (HDI) của một nước? ",
+    "questionType": 3,
+    "answers": [
+      "Chỉ số lạm phát",
+      "Tuổi thọ bình quân",
+      "Chỉ số giáo dục",
+      "GDP bình quân đầu người"
+    ]
+  },
+  {
+    "question": "Trái tim của nhạc sĩ nào còn được lưu giữ đến tận ngày nay ",
+    "questionType": 3,
+    "answers": [
+      "Frederic Chopin",
+      "Johan Sebastian Bach",
+      "Ludvig van Beethoven",
+      "Wolfgang Amadeus Mozart"
+    ]
+  },
+  {
+    "question": "Samuel Langhome Clemens là tên thật của nhà văn nổi tiếng nào sau đây ",
+    "questionType": 3,
+    "answers": [
+      "Mark Twain",
+      "Charles Dickens",
+      "O’Henry",
+      "Hemingway"
+    ]
+  },
+  {
+    "question": "Cây cầu nào sau đây không bắc qua sông",
+    "questionType": 3,
+    "answers": [
+      "Cầu La Ngà",
+      "Cầu Việt Trì",
+      "Cầu Tân Quang",
+      "Cầu Bình Ca"
+    ]
+  },
+  {
+    "question": "Ai là người đại diện chính thức cho nước Việt Nam Dân chủ Cộng hòa\n kí Hiệp định Paris ngày 27/1/1973 ",
+    "questionType": 3,
+    "answers": [
+      "Nguyễn Duy Trinh",
+      "Nguyễn Thị Bình",
+      "Lê Đức Thọ",
+      "Xuân Thủy"
+    ]
+  }
+]

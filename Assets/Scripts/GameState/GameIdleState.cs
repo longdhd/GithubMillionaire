@@ -12,7 +12,7 @@ public class GameIdleState : GameBaseState
         currentClip = clip;
         SoundManager.Instance.PlayMusic(clip);
 
-        CameraManager.Instance.SwitchTo("PlayerCam");
+        //CameraManager.Instance.SwitchTo("PlayerCam");
     }
     public override void UpdateState(GameStateManager state)
     {

@@ -89,11 +89,11 @@ public class UIController : MonoBehaviour
     {
         LeanTween.moveLocalY(questionContainer, -240f, 0.5f);
         yield return new WaitForSeconds(3f);
-        LeanTween.moveLocalY(questionContainer, 0f, 0.5f)
+        LeanTween.moveLocalY(questionContainer, 60f, 0.5f)
                  .setEase(LeanTweenType.easeOutBounce)
                  .setOnComplete(() =>
                  {
-                     LeanTween.moveLocalY(answersContainer, -160f, 0.5f);
+                     LeanTween.moveLocalY(answersContainer, -100f, 0.5f);
                  });
         yield return new WaitForSeconds(1f);
         timerText.gameObject.SetActive(true);
@@ -190,7 +190,7 @@ public class UIController : MonoBehaviour
         {
             questionContainer.transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
             questionContainer.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = prizeList[questionController.currentLevel - 2].text;
-            LeanTween.moveLocalY(questionContainer, -320f, 0.5f);
+            LeanTween.moveLocalY(questionContainer, -260f, 0.5f);
             yield return new WaitForSeconds(delayAfterFinalAnswer);
         }
         LeanTween.moveLocalY(questionContainer, -(Screen.height + questionContainer.transform.GetComponent<RectTransform>().rect.height), 0.5f);

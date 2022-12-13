@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-[Serializable]
 public enum QuestionType
 {
     Unlock,
@@ -11,13 +10,14 @@ public enum QuestionType
     Medium,
     Hard
 }
+[Serializable]
 public class QuestionModel
 {
     public string question { get; set; }
     public string[] answers { get; set; }
-    public string correctAns { get; set; }
-    public bool asked { get; set; }
+    public string correctAnswer { get; set; }
+    public bool asked { get; set; } = false;
 
-    public int questionType;
+    public int difficulty;
     public QuestionType Type { get; set; }
 }

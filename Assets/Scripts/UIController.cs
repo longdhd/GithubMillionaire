@@ -151,14 +151,14 @@ public class UIController : MonoBehaviour
         foreach (Button button in answersButton)
         {
             if (button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text
-                                .Equals(questionController.currentQuestion.correctAns))
+                                .Equals(questionController.currentQuestion.correctAnswer))
             {
-                StartCoroutine(RevealCorrectAnswer(button, isCorrect));
+                StartCoroutine(RevealcorrectAnswerwer(button, isCorrect));
             }
         }
     }
 
-    IEnumerator RevealCorrectAnswer(Button button, bool isCorrect)
+    IEnumerator RevealcorrectAnswerwer(Button button, bool isCorrect)
     {
         yield return new WaitForSeconds(delayAfterFinalAnswer);
 
@@ -215,7 +215,7 @@ public class UIController : MonoBehaviour
         QuestionModel sortedAnswerQuestion = new QuestionModel()
         {
             question = questionController.currentQuestion.question,
-            correctAns = questionController.currentQuestion.correctAns,
+            correctAnswer = questionController.currentQuestion.correctAnswer,
             answers = new string[answersButton.Length],
             asked = true
         };

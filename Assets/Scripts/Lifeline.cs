@@ -21,13 +21,13 @@ public class FiftyLifeline : Lifeline
         int randomInt = UnityEngine.Random.Range(0, question.answers.Length);
         for (int i = 0; i < question.answers.Length; i++)
         {
-            if (question.answers[i].Equals(question.correctAns)
+            if (question.answers[i].Equals(question.correctAnswer)
                 && randomInt == i
                 && randomInt != question.answers.Length - 1)
                 randomInt += 1;
 
             if (i != randomInt
-                && !question.answers[i].Equals(question.correctAns))
+                && !question.answers[i].Equals(question.correctAnswer))
                 question.answers[i] = string.Empty;
         }
         Quantity -= 1;
@@ -47,7 +47,7 @@ public class SwitchLifeline : Lifeline
     public QuestionModel Use(QuestionModel question)
     {
         //Get same difficulty question
-        QuestionModel newQuestion = QuestionController.Instance._collection.GetUnaskedQuestion(question.Type);
+        QuestionModel newQuestion = QuestionController.Instance._collection.GetUnaskedQuestion();
         Quantity -= 1;
         return newQuestion;
     }

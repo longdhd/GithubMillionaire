@@ -47,15 +47,22 @@ public class QuestionController : MonoBehaviour, IDataPersistence
             || currentLevel == 10 || currentLevel == 15)
             StartCoroutine(_viewController.DisplayMoneyTree());
 
+        QuestionType prevType = questionType; 
         GetQuestionType();
 
-        currentQuestion = _collection.GetUnaskedQuestion(questionType);
-        if (currentQuestion == null)
+        if(prevType != questionType)
         {
-            _collection.ResetAllQuestions();
-            currentQuestion = _collection.GetUnaskedQuestion(questionType);
+            _collection.GetQuestionsByType(questionType, () => {
+                currentQuestion = _collection.GetUnaskedQuestion();
+                if (currentQuestion == null)
+                {
+                    _collection.ResetAllQuestions();
+                    currentQuestion = _collection.GetUnaskedQuestion();
+                }
+                _viewController.SetUpUI(currentQuestion);
+            });
         }
-        _viewController.SetUpUI(currentQuestion);
+        
         yield return new WaitForSeconds(3f);
         StartCoroutine(_viewController.DisplayQuestionAndAnswer());
         yield return new WaitForSeconds(4f);
@@ -88,7 +95,7 @@ public class QuestionController : MonoBehaviour, IDataPersistence
 
         bool isCorrect = _viewController.answersButton[finalAnswer].transform
                             .GetChild(0).GetComponent<TextMeshProUGUI>()
-                            .text.Equals(currentQuestion.correctAns);
+                            .text.Equals(currentQuestion.correctAnswer);
         if (isSubmitted)
         {
             gameStateManager.SwitchState(finalState);
@@ -199,7 +206,7 @@ public class QuestionController : MonoBehaviour, IDataPersistence
             actionOnTimer.Stop();
 
             int availableAnswers = 0;
-            int correctAnswerIndex = 0;
+            int correctAnswerwerIndex = 0;
             for (int i = 0; i < _viewController.answersButton.Length; i++)
             {
                 if (!string.IsNullOrEmpty(_viewController.answersButton[i].transform
@@ -207,12 +214,12 @@ public class QuestionController : MonoBehaviour, IDataPersistence
                     availableAnswers++;
 
                 if (_viewController.answersButton[i].transform
-                    .GetChild(0).GetComponent<TextMeshProUGUI>().text.Equals(currentQuestion.correctAns))
-                    correctAnswerIndex = i;
+                    .GetChild(0).GetComponent<TextMeshProUGUI>().text.Equals(currentQuestion.correctAnswer))
+                    correctAnswerwerIndex = i;
             }
 
             bool isUsing5050 = availableAnswers == 2 ? true : false;
-            int[] results = _audienceLifeline.Use(correctAnswerIndex, isUsing5050);
+            int[] results = _audienceLifeline.Use(correctAnswerwerIndex, isUsing5050);
             _viewController.DisplayAudiencePanel(results);
         }
     }

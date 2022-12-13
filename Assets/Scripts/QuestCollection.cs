@@ -6,101 +6,113 @@ using Newtonsoft.Json;
 using UnityEngine;
 using System;
 using UnityEngine.Networking;
+using System.Threading.Tasks;
 
 public class QuestCollection : MonoBehaviour
 {
     private QuestionModel[] allQuestion;
+    private QuestionModel[] availableQuestions;
 
     void Awake()
     {
-        GetAllQuestions();
+        //GetAllQuestions();
     }
 
-    void LoadAllQuestions()
-    {
-        ResetAllQuestions();
-        var jsonPath = Application.streamingAssetsPath + "/JSON/questions.json";
-        var jsonFile = File.ReadAllText(jsonPath);
-        allQuestion = JsonConvert.DeserializeObject<QuestionModel[]>(jsonFile);
+    //void LoadAllQuestions()
+    //{
+    //    ResetAllQuestions();
+    //    var jsonPath = Application.streamingAssetsPath + "/JSON/questions.json";
+    //    var jsonFile = File.ReadAllText(jsonPath);
+    //    allQuestion = JsonConvert.DeserializeObject<QuestionModel[]>(jsonFile);
 
-        SetQuestionType();
-        SetCorrectAnswer();
-    }
+    //    CastQuestionType();
+    //}
 
     void GetAllQuestions()
     {
-        StartCoroutine(GetRequest("localhost:8080/api/v1/questions"));
+        StartCoroutine(GetRequest("localhost:8080/api/v1/questions", null));
     }
 
-    public QuestionModel GetUnaskedQuestion(QuestionType questionType)
+    public void GetQuestionsByType(QuestionType type, Action callback)
     {
-        QuestionModel unasked;
-        switch (questionType)
+        int difficulty;
+        switch (type)
         {
             case QuestionType.Unlock:
-                unasked = allQuestion.Where(t => t.asked == false && t.Type == QuestionType.Unlock)
-                                                    .OrderBy(t => UnityEngine.Random.Range(0, allQuestion.Length - 1))
-                                                    .FirstOrDefault();
-                unasked.asked = true;
-                return unasked;
-
+                difficulty = 0;
+                break;
             case QuestionType.Easy:
-                unasked = allQuestion.Where(t => t.asked == false && t.Type == QuestionType.Easy)
-                                                    .OrderBy(t => UnityEngine.Random.Range(0, allQuestion.Length - 1))
-                                                    .FirstOrDefault();
-                unasked.asked = true;
-                return unasked;
-
+                difficulty = 1;
+                break;
             case QuestionType.Medium:
-                unasked = allQuestion.Where(t => t.asked == false && t.Type == QuestionType.Medium)
-                                                    .OrderBy(t => UnityEngine.Random.Range(0, allQuestion.Length - 1))
-                                                    .FirstOrDefault(); ;
-                unasked.asked = true;
-                return unasked;
-
+                difficulty = 2;
+                break;
             case QuestionType.Hard:
-                unasked = allQuestion.Where(t => t.asked == false && t.Type == QuestionType.Hard)
-                                                    .OrderBy(t => UnityEngine.Random.Range(0, allQuestion.Length - 1))
-                                                    .FirstOrDefault(); ;
-                unasked.asked = true;
-                return unasked;
-
+                difficulty = 3;
+                break;
             default:
-                return null;
+                difficulty = 0;
+                break;
         }
+        StartCoroutine(GetRequest($"localhost:8080/api/v1/questions/page?difficulty={difficulty}&number=0&size=25", callback));
     }
 
-    void SetQuestionType()
+    public async void AsyncGetQuestionByType(QuestionType type)
     {
-        foreach (QuestionModel question in allQuestion)
+        int difficulty;
+        switch (type)
         {
-            question.Type = (QuestionType)question.questionType;
+            case QuestionType.Unlock:
+                difficulty = 0;
+                break;
+            case QuestionType.Easy:
+                difficulty = 1;
+                break;
+            case QuestionType.Medium:
+                difficulty = 2;
+                break;
+            case QuestionType.Hard:
+                difficulty = 3;
+                break;
+            default:
+                difficulty = 0;
+                break;
         }
+        availableQuestions = await AsyncGetRequest($"localhost:8080/api/v1/questions/page?difficulty={difficulty}&number=0&size=25");
+        Debug.Log("await here");
     }
 
-    void SetCorrectAnswer()
+    public QuestionModel GetUnaskedQuestion()
     {
-        if (allQuestion.Any(t => String.IsNullOrEmpty(t.correctAns)))
-        {
-            foreach (var question in allQuestion)
-                question.correctAns = question.answers[0];
-        }
-
+        QuestionModel unasked = availableQuestions.Where(t => t.asked == false)
+                                                   .OrderBy(t => UnityEngine.Random.Range(0, availableQuestions.Length - 1))
+                                                   .FirstOrDefault();
+        unasked.asked = true;
+        return unasked;
     }
+
+    void CastQuestionType()
+    {
+        foreach (QuestionModel question in availableQuestions)
+        {
+            question.Type = (QuestionType)question.difficulty;
+        }
+    }
+
 
     public void ResetAllQuestions()
     {
         //if (allQuestion?.Any((t => t.asked == false)) == false)
         //{
-        if (allQuestion != null)
+        if (availableQuestions != null)
         {
-            foreach (var question in allQuestion)
+            foreach (var question in availableQuestions)
                 question.asked = false;
         }
         //}
     }
 
-    IEnumerator GetRequest(string uri)
+    IEnumerator GetRequest(string uri, Action callback)
     {
         using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
         {
@@ -121,11 +133,74 @@ public class QuestCollection : MonoBehaviour
                     break;
                 case UnityWebRequest.Result.Success:
                     var result = webRequest.downloadHandler.text;
-                    allQuestion = JsonConvert.DeserializeObject<QuestionModel[]>(result);
-                    SetQuestionType();
-                    SetCorrectAnswer();
+                    WebResponse deserializedResult = JsonConvert.DeserializeObject<WebResponse>(result);
+                    List<QuestionModel> tempList = new List<QuestionModel>();
+                    foreach (QuestionModel q in deserializedResult.data.content)
+                    {
+                        tempList.Add(q);
+                    }
+                    availableQuestions = tempList.ToArray();
+
+                    CastQuestionType();
+                    Debug.Log("Fetch api !");
+                    if (callback != null) { callback(); }
                     break;
             }
         }
     }
+
+    public async Task<QuestionModel[]> AsyncGetRequest(string uri)
+    {
+        string[] pages = uri.Split('/');
+        int page = pages.Length - 1;
+        UnityWebRequest request = UnityWebRequest.Get(uri);
+        request.SendWebRequest();
+        while (!request.isDone)
+        {
+            await Task.Yield();
+        }
+
+        switch (request.result)
+        {
+            case UnityWebRequest.Result.ConnectionError:
+            case UnityWebRequest.Result.DataProcessingError:
+                Debug.LogError(pages[page] + ": Error: " + request.error);
+                return null;
+            case UnityWebRequest.Result.ProtocolError:
+                Debug.LogError(pages[page] + ": HTTP Error: " + request.error);
+                return null;
+            case UnityWebRequest.Result.Success:
+                var result = request.downloadHandler.text;
+                WebResponse deserializedResult = JsonConvert.DeserializeObject<WebResponse>(result);
+                List<QuestionModel> tempList = new List<QuestionModel>();
+                foreach (QuestionModel q in deserializedResult.data.content)
+                {
+                    tempList.Add(q);
+                }
+
+                Debug.Log("Fetch api !");
+                return tempList.ToArray();
+            default:
+                return null;
+        }
+    }
+
+    [Serializable]
+    public class WebResponse
+    {
+        bool success;
+        public DataResponse data;
+    }
+
+    [Serializable]
+    public class DataResponse
+    {
+        public QuestionModel[] content;
+        int pageNumber;
+        int pageSize;
+        int totalElements;
+    }
+
+
+
 }

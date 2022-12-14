@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -37,8 +38,11 @@ public class QuestionController : MonoBehaviour, IDataPersistence
 
     public void BeginGame()
     {
-        _viewController.UpdateMoneyTree(currentLevel);
-        StartCoroutine(PresentQuestion());
+        _collection.FetchQuestionsByType(questionType, () =>
+        {
+            _viewController.UpdateMoneyTree(currentLevel);
+            StartCoroutine(PresentQuestion());
+        });
     }
 
     IEnumerator PresentQuestion()
@@ -47,22 +51,25 @@ public class QuestionController : MonoBehaviour, IDataPersistence
             || currentLevel == 10 || currentLevel == 15)
             StartCoroutine(_viewController.DisplayMoneyTree());
 
-        QuestionType prevType = questionType; 
+        QuestionType prevType = questionType;
         GetQuestionType();
 
-        if(prevType != questionType)
+        if (prevType != questionType)
         {
-            _collection.GetQuestionsByType(questionType, () => {
+            //Fetch new questions with updated difficulty
+            _collection.FetchQuestionsByType(questionType, () =>
+            {
                 currentQuestion = _collection.GetUnaskedQuestion();
-                if (currentQuestion == null)
-                {
-                    _collection.ResetAllQuestions();
-                    currentQuestion = _collection.GetUnaskedQuestion();
-                }
                 _viewController.SetUpUI(currentQuestion);
             });
         }
-        
+        else
+        {
+            //Get fetched questions from data
+            currentQuestion = _collection.GetUnaskedQuestion();
+            _viewController.SetUpUI(currentQuestion);
+        }
+
         yield return new WaitForSeconds(3f);
         StartCoroutine(_viewController.DisplayQuestionAndAnswer());
         yield return new WaitForSeconds(4f);

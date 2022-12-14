@@ -40,12 +40,12 @@ public class UIController : MonoBehaviour
         }
     }
 
-    public void SetUpUI(QuestionModel question, bool randomOrderAnswers = true)
+    public void SetUpUI(QuestionModel question, bool randomOrder = true)
     {
         questionTMPUGUI.text = question.question.Replace("\\n", "\n").Replace("'", string.Empty);
 
         //Should the answers be arranged ramdomly
-        if (randomOrderAnswers)
+        if (randomOrder)
         {
             string[] copiedArr = new string[question.answers.Length];
             Array.Copy(question.answers, copiedArr, question.answers.Length);
